@@ -1,0 +1,63 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white text-center">
+                <h4>🪖 Identificación</h4>
+            </div>
+            <div class="card-body text-center">
+                <h2 class="text-primary">{{ user.username }}</h2>
+                <p class="text-muted">Recluta en formación</p>
+                <hr>
+                <div class="d-grid">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger w-100">Cerrar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <h3 class="mb-3">📄 Historial de Servicios</h3>
+        
+        {% if historial %}
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered bg-white shadow-sm">
+                <thead class="table-light">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tema</th>
+                        <th>Nota</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in historial %}
+                    <tr>
+                        <td>{{ item.fecha|date:"d/m/Y H:i" }}</td>
+                        <td>{{ item.tema.nombre }}</td>
+                        <td class="fw-bold">{{ item.nota|floatformat:2 }}</td>
+                        <td>
+                            {% if item.nota >= 5 %}
+                                <span class="badge bg-success">APTO</span>
+                            {% else %}
+                                <span class="badge bg-danger">NO APTO</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="alert alert-info">
+                Aún no has realizado ningún examen. <a href="{% url 'portada' %}">¡Ve a estudiar!</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

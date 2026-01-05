@@ -1,0 +1,25 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="card text-center mt-5 shadow">
+    <div class="card-header bg-warning text-dark">
+        🔒 Acceso Restringido
+    </div>
+    <div class="card-body">
+        
+        <h2 class="card-title">¡Se acabó el periodo de prueba! 👮</h2>
+        <p class="card-text">
+            Tus 15 días de acceso gratuito han finalizado. 
+            Para seguir entrenando con el simulador y acceder al historial, activa tu cuenta definitiva.
+        </p>
+        <h1 class="display-4 my-4">14,99€ <small class="fs-6 text-muted">pago único</small></h1>
+        
+        <a href="{% url 'iniciar_pago' %}" class="btn btn-success btn-lg w-100">
+            💳 Activar Cuenta (Pago Seguro)
+        </a>
+    </div>
+    <div class="card-footer text-muted">
+        Academia ProMilitar
+    </div>
+</div>
+{% endblock %}

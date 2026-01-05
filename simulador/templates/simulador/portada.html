@@ -1,0 +1,45 @@
+{% extends 'simulador/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if esta_en_prueba %}
+    <div class="alert alert-warning d-flex justify-content-between align-items-center shadow-sm">
+        <div>
+            <strong>⏳ Periodo de Prueba:</strong> Te quedan
+            <span class="badge bg-dark">{{ dias_restantes }} días</span> gratis.
+        </div>
+        <a href="{% url 'iniciar_pago' %}" class="btn btn-sm btn-success">
+            Suscribirse ya (14,99€)
+        </a>
+    </div>
+    {% endif %}
+
+    <h1 class="text-center mb-4">Temario de Cabo</h1>
+
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Centro de Formación</h1>
+        <p class="lead text-muted">Selecciona un temario para comenzar el simulacro de examen.</p>
+    </div>
+
+    <div class="row">
+        {% for tema in temas %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-primary">{{ tema.nombre }}</h3>
+                    <p class="card-text text-muted">{{ tema.preguntas.count }} preguntas disponibles</p>
+                    <hr>
+                    <a href="{% url 'examen' tema.id %}" class="btn btn-outline-primary w-100">
+                        Comenzar Test 📚
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning">No hay temas cargados en el sistema.</div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

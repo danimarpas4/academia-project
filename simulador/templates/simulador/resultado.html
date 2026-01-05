@@ -1,0 +1,54 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+
+<div class="card text-center mb-4">
+    <div class="card-header">Resultados del Test</div>
+    <div class="card-body">
+        <h5 class="card-title">Tema: {{ tema.nombre }}</h5>
+        
+        {% if nota >= 5.0 %}
+            <div class="alert alert-success d-inline-block mt-2">
+                <h1 class="display-1 fw-bold">{{ nota }}</h1>
+                <p class="mb-0">¡APTO! 🎉</p>
+            </div>
+        {% else %}
+            <div class="alert alert-danger d-inline-block mt-2">
+                <h1 class="display-1 fw-bold">{{ nota }}</h1>
+                <p class="mb-0">NO APTO 👮‍♂️</p>
+            </div>
+        {% endif %}
+        
+        <p class="mt-3">Has acertado <strong>{{ aciertos }}</strong> de <strong>{{ total }}</strong> preguntas.</p>
+        
+        <div class="d-flex justify-content-center gap-2">
+            <a href="{% url 'temario_cabo' %}" class="btn btn-secondary">Volver al Inicio</a>
+            <a href="{% url 'examen' tema.id %}" class="btn btn-primary">Repetir Test</a>
+        </div>
+    </div>
+</div>
+
+<h4 class="mb-3">Revisión detallada:</h4>
+
+{% for item in detalles %}
+<div class="card mb-3 border-{{ item.es_acierto|yesno:'success,danger' }}">
+    <div class="card-body">
+        <h6 class="card-title">{{ forloop.counter }}. {{ item.pregunta.enunciado }}</h6>
+        
+        {% if item.es_acierto %}
+            <div class="text-success fw-bold">
+                ✅ Tu respuesta: {{ item.respuesta_usuario.texto }}
+            </div>
+        {% else %}
+            <div class="text-danger text-decoration-line-through">
+                ❌ Tu respuesta: {{ item.respuesta_usuario.texto|default:"(En blanco)" }}
+            </div>
+            <div class="text-primary mt-1">
+                💡 Correcta: <strong>{{ item.respuesta_correcta.texto }}</strong>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

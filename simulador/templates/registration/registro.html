@@ -1,0 +1,31 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-5">
+            <div class="card-header bg-success text-white">Nuevo Recluta</div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% for error in field.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    
+                    <button type="submit" class="btn btn-success w-100">Confirmar Alta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

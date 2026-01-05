@@ -1,0 +1,38 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Examen: <span class="text-primary">{{ tema.nombre }}</span></h2>
+    <a href="{% url 'temario_cabo' %}" class="btn btn-secondary btn-sm">Cancelar</a>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    
+    {% for pregunta in preguntas %}
+    <div class="card mb-4">
+        <div class="card-header bg-light">
+            <strong>Pregunta {{ forloop.counter }}</strong>
+        </div>
+        <div class="card-body">
+            <p class="card-text fs-5">{{ pregunta.enunciado }}</p>
+            
+            <div class="list-group">
+                {% for opcion in pregunta.opciones.all %}
+                <label class="list-group-item list-group-item-action">
+                    <input class="form-check-input me-2" type="radio" name="pregunta_{{ pregunta.id }}" value="{{ opcion.id }}">
+                    {{ opcion.texto }}
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <div class="alert alert-info">Este tema aún no tiene preguntas.</div>
+    {% endfor %}
+
+    <div class="d-grid gap-2 mb-5">
+        <button type="submit" class="btn btn-success btn-lg"> Corregir Examen</button>
+    </div>
+</form>
+{% endblock %}

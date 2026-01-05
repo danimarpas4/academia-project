@@ -1,0 +1,8 @@
+{% extends 'simulador/base.html' %}
+{% block content %}
+<div class="alert alert-danger text-center mt-5">
+    <h1>Pago Cancelado</h1>
+    <p>No se ha realizado ningún cargo.</p>
+    <a href="{% url 'landing' %}" class="btn btn-secondary">Volver</a>
+</div>
+{% endblock %}
