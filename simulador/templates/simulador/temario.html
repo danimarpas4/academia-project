@@ -1,0 +1,31 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>📂 Documentación y Temarios</h2>
+        <a href="{% url 'portada' %}" class="btn btn-outline-secondary">⬅ Volver al Panel</a>
+    </div>
+
+    <div class="list-group shadow">
+        {% for tema in temas %}
+        <div class="list-group-item list-group-item-action p-4 d-flex justify-content-between align-items-center">
+            <div>
+                <h4 class="mb-1 text-primary">{{ tema.nombre }}</h4>
+                <p class="mb-0 text-muted">{{ tema.descripcion|default:"Sin descripción" }}</p>
+            </div>
+            
+            {% if tema.archivo_pdf %}
+                <a href="{{ tema.archivo_pdf.url }}" class="btn btn-danger btn-lg" target="_blank">
+                    ⬇ Descargar PDF
+                </a>
+            {% else %}
+                <button class="btn btn-secondary" disabled>No disponible</button>
+            {% endif %}
+        </div>
+        {% empty %}
+        <div class="alert alert-warning">Aún no se han subido documentos.</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

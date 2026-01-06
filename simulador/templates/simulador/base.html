@@ -4,17 +4,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Academia Militar - ProMilitar</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        body { background-color: #f8f9fa; }
-        .card { box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: none; }
+        body {
+            background-color: #0f1110; /* Fondo oscuro táctico */
+            color: #e0e0e0;            /* Texto claro */
+        }
+        .card {
+            background-color: #1c1f23; /* Tarjetas oscuras */
+            border: 1px solid #3a3f44;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5); /* Sombra más oscura */
+        }
+        /* Arreglamos la navbar para que pegue con lo oscuro */
+        .navbar {
+            background-color: #000 !important;
+            border-bottom: 2px solid #d4af37; /* Línea dorada fina */
+        }
+        /* Ajuste para enlaces en la navbar */
+        .navbar-light .navbar-brand, .navbar-light .nav-link {
+            color: #e0e0e0 !important;
+        }
     </style>
-  </head>
-  <body>
+</head>
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'landing' %}">🛡️ ProMilitar</a>
+        <a class="navbar-brand" href="{% url 'portada' %}">🛡️ ProMilitar</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
     {% if user.is_authenticated %}

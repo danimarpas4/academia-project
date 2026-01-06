@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b8%#e5se7tyx%3$+ws++zbwi)p$4+aq8-e@)21nf*9k^7qk#$r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -133,3 +133,8 @@ try:
 except ImportError:
     # Esto pasará si el archivo no existe (ej. en el servidor si no lo creamos)
     pass
+
+# Configuración de archivos multimedia (Al final del archivo)
+MEDIA_URL = '/media/'
+import os # <--- Asegúrate de que 'os' está importado arriba, si no, ponlo aquí
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

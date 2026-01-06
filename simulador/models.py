@@ -5,9 +5,11 @@ from django.dispatch import receiver
 
 class Tema(models.Model):
     nombre = models.CharField(max_length=200)
+    # Si tenías descripción, déjala, si no, no pasa nada
+    archivo_pdf = models.FileField(upload_to='temarios/', blank=True, null=True, help_text="Sube aquí el PDF del tema")
+
     def __str__(self):
         return self.nombre
-
 class Pregunta(models.Model):
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE, related_name='preguntas') 
     enunciado = models.TextField()
@@ -26,12 +28,15 @@ class Opcion(models.Model):
 class Resultado(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE)
-    nota = models.FloatField()
-    fecha = models.DateTimeField(auto_now_add=True) # Se pone la fecha sola automáticamente
+    fecha = models.DateTimeField(auto_now_add=True)
+    
+    # --- CAMPOS NUEVOS PARA ESTADÍSTICAS ---
+    nota = models.FloatField()      # Usaremos 'nota' en vez de 'puntuacion' para ser estándar
+    aciertos = models.IntegerField(default=0)
+    fallos = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"Nota de {self.usuario.username}: {self.nota}"
-    
+        return f"Resultado de {self.usuario} en {self.tema}: {self.nota}"
 # --- NUEVO MODELO: PERFIL DE PAGO ---
 class Perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil')

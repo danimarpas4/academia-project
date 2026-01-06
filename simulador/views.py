@@ -1,163 +1,154 @@
-from django.utils import timezone
-import stripe
-from django.conf import settings
-from django.urls import reverse
-from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from django.shortcuts import render, get_object_or_404, redirect # <--- Añade redirect
-from django.contrib.auth.decorators import login_required # <--- Para proteger vistas
-from django.shortcuts import render, get_object_or_404
-from .models import Tema, Opcion, Resultado # <--- AÑADE Resultado
+from django.contrib.auth.forms import UserCreationForm
+from django.utils import timezone
+from .models import Tema, Pregunta, Opcion, Resultado, Perfil
+from django.db.models import Avg
+from django.contrib.auth.models import User
 
-# Vista para el Hall de Entrada
-def landing(request):
-    return render(request, 'simulador/landing.html')
+# --- REGISTRO DE USUARIOS ---
+def registro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Crear perfil automáticamente
+            Perfil.objects.create(usuario=user)
+            login(request, user)
+            return redirect('portada')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/registro.html', {'form': form})
+
+# --- NUEVAS VISTAS DEL DASHBOARD ---
 
 @login_required
 def portada(request):
-    perfil = request.user.perfil
+    perfil, created = Perfil.objects.get_or_create(usuario=request.user)
     
-    # --- ZONA DE DEBUG (DIAGNÓSTICO) ---
-    ahora = timezone.now()
-    fecha_registro = request.user.date_joined
-    diferencia = ahora - fecha_registro
-    dias_transcurridos = diferencia.days
-    
+    # Lógica de días restantes
     dias_prueba = 15
-    dias_restantes = dias_prueba - dias_transcurridos
-    
-    
-    # LÓGICA DE ACCESO (EL PORTERO)
-    # COMENTA ESTAS LÍNEAS CON '#' PARA QUE NO TE ECHE
-    if not perfil.esta_suscrito and dias_restantes < 0:
-        return redirect('iniciar_pago') 
-
-    # Carga de temas
-    temas = Tema.objects.all()
+    diferencia = timezone.now() - request.user.date_joined
+    dias_restantes = dias_prueba - diferencia.days
 
     contexto = {
-        'temas': temas,
-        'esta_en_prueba': not perfil.esta_suscrito, 
+        'esta_en_prueba': not perfil.esta_suscrito,
         'dias_restantes': dias_restantes,
-        # Pasamos los datos de debug a la pantalla para que los veas
-        'debug_registro': fecha_registro,
-        'debug_dias': dias_transcurridos
+        'usuario': request.user
     }
-
     return render(request, 'simulador/portada.html', contexto)
 
-# ... (imports y función portada igual) ...
+@login_required
+def ver_temario(request):
+    temas = Tema.objects.all()
+    return render(request, 'simulador/temario.html', {'temas': temas})
+
+@login_required
+def configurar_test(request):
+    # 1. Si el usuario envía el formulario (POST), lo mandamos al examen
+    if request.method == 'POST':
+        tema_id = request.POST.get('tema_seleccionado')
+        # Aquí podríamos añadir lógica para el número de preguntas más adelante
+        if tema_id:
+            return redirect('examen', tema_id=tema_id)
+            
+    # 2. Si entra normal (GET), le mostramos la lista de temas para elegir
+    temas = Tema.objects.all()
+    return render(request, 'simulador/configurar_test.html', {'temas': temas})
+
+@login_required
+def estadisticas(request):
+    # 1. Datos del usuario actual (lo que ya tenías)
+    resultados = Resultado.objects.filter(usuario=request.user).order_by('-fecha')
+    
+    promedio = resultados.aggregate(Avg('nota'))['nota__avg']
+    promedio = round(promedio, 1) if promedio else 0
+    total_tests = resultados.count()
+
+    # --- LÓGICA NUEVA: EL RANKING ---
+    # Calculamos la media de CADA usuario que haya hecho algún examen
+    ranking_usuarios = User.objects.annotate(media_global=Avg('resultado__nota')) \
+                                   .filter(media_global__isnull=False) \
+                                   .order_by('-media_global')
+    
+    # Buscamos en qué posición está el usuario actual
+    mi_posicion = "-"
+    total_alumnos = ranking_usuarios.count()
+    
+    for index, user_rank in enumerate(ranking_usuarios):
+        if user_rank.id == request.user.id:
+            mi_posicion = index + 1 # +1 porque los índices empiezan en 0
+            break
+    # --------------------------------
+
+    # Gráfica (lo que ya tenías)
+    ultimos_10 = resultados[:10][::-1]
+    fechas_grafica = [r.fecha.strftime("%d/%m") for r in ultimos_10]
+    notas_grafica = [float(r.nota) for r in ultimos_10]
+
+    contexto = {
+        'resultados': resultados,
+        'promedio': promedio,
+        'total_tests': total_tests,
+        'fechas_grafica': fechas_grafica,
+        'notas_grafica': notas_grafica,
+        # Nuevas variables para el HTML
+        'mi_posicion': mi_posicion,
+        'total_alumnos': total_alumnos
+    }
+    return render(request, 'simulador/estadisticas.html', contexto)
+
+# --- VISTAS DEL EXAMEN (LAS QUE FALTABAN) ---
 
 @login_required
 def examen(request, tema_id):
-    tema = get_object_or_404(Tema, pk=tema_id)
-    preguntas = tema.preguntas.all()
+    tema = get_object_or_404(Tema, id=tema_id)
+    # Lógica de seguridad de pago
+    perfil = request.user.perfil
+    diferencia = timezone.now() - request.user.date_joined
+    if not perfil.esta_suscrito and diferencia.days > 15:
+         return redirect('iniciar_pago')
 
     if request.method == 'POST':
-        aciertos = 0
-        total_preguntas = preguntas.count()
-
-        # 1. Recuperamos la lista de detalles para la corrección visual
-        detalles = []
-
-        for pregunta in preguntas:
-            opcion_id = request.POST.get(f'pregunta_{pregunta.id}')
-
-            respuesta_usuario = None
-            respuesta_correcta = pregunta.opciones.get(es_correcta=True)
-            es_acierto = False
-
-            if opcion_id:
-                opcion_elegida = Opcion.objects.get(id=opcion_id)
-                respuesta_usuario = opcion_elegida
-
-                if opcion_elegida.es_correcta:
-                    aciertos += 1
-                    es_acierto = True
-
-            # Guardamos el detalle
-            detalles.append({
-                'pregunta': pregunta,
-                'respuesta_usuario': respuesta_usuario,
-                'respuesta_correcta': respuesta_correcta,
-                'es_acierto': es_acierto
-            })
-
-        # 2. Calculamos la nota
-        nota_final = 0
-        if total_preguntas > 0:
-            nota_final = (aciertos / total_preguntas) * 10
-
-        # 3. Guardamos en la Base de Datos (Historial)
-        Resultado.objects.create(
+        puntuacion = 0
+        total_preguntas = tema.preguntas.count()
+        
+        for pregunta in tema.preguntas.all():
+            respuesta_id = request.POST.get(f'pregunta_{pregunta.id}')
+            if respuesta_id:
+                opcion = Opcion.objects.get(id=respuesta_id)
+                if opcion.es_correcta:
+                    puntuacion += 1
+        
+        # ... cálculo de la nota anterior ...
+        
+        nota = (puntuacion / total_preguntas) * 10 if total_preguntas > 0 else 0
+        
+        # GUARDAR EN BASE DE DATOS
+        resultado = Resultado.objects.create(
             usuario=request.user,
             tema=tema,
-            nota=nota_final
+            nota=nota,            # Aquí usamos 'nota' que es como lo hemos llamado en el modelo
+            aciertos=puntuacion,  # Guardamos el número de aciertos
+            fallos=total_preguntas - puntuacion # Guardamos los fallos
         )
+        return redirect('resultado', resultado_id=resultado.id)
 
-        # 4. Preparamos el contexto (AQUÍ ES DONDE FALTABA 'detalles')
-        contexto = {
-            'tema': tema,
-            'aciertos': aciertos,
-            'total': total_preguntas,
-            'nota': round(nota_final, 2),
-            'detalles': detalles  # <--- ¡Esto es lo que recupera los colores rojo/verde!
-        }
-        return render(request, 'simulador/resultado.html', contexto)
-
-    # Si es GET (ver el examen vacío)
-    return render(request, 'simulador/examen.html', {'tema': tema, 'preguntas': preguntas})
-def registro(request):
-    if request.method == 'POST':
-        # Cargamos los datos del formulario
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            usuario = form.save()
-            # Logueamos al usuario directamente tras registrarse
-            login(request, usuario)
-            return redirect('landing')
-    else:
-        # Formulario vacío
-        form = UserCreationForm()
-
-    return render(request, 'registration/registro.html', {'form': form})
+    return render(request, 'simulador/examen.html', {'tema': tema})
 
 @login_required
-def perfil(request):
-    # Buscamos SOLO las notas del usuario que está logueado, ordenadas por fecha (más nueva primero)
-    historial = Resultado.objects.filter(usuario=request.user).order_by('-fecha')
+def resultado(request, resultado_id):
+    resultado_obj = get_object_or_404(Resultado, id=resultado_id, usuario=request.user)
+    return render(request, 'simulador/resultado.html', {'resultado': resultado_obj})
 
-    return render(request, 'simulador/perfil.html', {'historial': historial})
-
-# Configurar la API Key
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
+# --- PAGOS (STRIPE) ---
 @login_required
 def iniciar_pago(request):
-    # Creamos una sesión de pago en Stripe
-    session = stripe.checkout.Session.create(
-        payment_method_types=['card'],
-        line_items=[{
-            'price_data': {
-                'currency': 'eur',
-                'product_data': {
-                    'name': 'Curso Ascenso a Cabo - Acceso Total',
-                },
-                'unit_amount': 1499,  # 1500 céntimos = 15.00€
-            },
-            'quantity': 1,
-        }],
-        mode='payment',
-        # Rutas a las que volveremos después de pagar
-        success_url=request.build_absolute_uri(reverse('pago_exitoso')),
-        cancel_url=request.build_absolute_uri(reverse('pago_cancelado')),
-    )
-    # Redirigimos al usuario a la web de Stripe
-    return redirect(session.url, code=303)
+    return render(request, 'simulador/bloqueo_pago.html') # Asegúrate de tener este template o usa uno simple
 
 @login_required
 def pago_exitoso(request):
-    # Marcamos al usuario como PAGADO
     perfil = request.user.perfil
     perfil.esta_suscrito = True
     perfil.save()
@@ -166,3 +157,9 @@ def pago_exitoso(request):
 @login_required
 def pago_cancelado(request):
     return render(request, 'simulador/pago_cancelado.html')
+
+# Pégalo al final de simulador/views.py
+
+@login_required
+def perfil(request):
+    return render(request, 'simulador/perfil.html')

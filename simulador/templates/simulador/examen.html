@@ -1,38 +1,134 @@
 {% extends 'simulador/base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Examen: <span class="text-primary">{{ tema.nombre }}</span></h2>
-    <a href="{% url 'temario_cabo' %}" class="btn btn-secondary btn-sm">Cancelar</a>
+
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+    /* VARIABLES DE TEMA (MODO OSCURO FORZADO PARA CONCENTRACIÓN EN EL EXAMEN O HEREDADO) */
+    :root {
+        --bg-body: #050505;
+        --glass-bg: rgba(20, 30, 20, 0.85);
+        --text-primary: #ffffff;
+        --accent-neon: #76ff03;
+        --accent-dim: rgba(118, 255, 3, 0.2);
+    }
+    
+    /* Si el usuario tiene modo claro, adaptamos */
+    [data-theme="light"] {
+        --bg-body: #f5f7fa;
+        --glass-bg: rgba(255, 255, 255, 0.95);
+        --text-primary: #1c1e21;
+        --accent-neon: #2e7d32;
+        --accent-dim: rgba(46, 125, 50, 0.1);
+    }
+
+    body {
+        background-color: var(--bg-body);
+        font-family: 'Rajdhani', sans-serif;
+        color: var(--text-primary);
+    }
+
+    /* CAJA DEL EXAMEN */
+    .exam-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 40px;
+        border: 1px solid var(--accent-dim);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .question-box {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--accent-dim);
+    }
+
+    .question-title {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    /* ESTILO DE LOS RADIO BUTTONS */
+    .form-check-input {
+        background-color: transparent;
+        border-color: var(--text-primary);
+    }
+    .form-check-input:checked {
+        background-color: var(--accent-neon);
+        border-color: var(--accent-neon);
+    }
+
+    .btn-finish {
+        background: var(--accent-neon);
+        color: #000; /* Texto negro para contraste */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 50px;
+        padding: 10px 30px;
+        border: none;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    /* Modo claro ajuste de texto botón */
+    [data-theme="light"] .btn-finish { color: #fff; }
+    [data-theme="dark"] .btn-finish { color: #000; }
+</style>
+
+<div class="container py-5">
+    <div class="exam-container">
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-3" style="border-bottom: 2px solid var(--accent-neon);">
+            <h2 class="m-0" style="text-transform: uppercase;">{{ tema.nombre }}</h2>
+            <a href="{% url 'portada' %}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                CANCELAR
+            </a>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for pregunta in tema.preguntas.all %}
+            <div class="question-box">
+                <p class="question-title">
+                    <span style="color: var(--accent-neon);">{{ forloop.counter }}.</span> 
+                    {{ pregunta.enunciado }}
+                </p>
+                
+                <div class="ms-3">
+                    {% for opcion in pregunta.opciones.all %}
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" 
+                               name="pregunta_{{ pregunta.id }}" 
+                               id="opcion_{{ opcion.id }}" 
+                               value="{{ opcion.id }}" required>
+                        <label class="form-check-label" for="opcion_{{ opcion.id }}">
+                            {{ opcion.texto }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn-finish">
+                FINALIZAR SIMULACRO
+            </button>
+        </form>
+    </div>
 </div>
 
-<form method="post">
-    {% csrf_token %}
-    
-    {% for pregunta in preguntas %}
-    <div class="card mb-4">
-        <div class="card-header bg-light">
-            <strong>Pregunta {{ forloop.counter }}</strong>
-        </div>
-        <div class="card-body">
-            <p class="card-text fs-5">{{ pregunta.enunciado }}</p>
-            
-            <div class="list-group">
-                {% for opcion in pregunta.opciones.all %}
-                <label class="list-group-item list-group-item-action">
-                    <input class="form-check-input me-2" type="radio" name="pregunta_{{ pregunta.id }}" value="{{ opcion.id }}">
-                    {{ opcion.texto }}
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% empty %}
-        <div class="alert alert-info">Este tema aún no tiene preguntas.</div>
-    {% endfor %}
+<script>
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+</script>
 
-    <div class="d-grid gap-2 mb-5">
-        <button type="submit" class="btn btn-success btn-lg"> Corregir Examen</button>
-    </div>
-</form>
 {% endblock %}

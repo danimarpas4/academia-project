@@ -1,0 +1,308 @@
+{% extends 'simulador/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+    /* --- VARIABLES DE TEMA --- */
+    :root {
+        /* MODO CLARO (LABORATORIO) POR DEFECTO */
+        --bg-body: #f5f7fa;
+        --glass-bg: rgba(255, 255, 255, 0.95);
+        --glass-border: rgba(0, 0, 0, 0.05);
+        --text-primary: #1c1e21;
+        --text-secondary: #4a5568;
+        
+        --accent-neon: #2e7d32; /* Verde táctico oscuro */
+        --accent-fail: #d32f2f; /* Rojo oscuro */
+        --accent-gold: #b7950b; /* Dorado oscuro para fondo claro */
+    }
+
+    /* MODO OSCURO (VISIÓN NOCTURNA) */
+    [data-theme="dark"] {
+        --bg-body: #050505;
+        --glass-bg: rgba(20, 30, 20, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --text-primary: #ffffff;
+        --text-secondary: #a5d6a7;
+        
+        --accent-neon: #76ff03; /* Verde neón brillante */
+        --accent-fail: #ff3d00; /* Rojo brillante */
+        --accent-gold: #ffd700; /* Dorado brillante */
+    }
+
+    body {
+        background-color: var(--bg-body);
+        font-family: 'Rajdhani', sans-serif;
+        color: var(--text-primary);
+        transition: background-color 0.5s ease;
+    }
+
+    /* TARJETAS KPI (Dato clave) */
+    .kpi-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+    }
+    
+    .kpi-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .kpi-value {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--accent-neon);
+        line-height: 1;
+    }
+
+    .kpi-label {
+        font-family: 'Share Tech Mono';
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-top: 10px;
+        display: block;
+        color: var(--text-primary);
+    }
+
+    /* ESTILOS ESPECÍFICOS PARA LA TARJETA RANKING */
+    .rank-card {
+        border-color: var(--accent-gold);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+    }
+    .rank-value {
+        color: var(--accent-gold);
+    }
+    .rank-label {
+        color: var(--accent-gold);
+    }
+
+    /* CONTENEDOR GRÁFICA */
+    .chart-container {
+        background: var(--glass-bg);
+        border-radius: 25px;
+        padding: 20px;
+        border: 1px solid var(--glass-border);
+        margin-bottom: 30px;
+        height: 400px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    /* TABLA DE HISTORIAL */
+    .history-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    .history-row {
+        background: var(--glass-bg);
+        transition: transform 0.2s;
+    }
+    .history-row td {
+        padding: 15px;
+        border-top: 1px solid var(--glass-border);
+        border-bottom: 1px solid var(--glass-border);
+        vertical-align: middle;
+    }
+    .history-row td:first-child {
+        border-left: 1px solid var(--glass-border);
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-left: 4px solid var(--accent-neon);
+    }
+    .history-row td:last-child {
+        border-right: 1px solid var(--glass-border);
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    .history-row:hover {
+        transform: scale(1.01);
+    }
+    
+    /* BADGES (Etiquetas de nota) */
+    .badge-score {
+        padding: 6px 15px;
+        border-radius: 50px;
+        font-weight: bold;
+        font-family: 'Share Tech Mono';
+        font-size: 0.9rem;
+    }
+    .pass { 
+        background: rgba(46, 125, 50, 0.1); 
+        color: var(--accent-neon); 
+        border: 1px solid var(--accent-neon); 
+    }
+    .fail { 
+        background: rgba(211, 47, 47, 0.1); 
+        color: var(--accent-fail); 
+        border: 1px solid var(--accent-fail); 
+    }
+
+    [data-theme="dark"] .pass { background: rgba(118, 255, 3, 0.1); }
+    [data-theme="dark"] .fail { background: rgba(255, 61, 0, 0.1); }
+
+</style>
+
+<div class="container py-5">
+    
+    <div class="mb-5">
+        <h5 style="font-family: 'Share Tech Mono'; opacity: 0.7; color: var(--text-secondary);">// TELEMETRÍA DEL OPERADOR</h5>
+        <h2 style="font-weight: 800; letter-spacing: 2px;">ANÁLISIS DE RENDIMIENTO</h2>
+    </div>
+
+    <div class="row g-4 mb-5">
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="kpi-card">
+                <div class="kpi-value">{{ promedio }}</div>
+                <span class="kpi-label">NOTA MEDIA GLOBAL</span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="kpi-card rank-card">
+                <div class="kpi-value rank-value">
+                    <span style="font-size: 1.5rem; opacity: 0.7;">#</span>{{ mi_posicion }}
+                </div>
+                <span class="kpi-label rank-label">POSICIÓN ACADEMIA</span>
+                <small class="d-block mt-1" style="font-family: 'Share Tech Mono'; color: var(--text-secondary); opacity: 0.8;">DE {{ total_alumnos }} ALUMNOS</small>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="kpi-card">
+                <div class="kpi-value">{{ total_tests }}</div>
+                <span class="kpi-label">SIMULACROS COMPLETADOS</span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="kpi-card">
+                <div class="kpi-value" style="font-size: 2rem; line-height: 1.8;">
+                    {% if total_tests > 0 %}ACTIVO{% else %}INACTIVO{% endif %}
+                </div>
+                <span class="kpi-label">ESTADO DE COMBATE</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="performanceChart"></canvas>
+    </div>
+
+    <h4 class="mb-3" style="font-weight: 700; letter-spacing: 1px;">HISTORIAL DE MISIONES</h4>
+    
+    {% if resultados %}
+    <div class="table-responsive">
+        <table class="history-table">
+            {% for test in resultados %}
+            <tr class="history-row">
+                <td style="font-weight: 700; font-size: 1.1rem;">{{ test.tema.nombre }}</td>
+                <td style="font-family: 'Share Tech Mono'; opacity: 0.7; color: var(--text-secondary);">
+                    {{ test.fecha|date:"d/m/Y - H:i" }}
+                </td>
+                <td class="text-end">
+                    <span class="badge-score {% if test.nota >= 5 %}pass{% else %}fail{% endif %}">
+                        NOTA: {{ test.nota|floatformat:1 }}
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% else %}
+    <div class="alert text-center p-4" style="background: var(--glass-bg); border: 1px dashed var(--accent-neon); border-radius: 20px;">
+        <h5 class="mb-0" style="color: var(--text-secondary);">No hay datos registrados. Realiza tu primer simulacro para ver estadísticas.</h5>
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+    // 1. GESTIÓN DEL TEMA (CLARO/OSCURO)
+    const theme = localStorage.getItem('theme');
+    // Aplicar tema si está guardado como 'dark'
+    if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // 2. CONFIGURACIÓN DE LA GRÁFICA CHART.JS
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    
+    // Colores dinámicos según el tema
+    const colorLine = isDark ? '#76ff03' : '#2e7d32'; // Verde neón vs Verde oscuro
+    const colorBg   = isDark ? 'rgba(118, 255, 3, 0.1)' : 'rgba(46, 125, 50, 0.1)';
+    const colorGrid = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
+    const colorText = isDark ? '#ffffff' : '#1c1e21';
+
+    const ctx = document.getElementById('performanceChart').getContext('2d');
+    
+    // Si no hay datos, Chart.js no falla, solo muestra vacío, pero Django debería pasar listas vacías si no hay datos.
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ fechas_grafica|safe }}, // Fechas eje X (Desde Django)
+            datasets: [{
+                label: 'Nota',
+                data: {{ notas_grafica|safe }}, // Notas eje Y (Desde Django)
+                borderColor: colorLine,
+                backgroundColor: colorBg,
+                borderWidth: 3,
+                tension: 0.4, // Suavizado de la línea
+                pointBackgroundColor: colorLine,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }, // Ocultar leyenda
+                tooltip: {
+                    backgroundColor: isDark ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.9)',
+                    titleColor: isDark ? '#fff' : '#000',
+                    bodyColor: isDark ? '#fff' : '#000',
+                    borderColor: colorLine,
+                    borderWidth: 1,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return 'Nota: ' + context.parsed.y;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 10,
+                    grid: { color: colorGrid },
+                    ticks: { color: colorText, font: { family: 'Share Tech Mono' } }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { color: colorText, font: { family: 'Rajdhani' } }
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

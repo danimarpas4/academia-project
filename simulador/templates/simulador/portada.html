@@ -3,43 +3,294 @@
 
 {% block content %}
 
-    {% if esta_en_prueba %}
-    <div class="alert alert-warning d-flex justify-content-between align-items-center shadow-sm">
-        <div>
-            <strong>⏳ Periodo de Prueba:</strong> Te quedan
-            <span class="badge bg-dark">{{ dias_restantes }} días</span> gratis.
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+    /* --- VARIABLES DE TEMA --- */
+    :root {
+        /* === POR DEFECTO: MODO CLARO (LABORATORIO) === */
+        --bg-body: #f5f7fa; /* Blanco grisáceo muy limpio */
+        --bg-gradient-1: #ffffff;
+        --bg-gradient-2: #e4e7eb;
+        
+        --glass-bg: rgba(255, 255, 255, 0.85); /* Cristal blanco lechoso */
+        --glass-border: rgba(0, 0, 0, 0.05);   /* Borde casi invisible */
+        --glass-shadow: rgba(0, 0, 0, 0.1);    /* Sombra suave de día */
+        
+        --text-primary: #1c1e21;               /* Negro técnico (no puro) */
+        --text-secondary: #4a5568;             /* Gris acero */
+        
+        --accent-neon: #2e7d32;                /* Verde táctico oscuro (visible en blanco) */
+        --accent-dim: rgba(46, 125, 50, 0.15); /* Resplandor sutil */
+        
+        --btn-bg: rgba(46, 125, 50, 0.08);
+        --btn-hover-text: #ffffff;
+    }
+
+    /* === OPCIONAL: MODO OSCURO (VISIÓN NOCTURNA) === */
+    [data-theme="dark"] {
+        --bg-body: #050505;
+        --bg-gradient-1: #111e11;
+        --bg-gradient-2: #000000;
+        
+        --glass-bg: rgba(20, 30, 20, 0.65);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --glass-shadow: rgba(0, 0, 0, 0.5);
+        
+        --text-primary: #ffffff;
+        --text-secondary: #a5d6a7;
+        
+        --accent-neon: #76ff03; /* Verde neón (visible en negro) */
+        --accent-dim: rgba(118, 255, 3, 0.3);
+        
+        --btn-bg: rgba(118, 255, 3, 0.1);
+        --btn-hover-text: #000000;
+    }
+
+    /* --- ESTILOS GENERALES --- */
+    body {
+        background-color: var(--bg-body);
+        font-family: 'Rajdhani', sans-serif;
+        background-image: radial-gradient(circle at 50% 50%, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+        transition: background-color 0.5s ease, color 0.5s ease;
+        color: var(--text-primary);
+        min-height: 100vh;
+    }
+
+    .hero-title {
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 800;
+        letter-spacing: 1px;
+        color: var(--text-primary);
+        /* Sombra ajustada para que se vea bien en claro y oscuro */
+        text-shadow: 0 5px 15px var(--accent-dim);
+    }
+
+    /* --- TARJETAS GLASS --- */
+    .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px); 
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 28px;
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 10px 30px var(--glass-shadow);
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .glass-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: var(--accent-neon);
+        box-shadow: 0 20px 50px var(--accent-dim);
+    }
+
+    .card-header-text {
+        color: var(--text-primary);
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-subtext {
+        font-family: 'Share Tech Mono', monospace;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.9;
+    }
+
+    /* --- ICONOS --- */
+    .icon-float {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-neon);
+        filter: drop-shadow(0 5px 10px var(--accent-dim));
+        transition: transform 0.4s ease;
+    }
+    .glass-card:hover .icon-float {
+        transform: scale(1.1);
+    }
+
+    /* --- BOTONES --- */
+    .btn-glass {
+        margin-top: 25px;
+        background: var(--btn-bg);
+        color: var(--accent-neon);
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 12px 30px;
+        border: 1px solid var(--accent-dim);
+        border-radius: 50px; 
+        transition: all 0.3s ease;
+    }
+    
+    .btn-glass:hover {
+        background: var(--accent-neon);
+        color: var(--btn-hover-text);
+        box-shadow: 0 5px 20px var(--accent-dim);
+        border-color: var(--accent-neon);
+    }
+
+    /* PANEL ESTADO */
+    .status-pill {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 15px 25px;
+        box-shadow: 0 4px 15px var(--glass-shadow);
+    }
+    
+    .mono-text { font-family: 'Share Tech Mono', monospace; color: var(--text-secondary); }
+
+    /* --- BOTÓN FLOTANTE --- */
+    .theme-toggle {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--glass-bg);
+        border: 1px solid var(--accent-neon);
+        color: var(--accent-neon);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+        transform: rotate(180deg);
+        background: var(--accent-neon);
+        color: var(--btn-hover-text);
+    }
+
+</style>
+
+<button class="theme-toggle" onclick="toggleTheme()" title="Cambiar Tema">
+    ◑
+</button>
+
+<div class="container py-5">
+    
+    <div class="row mb-5 align-items-end">
+        <div class="col-md-8">
+            <h5 class="mono-text mb-2" style="letter-spacing: 2px;">// COMANDO_CENTRAL</h5>
+            <h1 class="display-4 hero-title">BIENVENIDO, {{ user.username }}.</h1>
         </div>
-        <a href="{% url 'iniciar_pago' %}" class="btn btn-sm btn-success">
-            Suscribirse ya (14,99€)
-        </a>
+        <div class="col-md-4 text-md-end mt-4 mt-md-0">
+            <div class="d-inline-block text-start status-pill w-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="mono-text" style="font-size: 0.85rem;">ESTADO:</span>
+                    {% if esta_en_prueba %}
+                        <span class="badge rounded-pill bg-warning text-dark" style="font-family: 'Rajdhani'; font-weight:700;">EN PRUEBA</span>
+                    {% else %}
+                        <span class="badge rounded-pill" style="background: var(--accent-neon); color: var(--btn-hover-text); font-family: 'Rajdhani'; font-weight:700;">OPERATIVO</span>
+                    {% endif %}
+                </div>
+                {% if esta_en_prueba %}
+                <div class="progress" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 10px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{ dias_restantes|add:'0' }}0%; background-color: #ffc107; border-radius: 10px;"></div>
+                </div>
+                <small class="mono-text mt-2 d-block" style="color: #d69e2e;">>> {{ dias_restantes }} DÍAS RESTANTES</small>
+                {% endif %}
+            </div>
+        </div>
     </div>
-    {% endif %}
 
-    <h1 class="text-center mb-4">Temario de Cabo</h1>
-
-    <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold">Centro de Formación</h1>
-        <p class="lead text-muted">Selecciona un temario para comenzar el simulacro de examen.</p>
-    </div>
-
-    <div class="row">
-        {% for tema in temas %}
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body text-center">
-                    <h3 class="card-title text-primary">{{ tema.nombre }}</h3>
-                    <p class="card-text text-muted">{{ tema.preguntas.count }} preguntas disponibles</p>
-                    <hr>
-                    <a href="{% url 'examen' tema.id %}" class="btn btn-outline-primary w-100">
-                        Comenzar Test 📚
-                    </a>
+    <div class="row g-4">
+        
+        <div class="col-md-4">
+            <div class="card h-100 glass-card p-4">
+                <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
+                    <div class="icon-float">⚡</div>
+                    <h3 class="card-header-text">SIMULACIÓN DE COMBATE</h3>
+                    <p class="card-subtext">Configurar parámetros</p>
+                    <a href="{% url 'configurar_test' %}" class="btn btn-glass stretched-link">INICIAR</a>
                 </div>
             </div>
         </div>
-        {% empty %}
-        <div class="col-12">
-            <div class="alert alert-warning">No hay temas cargados en el sistema.</div>
+
+        <div class="col-md-4">
+            <div class="card h-100 glass-card p-4">
+                <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
+                    <div class="icon-float">📂</div> 
+                    <h3 class="card-header-text">INTELIGENCIA</h3>
+                    <p class="card-subtext">Base documental</p>
+                    <a href="{% url 'ver_temario' %}" class="btn btn-glass stretched-link">ACCEDER</a>
+                </div>
+            </div>
         </div>
-        {% endfor %}
+
+        <div class="col-md-4">
+            <div class="card h-100 glass-card p-4">
+                <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
+                    <div class="icon-float">📊</div>
+                    <h3 class="card-header-text">RENDIMIENTO</h3>
+                    <p class="card-subtext">Análisis de datos</p>
+                    <a href="{% url 'estadisticas' %}" class="btn btn-glass stretched-link">INFORME</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card glass-card p-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <span class="fs-1 me-4 mono-text">📅</span>
+                        <div>
+                            <h3 class="card-header-text mb-0" style="font-size: 1.5rem;">PLANNING OPERATIVO</h3>
+                            <p class="card-subtext mb-0">Módulo no instalado</p>
+                        </div>
+                    </div>
+                    <button class="btn rounded-pill" style="border: 1px dashed var(--text-secondary); color: var(--text-secondary); font-family:'Share Tech Mono';" disabled>PRÓXIMAMENTE</button>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
+
+<script>
+    // 1. Al cargar, verificamos si el usuario prefirió "dark" alguna vez
+    const theme = localStorage.getItem('theme');
+    
+    // Si hay tema guardado como 'dark', lo activamos. Si no hay nada, por defecto es claro (no hace nada).
+    if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // 2. Función del botón
+    function toggleTheme() {
+        // Miramos qué tema tiene ahora
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        let newTheme = 'dark'; // Por defecto, si pulsas, quieres ir al oscuro
+
+        // Si ya era oscuro, volvemos al claro (null o 'light')
+        if (currentTheme === 'dark') {
+            newTheme = 'light';
+            document.documentElement.removeAttribute('data-theme'); // Quitar atributo vuelve al CSS :root (Claro)
+        } else {
+            // Si era claro, ponemos oscuro
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+
+        // Guardar preferencia
+        localStorage.setItem('theme', newTheme);
+    }
+</script>
+
 {% endblock %}
