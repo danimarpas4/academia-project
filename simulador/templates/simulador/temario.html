@@ -7,21 +7,52 @@
         <a href="{% url 'portada' %}" class="btn btn-outline-secondary">⬅ Volver al Panel</a>
     </div>
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <div class="list-group shadow">
         {% for tema in temas %}
-        <div class="list-group-item list-group-item-action p-4 d-flex justify-content-between align-items-center">
-            <div>
-                <h4 class="mb-1 text-primary">{{ tema.nombre }}</h4>
-                <p class="mb-0 text-muted">{{ tema.descripcion|default:"Sin descripción" }}</p>
+        <div class="list-group-item list-group-item-action p-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                    <h4 class="mb-1 text-primary">{{ tema.nombre }}</h4>
+                    <p class="mb-0 text-muted">
+                        {{ tema.descripcion|default:"Sin descripción" }}
+                    </p>
+                </div>
+                <div class="btn-group">
+                    {% if tema.archivo_pdf %}
+                        <a href="{{ tema.archivo_pdf.url }}" class="btn btn-danger">
+                            ⬇ Descargar PDF
+                        </a>
+                    {% else %}
+                        <button class="btn btn-secondary" disabled>No PDF</button>
+                    {% endif %}
+
+                    {% if tema.contenido_texto %}
+                        <div class="d-flex flex-column gap-2" style="min-width: 250px;">
+                            <div class="mb-2">
+                                <small class="text-muted d-block mb-1">🎧 Reproducir audio:</small>
+                                <audio controls class="w-100" preload="none">
+                                    <source src="{% url 'descargar_tema_mp3' tema.id %}" type="audio/mpeg">
+                                    Tu navegador no soporta el elemento de audio.
+                                </audio>
+                            </div>
+                            <a href="{% url 'descargar_tema_mp3' tema.id %}?download=true" class="btn btn-success btn-sm">
+                                ⬇ Descargar MP3
+                            </a>
+                        </div>
+                    {% else %}
+                        <button class="btn btn-outline-secondary" disabled>Audio no disponible</button>
+                    {% endif %}
+                </div>
             </div>
-            
-            {% if tema.archivo_pdf %}
-                <a href="{{ tema.archivo_pdf.url }}" class="btn btn-danger btn-lg" target="_blank">
-                    ⬇ Descargar PDF
-                </a>
-            {% else %}
-                <button class="btn btn-secondary" disabled>No disponible</button>
-            {% endif %}
         </div>
         {% empty %}
         <div class="alert alert-warning">Aún no se han subido documentos.</div>

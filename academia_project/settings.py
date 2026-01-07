@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'simulador',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'academia_project.urls'
@@ -118,10 +124,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# Cuando te logueas, te manda a la portada
-LOGIN_REDIRECT_URL = '/'
-# Cuando cierras sesión, te manda a la portada también
-LOGOUT_REDIRECT_URL = '/'
+# Redirigir al dashboard después del login
+LOGIN_REDIRECT_URL = 'portada' 
+
+# Redirigir a la página de inicio pública después del logout
+LOGOUT_REDIRECT_URL = 'inicio'
 
 # STRIPE
 STRIPE_PUBLIC_KEY = 'ProMilitar'
@@ -138,3 +145,58 @@ except ImportError:
 MEDIA_URL = '/media/'
 import os # <--- Asegúrate de que 'os' está importado arriba, si no, ponlo aquí
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Configuración de logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'simulador': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
+
+# --- CONFIGURACIÓN DE AUTENTICACIÓN (ALLAUTH) ---
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend', # Login normal
+    'allauth.account.auth_backends.AuthenticationBackend', # Login con Google
+]
+
+SITE_ID = 1
+
+# Configuración adicional
+LOGIN_REDIRECT_URL = 'portada'   # A dónde van al entrar
+LOGOUT_REDIRECT_URL = 'inicio'   # A dónde van al salir
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# --- CREDENCIALES DE GOOGLE (PROVISIONAL) ---
+# NOTA: Esto normalmente no se pone directo en el código por seguridad,
+# pero para desarrollo local está bien.
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1

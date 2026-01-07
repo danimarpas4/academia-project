@@ -27,38 +27,67 @@
         .navbar-light .navbar-brand, .navbar-light .nav-link {
             color: #e0e0e0 !important;
         }
+        /* Ajuste para las alertas (mensajes) */
+        .alert-success {
+            background-color: #198754;
+            color: white;
+            border-color: #157347;
+        }
     </style>
-</head>
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  </head>
+  
+  <body> <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'portada' %}">🛡️ ProMilitar</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-    {% if user.is_authenticated %}
-        <li class="nav-item">
-    <a class="nav-link text-warning fw-bold" href="{% url 'perfil' %}">
-        Hola, {{ user.username }} 🪖
-    </a>
-</li>
-        <li class="nav-item">
-            <form action="{% url 'logout' %}" method="post" class="d-inline">
-                {% csrf_token %}
-                <button type="submit" class="nav-link btn btn-link text-white" style="text-decoration: none;">Cerrar Sesión</button>
-            </form>
-        </li>
-    {% else %}
-        <li class="nav-item">
-            <a class="nav-link text-white" href="{% url 'login' %}">Entrar</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="{% url 'registro' %}">Registrarse</a>
-        </li>
-    {% endif %}
-</ul>
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}">
+    <span style="font-size: 1.8rem; margin-right: 0.5rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));">🛡️</span>
+    
+    <div style="line-height: 1;">
+        <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 1.4rem; color: #fff; letter-spacing: 1px;">PRO</span><span style="font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.4rem; color: #ffc107; letter-spacing: 1px;">MILITAR</span>
+        <small class="d-block" style="font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: #aaa; letter-spacing: 2px;">ACADEMIA ONLINE</small>
+    </div>
+</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuNavegacion">
+          <ul class="navbar-nav ms-auto">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link text-warning fw-bold" href="{% url 'perfil' %}">
+                  Hola, {{ user.username }} 🪖
+                </a>
+              </li>
+              <li class="nav-item">
+                <form action="{% url 'logout' %}" method="post" class="d-inline">
+                  {% csrf_token %}
+                  <button type="submit" class="nav-link btn btn-link text-white" style="text-decoration: none;">Cerrar Sesión</button>
+                </form>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'login' %}">Entrar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'registro' %}">Registrarse</a>
+              </li>
+            {% endif %}
+          </ul>
         </div>
       </div>
     </nav>
+
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <div class="container">
         {% block content %}

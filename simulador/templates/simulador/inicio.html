@@ -1,0 +1,201 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+
+<style>
+    /* --- 1. MODO CLARO (POR DEFECTO) --- */
+    body {
+        background-color: #f8f9fa !important; /* Fondo Claro */
+        color: #212529 !important; /* Texto Oscuro */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    /* Botón Login en Modo Claro (Negro) */
+    .btn-login-custom {
+        color: #000000 !important;
+        border-color: #000000 !important;
+    }
+    .btn-login-custom:hover {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+    }
+
+    /* Tarjetas en Modo Claro (Blancas) */
+    .card {
+        background-color: #ffffff !important;
+    }
+    .card-title.text-white {
+        color: #000000 !important; /* Títulos negros */
+    }
+
+
+    /* --- 2. MODO OSCURO (ACTIVADO POR CLASE) --- */
+    body.dark-mode {
+        background-color: #000000 !important; /* Fondo Negro Puro */
+        color: #ffffff !important;
+    }
+
+    /* Botón Login en Modo Oscuro (Blanco) */
+    body.dark-mode .btn-login-custom {
+        color: #ffffff !important;
+        border-color: #ffffff !important;
+    }
+    body.dark-mode .btn-login-custom:hover {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    /* --- CORRECCIÓN: Fondo gris para TODAS las tarjetas en modo oscuro --- */
+    body.dark-mode .card {
+        background-color: #1c1f23 !important; /* Gris Táctico */
+        color: #ffffff !important;
+    }
+    
+    /* Aseguramos que los bordes se vean bien en oscuro */
+    body.dark-mode .card.border-secondary { border-color: #3a3f44 !important; }
+    body.dark-mode .card.border-warning   { border-color: #ffc107 !important; }
+    body.dark-mode .card.border-success   { border-color: #198754 !important; }
+
+    /* Forzamos títulos a blanco en modo oscuro */
+    body.dark-mode .card-title.text-white {
+        color: #ffffff !important;
+    }
+    
+    /* --- BOTÓN FLOTANTE --- */
+    .theme-toggle-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #ffc107; /* Amarillo por defecto */
+        color: #000;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1050;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease, background-color 0.3s;
+    }
+    .theme-toggle-btn:hover {
+        transform: scale(1.1);
+    }
+</style>
+
+<div class="text-center my-5">
+    <h1 class="display-4 fw-bold text-warning">ACADEMIA PROMILITAR</h1>
+    <p class="lead text-secondary">La plataforma líder en formación para las Fuerzas Armadas</p>
+    
+    <div class="mt-4">
+        <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg me-2 btn-login-custom">Iniciar Sesión</a>
+        <a href="{% url 'registro' %}" class="btn btn-warning btn-lg text-dark fw-bold">Crear Cuenta</a>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5">
+    
+    <div class="col">
+        <div class="card h-100 border-warning">
+            <div class="card-header bg-warning text-dark fw-bold text-center">ACCESO</div>
+            <div class="card-body text-center">
+                <div class="display-1 mb-3">🪖</div>
+                <h5 class="card-title text-white">Acceso a las FFAAS</h5>
+                <p class="card-text text-secondary small">Prepárate para el ingreso en Tropa y Marinería.</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 text-center">
+                <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-warning w-100">Elegir Curso</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card h-100 border-secondary">
+            <div class="card-header bg-secondary text-white fw-bold text-center">ASCENSO</div>
+            <div class="card-body text-center">
+                <div class="display-1 mb-3">🎖️</div>
+                <h5 class="card-title text-white">Ascenso a Cabo</h5>
+                <p class="card-text text-secondary small">Temario actualizado para tu primer ascenso.</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 text-center">
+                <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-secondary w-100">Elegir Curso</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card h-100 border-secondary">
+            <div class="card-header bg-secondary text-white fw-bold text-center">ASCENSO</div>
+            <div class="card-body text-center">
+                <div class="display-1 mb-3">🎗️</div>
+                <h5 class="card-title text-white">Cabo Primero</h5>
+                <p class="card-text text-secondary small">Consigue el galón de oro. Test específicos.</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 text-center">
+                <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-secondary w-100">Elegir Curso</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card h-100 border-success">
+            <div class="card-header bg-success text-white fw-bold text-center">CARRERA</div>
+            <div class="card-body text-center">
+                <div class="display-1 mb-3">⚓</div>
+                <h5 class="card-title text-white">Permanencia</h5>
+                <p class="card-text text-secondary small">Asegura tu futuro. Preparación integral.</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0 text-center">
+                <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-success w-100">Elegir Curso</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<button id="theme-toggle" class="theme-toggle-btn" title="Cambiar Tema">
+    ☀️
+</button>
+
+<script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // 1. Cargar preferencia guardada (Lógica invertida: Buscamos 'dark')
+    const currentTheme = localStorage.getItem('theme');
+    
+    if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
+        toggleBtn.innerHTML = '🌙';
+        toggleBtn.style.backgroundColor = '#198754'; // Verde
+        toggleBtn.style.color = '#fff';
+    } else {
+        // Por defecto es claro
+        toggleBtn.innerHTML = '☀️';
+        toggleBtn.style.backgroundColor = '#ffc107'; // Amarillo
+        toggleBtn.style.color = '#000';
+    }
+
+    // 2. Al hacer clic
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            // MODO OSCURO ACTIVADO
+            localStorage.setItem('theme', 'dark');
+            toggleBtn.innerHTML = '🌙';
+            toggleBtn.style.backgroundColor = '#198754';
+            toggleBtn.style.color = '#fff';
+        } else {
+            // MODO CLARO ACTIVADO
+            localStorage.setItem('theme', 'light');
+            toggleBtn.innerHTML = '☀️';
+            toggleBtn.style.backgroundColor = '#ffc107';
+            toggleBtn.style.color = '#000';
+        }
+    });
+</script>
+{% endblock %}

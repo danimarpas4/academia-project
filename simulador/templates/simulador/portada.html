@@ -11,25 +11,25 @@
     /* --- VARIABLES DE TEMA --- */
     :root {
         /* === POR DEFECTO: MODO CLARO (LABORATORIO) === */
-        --bg-body: #f5f7fa; /* Blanco grisáceo muy limpio */
+        --bg-body: #f5f7fa;
         --bg-gradient-1: #ffffff;
         --bg-gradient-2: #e4e7eb;
         
-        --glass-bg: rgba(255, 255, 255, 0.85); /* Cristal blanco lechoso */
-        --glass-border: rgba(0, 0, 0, 0.05);   /* Borde casi invisible */
-        --glass-shadow: rgba(0, 0, 0, 0.1);    /* Sombra suave de día */
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(0, 0, 0, 0.05);
+        --glass-shadow: rgba(0, 0, 0, 0.1);
         
-        --text-primary: #1c1e21;               /* Negro técnico (no puro) */
-        --text-secondary: #4a5568;             /* Gris acero */
+        --text-primary: #1c1e21;
+        --text-secondary: #4a5568;
         
-        --accent-neon: #2e7d32;                /* Verde táctico oscuro (visible en blanco) */
-        --accent-dim: rgba(46, 125, 50, 0.15); /* Resplandor sutil */
+        --accent-neon: #2e7d32;
+        --accent-dim: rgba(46, 125, 50, 0.15);
         
         --btn-bg: rgba(46, 125, 50, 0.08);
         --btn-hover-text: #ffffff;
     }
 
-    /* === OPCIONAL: MODO OSCURO (VISIÓN NOCTURNA) === */
+    /* === MODO OSCURO (VISIÓN NOCTURNA) === */
     [data-theme="dark"] {
         --bg-body: #050505;
         --bg-gradient-1: #111e11;
@@ -42,7 +42,7 @@
         --text-primary: #ffffff;
         --text-secondary: #a5d6a7;
         
-        --accent-neon: #76ff03; /* Verde neón (visible en negro) */
+        --accent-neon: #76ff03;
         --accent-dim: rgba(118, 255, 3, 0.3);
         
         --btn-bg: rgba(118, 255, 3, 0.1);
@@ -64,7 +64,6 @@
         font-weight: 800;
         letter-spacing: 1px;
         color: var(--text-primary);
-        /* Sombra ajustada para que se vea bien en claro y oscuro */
         text-shadow: 0 5px 15px var(--accent-dim);
     }
 
@@ -82,7 +81,7 @@
     }
 
     .glass-card:hover {
-        transform: translateY(-8px) scale(1.02);
+        transform: translateY(-5px);
         border-color: var(--accent-neon);
         box-shadow: 0 20px 50px var(--accent-dim);
     }
@@ -152,6 +151,36 @@
     
     .mono-text { font-family: 'Share Tech Mono', monospace; color: var(--text-secondary); }
 
+    /* --- TABLA CLASIFICACIÓN (NUEVO) --- */
+    .table-custom {
+        --bs-table-bg: transparent;
+        --bs-table-color: var(--text-primary);
+        --bs-table-border-color: var(--glass-border);
+    }
+    
+    .table-custom th {
+        font-family: 'Share Tech Mono', monospace;
+        color: var(--text-secondary);
+        border-bottom: 2px solid var(--accent-dim);
+        font-weight: normal;
+        letter-spacing: 1px;
+    }
+
+    .user-row-highlight {
+        background-color: var(--accent-dim) !important;
+        box-shadow: inset 4px 0 0 var(--accent-neon);
+    }
+
+    .rank-badge {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        background: var(--btn-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 4px;
+        color: var(--text-primary);
+    }
+
     /* --- BOTÓN FLOTANTE --- */
     .theme-toggle {
         position: fixed;
@@ -187,18 +216,27 @@
 <div class="container py-5">
     
     <div class="row mb-5 align-items-end">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <h5 class="mono-text mb-2" style="letter-spacing: 2px;">// COMANDO_CENTRAL</h5>
-            <h1 class="display-4 hero-title">BIENVENIDO, {{ user.username }}.</h1>
+            <h1 class="display-4 hero-title">
+                BIENVENIDO, {{ user.username }}. 
+                <span class="d-block d-md-inline mt-2 mt-md-0" style="font-size: 0.6em; color: var(--text-secondary); font-weight: 500;">
+                    Tu rango actual:
+                    <span class="badge" style="background-color: var(--accent-neon); color: #000000 !important; font-size: 1em; vertical-align: middle; padding: 0.35em 0.65em; font-weight: 700; letter-spacing: 1px;">
+                        {{ perfil.rango|upper }}
+                    </span>
+                </span>
+            </h1>
         </div>
-        <div class="col-md-4 text-md-end mt-4 mt-md-0">
+
+        <div class="col-md-5 mt-4 mt-md-0">
             <div class="d-inline-block text-start status-pill w-100">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="mono-text" style="font-size: 0.85rem;">ESTADO:</span>
+                    <span class="mono-text" style="font-size: 0.85rem;">ESTADO DE TU SUSCRIPCIÓN:</span>
                     {% if esta_en_prueba %}
                         <span class="badge rounded-pill bg-warning text-dark" style="font-family: 'Rajdhani'; font-weight:700;">EN PRUEBA</span>
                     {% else %}
-                        <span class="badge rounded-pill" style="background: var(--accent-neon); color: var(--btn-hover-text); font-family: 'Rajdhani'; font-weight:700;">OPERATIVO</span>
+                        <span class="badge rounded-pill" style="background: var(--accent-neon); color: var(--btn-hover-text); font-family: 'Rajdhani'; font-weight:700;">SUSCRIPCIÓN MENSUAL</span>
                     {% endif %}
                 </div>
                 {% if esta_en_prueba %}
@@ -217,7 +255,7 @@
             <div class="card h-100 glass-card p-4">
                 <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
                     <div class="icon-float">⚡</div>
-                    <h3 class="card-header-text">SIMULACIÓN DE COMBATE</h3>
+                    <h3 class="card-header-text">TEST A LA CARTA</h3>
                     <p class="card-subtext">Configurar parámetros</p>
                     <a href="{% url 'configurar_test' %}" class="btn btn-glass stretched-link">INICIAR</a>
                 </div>
@@ -228,8 +266,8 @@
             <div class="card h-100 glass-card p-4">
                 <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
                     <div class="icon-float">📂</div> 
-                    <h3 class="card-header-text">INTELIGENCIA</h3>
-                    <p class="card-subtext">Base documental</p>
+                    <h3 class="card-header-text">TEMARIO</h3>
+                    <p class="card-subtext">En PDF y PODCAST</p>
                     <a href="{% url 'ver_temario' %}" class="btn btn-glass stretched-link">ACCEDER</a>
                 </div>
             </div>
@@ -239,13 +277,75 @@
             <div class="card h-100 glass-card p-4">
                 <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
                     <div class="icon-float">📊</div>
-                    <h3 class="card-header-text">RENDIMIENTO</h3>
+                    <h3 class="card-header-text">ESTADÍSTICAS</h3>
                     <p class="card-subtext">Análisis de datos</p>
                     <a href="{% url 'estadisticas' %}" class="btn btn-glass stretched-link">INFORME</a>
                 </div>
             </div>
         </div>
 
+        <div class="col-12 mt-4">
+            <div class="card glass-card h-100">
+                <div class="card-header border-0 bg-transparent pt-4 px-4 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="card-header-text mb-0" style="font-size: 1.4rem;">🏆 TABLA DE LÍDERES</h3>
+                        <p class="card-subtext mb-0">Top 50 alumnos</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="mono-text d-block" style="font-size: 0.8rem;">TU POSICIÓN</span>
+                        <span style="color: var(--accent-neon); font-family: 'Rajdhani'; font-weight: 800; font-size: 1.5rem;">#{{ mi_posicion }}</span>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                        <table class="table table-custom table-hover mb-0 align-middle">
+                            <thead style="position: sticky; top: 0; background-color: var(--glass-bg); backdrop-filter: blur(10px); z-index: 2;">
+                                <tr>
+                                    <th scope="col" class="ps-4">#</th>
+                                    <th scope="col">RANGO</th>
+                                    <th scope="col">ALUMNO</th>
+                                    <th scope="col" class="text-end pe-4">Preguntas respondidas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in ranking %}
+                                <tr class="{% if p.usuario == user %}user-row-highlight{% endif %}">
+                                    <td class="ps-4 fw-bold font-monospace" style="color: {% if forloop.counter <= 3 %}var(--accent-neon){% else %}var(--text-secondary){% endif %};">
+                                        {{ forloop.counter }} {% if forloop.counter == 1 %}👑{% endif %}
+                                    </td>
+                                    <td>
+                                        <span class="rank-badge">{{ p.rango }}</span>
+                                    </td>
+                                    <td class="fw-bold {% if p.usuario == user %}text-uppercase{% endif %}">
+                                        {{ p.usuario.username }}
+                                        {% if p.usuario == user %} <span style="font-size:0.7em; color:var(--accent-neon);">(TÚ)</span>{% endif %}
+                                    </td>
+                                    <td class="text-end pe-4" style="font-family: 'Share Tech Mono'; color: var(--accent-neon);">
+                                        {{ p.preguntas_respondidas }}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                                {% if mi_posicion > 50 %}
+                                <tr style="border-top: 2px dashed var(--accent-dim);">
+                                    <td class="ps-4 font-monospace text-secondary">...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td class="text-end pe-4">...</td>
+                                </tr>
+                                <tr class="user-row-highlight">
+                                    <td class="ps-4 fw-bold font-monospace" style="color: var(--accent-neon);">{{ mi_posicion }}</td>
+                                    <td><span class="rank-badge">{{ perfil.rango }}</span></td>
+                                    <td class="fw-bold text-uppercase">{{ user.username }} <span style="font-size:0.7em; color:var(--accent-neon);">(TÚ)</span></td>
+                                    <td class="text-end pe-4" style="font-family: 'Share Tech Mono'; color: var(--accent-neon);">{{ perfil.preguntas_respondidas }}</td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-12">
             <div class="card glass-card p-4">
                 <div class="d-flex align-items-center justify-content-between">
@@ -268,27 +368,22 @@
     // 1. Al cargar, verificamos si el usuario prefirió "dark" alguna vez
     const theme = localStorage.getItem('theme');
     
-    // Si hay tema guardado como 'dark', lo activamos. Si no hay nada, por defecto es claro (no hace nada).
     if (theme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
 
     // 2. Función del botón
     function toggleTheme() {
-        // Miramos qué tema tiene ahora
         const currentTheme = document.documentElement.getAttribute('data-theme');
-        let newTheme = 'dark'; // Por defecto, si pulsas, quieres ir al oscuro
+        let newTheme = 'dark'; 
 
-        // Si ya era oscuro, volvemos al claro (null o 'light')
         if (currentTheme === 'dark') {
             newTheme = 'light';
-            document.documentElement.removeAttribute('data-theme'); // Quitar atributo vuelve al CSS :root (Claro)
+            document.documentElement.removeAttribute('data-theme'); 
         } else {
-            // Si era claro, ponemos oscuro
             document.documentElement.setAttribute('data-theme', 'dark');
         }
 
-        // Guardar preferencia
         localStorage.setItem('theme', newTheme);
     }
 </script>
