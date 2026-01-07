@@ -201,19 +201,24 @@ SOCIALACCOUNT_PROVIDERS = {
 
 SITE_ID = 1
 
-# --- CONFIGURACIÓN AVANZADA DE GOOGLE / ALLAUTH ---
+# --- CONFIGURACIÓN DE LOGIN GOOGLE (ONE-TAP) ---
 
-# 1. Autenticación
-LOGIN_REDIRECT_URL = '/'          # A dónde ir tras loguearse
-LOGOUT_REDIRECT_URL = '/'         # A dónde ir tras salir
+# 1. Redirecciones
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
-# 2. Comportamiento del Registro
-SOCIALACCOUNT_AUTO_SIGNUP = True  # Registra automáticamente sin pedir datos extra
-SOCIALACCOUNT_LOGIN_ON_GET = True # Evita la pantalla intermedia de "¿Quieres entrar?"
+# 2. Configuración Allauth para evitar preguntas
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False # No pide usuario (lo genera automático)
-ACCOUNT_AUTHENTICATION_METHOD = 'email' # Usa el email como identificador principal
-ACCOUNT_EMAIL_VERIFICATION = 'none' # No envia correo de confirmación (confiamos en Google)
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False  # ¡CRUCIAL! No pedir usuario
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username' 
+ACCOUNT_EMAIL_VERIFICATION = 'none' # Confiamos en Google
 
-# 3. Evitar conflictos
+# 3. Configuración Social Específica
+SOCIALACCOUNT_AUTO_SIGNUP = True   # Registrar sin confirmar
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+SOCIALACCOUNT_QUERY_EMAIL = True   # Asegurar que Google nos da el email
+
+# 4. Adaptador (Opcional, pero ayuda a evitar conflictos)
 SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapter.DefaultSocialAccountAdapter'
