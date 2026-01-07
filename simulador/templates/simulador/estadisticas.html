@@ -305,4 +305,76 @@
     });
 </script>
 
+<div class="row mt-5 mb-5">
+        <div class="col-12">
+            <div class="card glass-card border-0 shadow-lg" style="background: rgba(33, 37, 41, 0.95); border: 1px solid rgba(255,255,255,0.1);">
+                <div class="card-header bg-transparent border-0 pt-4 px-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="text-warning fw-bold mb-0" style="font-family: 'Rajdhani', sans-serif;">🏆 TABLA DE LÍDERES</h3>
+                            <p class="text-muted small mb-0" style="font-family: 'Share Tech Mono';">OPERADORES DE ÉLITE - TOP 50</p>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-warning text-dark" style="font-size: 1rem;">GLOBAL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body p-0">
+                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                        <table class="table table-dark table-hover mb-0 align-middle" style="border-color: rgba(255,255,255,0.1);">
+                            <thead class="sticky-top" style="background-color: #1c1f23; z-index: 2;">
+                                <tr style="font-family: 'Share Tech Mono'; letter-spacing: 1px; font-size: 0.9rem;">
+                                    <th scope="col" class="ps-4 py-3 text-secondary">POS</th>
+                                    <th scope="col" class="py-3 text-secondary">RANGO</th>
+                                    <th scope="col" class="py-3 text-secondary">OPERADOR</th>
+                                    <th scope="col" class="text-end pe-4 py-3 text-warning">PUNTOS (PREGUNTAS)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in ranking %}
+                                <tr class="{% if p.usuario == user %}table-active{% endif %}" style="transition: background 0.2s;">
+                                    <td class="ps-4 fw-bold font-monospace">
+                                        {% if forloop.counter == 1 %}🥇{% endif %}
+                                        {% if forloop.counter == 2 %}🥈{% endif %}
+                                        {% if forloop.counter == 3 %}🥉{% endif %}
+                                        <span class="{% if forloop.counter <= 3 %}text-warning{% else %}text-muted{% endif %}">
+                                            #{{ forloop.counter }}
+                                        </span>
+                                    </td>
+                                    
+                                    <td>
+                                        <span class="badge border border-secondary text-light fw-normal" style="background: rgba(255,255,255,0.05);">
+                                            {{ p.rango }}
+                                        </span>
+                                    </td>
+                                    
+                                    <td>
+                                        <span class="fw-bold {% if p.usuario == user %}text-warning{% else %}text-light{% endif %}">
+                                            {{ p.usuario.username|upper }}
+                                        </span>
+                                        {% if p.usuario == user %}
+                                            <span class="badge bg-warning text-dark ms-2" style="font-size: 0.6em;">TÚ</span>
+                                        {% endif %}
+                                    </td>
+                                    
+                                    <td class="text-end pe-4 font-monospace text-warning fw-bold">
+                                        {{ p.preguntas_respondidas }}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted">
+                                        No hay datos de clasificación disponibles aún.
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

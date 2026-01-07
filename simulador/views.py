@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from django.contrib import messages 
 from django.db import models
 from .models import Tema, Pregunta, Opcion, Resultado, Perfil, Curso
-
 from django.http import HttpResponse, Http404, FileResponse
 from django.conf import settings
 from gtts import gTTS
@@ -240,39 +239,29 @@ def configurar_test(request):
 
 @login_required
 def estadisticas(request):
-    resultados = Resultado.objects.filter(usuario=request.user).order_by('-fecha')
+    perfil, created = Perfil.objects.get_or_create(usuario=request.user)
     
-    promedio = resultados.aggregate(Avg('nota'))['nota__avg']
-    promedio = round(promedio, 1) if promedio else 0
-    total_tests = resultados.count()
-
-    # Ranking
-    ranking_usuarios = User.objects.annotate(media_global=Avg('resultado__nota')) \
-                                   .filter(media_global__isnull=False) \
-                                   .order_by('-media_global')
+    # --- LÓGICA EXISTENTE DE ESTADÍSTICAS ---
+    intentos = Resultado.objects.filter(usuario=request.user)
+    total_intentos = intentos.count()
+    promedio_nota = intentos.aggregate(Avg('nota'))['nota__avg'] or 0
+    total_preguntas = perfil.preguntas_respondidas  # Usamos el contador del perfil
     
-    mi_posicion = "-"
-    total_alumnos = ranking_usuarios.count()
+    datos_grafico = intentos.order_by('fecha')[:10]
     
-    for index, user_rank in enumerate(ranking_usuarios):
-        if user_rank.id == request.user.id:
-            mi_posicion = index + 1
-            break
+    # --- NUEVO: LÓGICA DEL RANKING (TOP 50) ---
+    ranking = Perfil.objects.select_related('usuario').order_by('-preguntas_respondidas')[:50]
 
-    ultimos_10 = resultados[:10][::-1]
-    fechas_grafica = [r.fecha.strftime("%d/%m") for r in ultimos_10]
-    notas_grafica = [float(r.nota) for r in ultimos_10]
-
-    contexto = {
-        'resultados': resultados,
-        'promedio': promedio,
-        'total_tests': total_tests,
-        'fechas_grafica': fechas_grafica,
-        'notas_grafica': notas_grafica,
-        'mi_posicion': mi_posicion,
-        'total_alumnos': total_alumnos
+    context = {
+        'perfil': perfil,
+        'total_intentos': total_intentos,
+        'promedio_nota': round(promedio_nota, 2),
+        'total_preguntas': total_preguntas,
+        'datos_grafico': datos_grafico,
+        'ranking': ranking, # <--- ¡IMPORTANTE: PASAR ESTO!
     }
-    return render(request, 'simulador/estadisticas.html', contexto)
+    
+    return render(request, 'simulador/estadisticas.html', context)
 
 # --- VISTAS DEL EXAMEN ---
 
