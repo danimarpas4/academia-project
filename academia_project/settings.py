@@ -200,3 +200,20 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SITE_ID = 1
+
+# --- CONFIGURACIÓN AVANZADA DE GOOGLE / ALLAUTH ---
+
+# 1. Autenticación
+LOGIN_REDIRECT_URL = '/'          # A dónde ir tras loguearse
+LOGOUT_REDIRECT_URL = '/'         # A dónde ir tras salir
+
+# 2. Comportamiento del Registro
+SOCIALACCOUNT_AUTO_SIGNUP = True  # Registra automáticamente sin pedir datos extra
+SOCIALACCOUNT_LOGIN_ON_GET = True # Evita la pantalla intermedia de "¿Quieres entrar?"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False # No pide usuario (lo genera automático)
+ACCOUNT_AUTHENTICATION_METHOD = 'email' # Usa el email como identificador principal
+ACCOUNT_EMAIL_VERIFICATION = 'none' # No envia correo de confirmación (confiamos en Google)
+
+# 3. Evitar conflictos
+SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapter.DefaultSocialAccountAdapter'
