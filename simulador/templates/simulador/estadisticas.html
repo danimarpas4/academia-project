@@ -1,318 +1,131 @@
 {% extends 'simulador/base.html' %}
-{% load static %}
 
 {% block content %}
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
 <style>
-    /* --- VARIABLES DE TEMA --- */
-    :root {
-        /* MODO CLARO (LABORATORIO) POR DEFECTO */
-        --bg-body: #f5f7fa;
-        --glass-bg: rgba(255, 255, 255, 0.95);
-        --glass-border: rgba(0, 0, 0, 0.05);
-        --text-primary: #1c1e21;
-        --text-secondary: #4a5568;
-        
-        --accent-neon: #2e7d32; /* Verde táctico oscuro */
-        --accent-fail: #d32f2f; /* Rojo oscuro */
-        --accent-gold: #b7950b; /* Dorado oscuro para fondo claro */
-    }
-
-    /* MODO OSCURO (VISIÓN NOCTURNA) */
-    [data-theme="dark"] {
-        --bg-body: #050505;
-        --glass-bg: rgba(20, 30, 20, 0.85);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --text-primary: #ffffff;
-        --text-secondary: #a5d6a7;
-        
-        --accent-neon: #76ff03; /* Verde neón brillante */
-        --accent-fail: #ff3d00; /* Rojo brillante */
-        --accent-gold: #ffd700; /* Dorado brillante */
-    }
-
-    body {
-        background-color: var(--bg-body);
-        font-family: 'Rajdhani', sans-serif;
-        color: var(--text-primary);
-        transition: background-color 0.5s ease;
-    }
-
-    /* TARJETAS KPI (Dato clave) */
-    .kpi-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        padding: 20px;
-        text-align: center;
-        height: 100%;
+    /* --- 1. BOTÓN FLOTANTE --- */
+    .theme-toggle-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #ffc107; /* Amarillo por defecto */
+        color: #000;
+        border: none;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        transition: transform 0.3s ease;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1050;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease, background-color 0.3s;
+    }
+    .theme-toggle-btn:hover {
+        transform: scale(1.1);
+    }
+
+    /* --- 2. MODO CLARO (OVERRIDES) --- */
+    /* Esta página está diseñada en Oscuro por defecto. Aquí forzamos el Claro si se activa. */
+    body.light-mode {
+        background-color: #f8f9fa !important;
+        color: #212529 !important;
     }
     
-    .kpi-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .kpi-value {
-        font-size: 3.5rem;
-        font-weight: 800;
-        color: var(--accent-neon);
-        line-height: 1;
-    }
-
-    .kpi-label {
-        font-family: 'Share Tech Mono';
-        font-size: 0.9rem;
-        opacity: 0.8;
-        margin-top: 10px;
-        display: block;
-        color: var(--text-primary);
-    }
-
-    /* ESTILOS ESPECÍFICOS PARA LA TARJETA RANKING */
-    .rank-card {
-        border-color: var(--accent-gold);
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
-    }
-    .rank-value {
-        color: var(--accent-gold);
-    }
-    .rank-label {
-        color: var(--accent-gold);
-    }
-
-    /* CONTENEDOR GRÁFICA */
-    .chart-container {
-        background: var(--glass-bg);
-        border-radius: 25px;
-        padding: 20px;
-        border: 1px solid var(--glass-border);
-        margin-bottom: 30px;
-        height: 400px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-
-    /* TABLA DE HISTORIAL */
-    .history-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0 10px;
-    }
-
-    .history-row {
-        background: var(--glass-bg);
-        transition: transform 0.2s;
-    }
-    .history-row td {
-        padding: 15px;
-        border-top: 1px solid var(--glass-border);
-        border-bottom: 1px solid var(--glass-border);
-        vertical-align: middle;
-    }
-    .history-row td:first-child {
-        border-left: 1px solid var(--glass-border);
-        border-top-left-radius: 15px;
-        border-bottom-left-radius: 15px;
-        border-left: 4px solid var(--accent-neon);
-    }
-    .history-row td:last-child {
-        border-right: 1px solid var(--glass-border);
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
-    }
-    .history-row:hover {
-        transform: scale(1.01);
+    /* Invertir textos blancos a negros */
+    body.light-mode .text-light {
+        color: #212529 !important;
     }
     
-    /* BADGES (Etiquetas de nota) */
-    .badge-score {
-        padding: 6px 15px;
-        border-radius: 50px;
-        font-weight: bold;
-        font-family: 'Share Tech Mono';
-        font-size: 0.9rem;
+    /* Convertir tarjetas oscuras (Glass) a blancas */
+    body.light-mode .glass-card {
+        background: #ffffff !important;
+        border: 1px solid #dee2e6 !important;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
     }
-    .pass { 
-        background: rgba(46, 125, 50, 0.1); 
-        color: var(--accent-neon); 
-        border: 1px solid var(--accent-neon); 
+    
+    /* Convertir tablas oscuras a claras */
+    body.light-mode .table-dark {
+        --bs-table-bg: transparent;
+        --bs-table-color: #212529;
+        color: #212529 !important;
+        border-color: #dee2e6 !important;
     }
-    .fail { 
-        background: rgba(211, 47, 47, 0.1); 
-        color: var(--accent-fail); 
-        border: 1px solid var(--accent-fail); 
+    body.light-mode .table-dark th,
+    body.light-mode .table-dark td {
+        color: #212529 !important;
+        border-color: #dee2e6 !important;
     }
-
-    [data-theme="dark"] .pass { background: rgba(118, 255, 3, 0.1); }
-    [data-theme="dark"] .fail { background: rgba(255, 61, 0, 0.1); }
-
+    /* Cabecera pegajosa de la tabla en modo claro */
+    body.light-mode .sticky-top {
+        background-color: #e9ecef !important;
+        color: #000 !important;
+    }
 </style>
 
 <div class="container py-5">
     
-    <div class="mb-5">
-        <h5 style="font-family: 'Share Tech Mono'; opacity: 0.7; color: var(--text-secondary);">// TELEMETRÍA DEL OPERADOR</h5>
-        <h2 style="font-weight: 800; letter-spacing: 2px;">ANÁLISIS DE RENDIMIENTO</h2>
+    <div class="row mb-4">
+        <div class="col-12">
+            <small class="text-secondary text-uppercase" style="letter-spacing: 2px;">// Telemetría del alumno</small>
+            <h2 class="display-5 fw-bold text-light" style="font-family: 'Rajdhani', sans-serif;">ANÁLISIS DE RENDIMIENTO</h2>
+        </div>
     </div>
 
     <div class="row g-4 mb-5">
-        
-        <div class="col-md-6 col-lg-3">
-            <div class="kpi-card">
-                <div class="kpi-value">{{ promedio }}</div>
-                <span class="kpi-label">NOTA MEDIA GLOBAL</span>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <div class="kpi-card rank-card">
-                <div class="kpi-value rank-value">
-                    <span style="font-size: 1.5rem; opacity: 0.7;">#</span>{{ mi_posicion }}
+        <div class="col-md-3">
+            <div class="card h-100 border-0 shadow-sm text-center py-4" style="background-color: #ffffff; border-radius: 15px;">
+                <div class="card-body">
+                    <h1 class="display-4 fw-bold text-dark mb-0">{{ promedio_nota }}</h1>
+                    <small class="text-secondary text-uppercase fw-bold" style="font-size: 0.7rem; letter-spacing: 1px;">Nota Media Global</small>
                 </div>
-                <span class="kpi-label rank-label">POSICIÓN ACADEMIA</span>
-                <small class="d-block mt-1" style="font-family: 'Share Tech Mono'; color: var(--text-secondary); opacity: 0.8;">DE {{ total_alumnos }} ALUMNOS</small>
             </div>
         </div>
 
-        <div class="col-md-6 col-lg-3">
-            <div class="kpi-card">
-                <div class="kpi-value">{{ total_tests }}</div>
-                <span class="kpi-label">SIMULACROS COMPLETADOS</span>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <div class="kpi-card">
-                <div class="kpi-value" style="font-size: 2rem; line-height: 1.8;">
-                    {% if total_tests > 0 %}ACTIVO{% else %}INACTIVO{% endif %}
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm text-center py-4 position-relative overflow-hidden" style="background-color: #ffffff; border-radius: 15px; border: 2px solid #ffc107;">
+                <div class="card-body">
+                    <h1 class="display-4 fw-bold text-warning mb-0">
+                        {% for p in ranking %}
+                            {% if p.usuario == user %}#{{ forloop.counter }}{% endif %}
+                        {% empty %}
+                            -
+                        {% endfor %}
+                    </h1>
+                    <small class="text-warning text-uppercase fw-bold" style="font-size: 0.7rem; letter-spacing: 1px;">Posición Academia</small>
+                    <div class="mt-2 text-muted" style="font-size: 0.65rem;">DE {{ ranking.count }} ALUMNOS</div>
                 </div>
-                <span class="kpi-label">ESTADO DE COMBATE</span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card h-100 border-0 shadow-sm text-center py-4" style="background-color: #ffffff; border-radius: 15px;">
+                <div class="card-body">
+                    <h1 class="display-4 fw-bold text-secondary mb-0">{{ total_intentos }}</h1>
+                    <small class="text-secondary text-uppercase fw-bold" style="font-size: 0.7rem; letter-spacing: 1px;">Simulacros Completados</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card h-100 border-0 shadow-sm text-center py-4" style="background-color: #ffffff; border-radius: 15px;">
+                <div class="card-body">
+                    <h1 class="display-6 fw-bold text-success mb-0" style="padding-top: 10px;">ACTIVO</h1>
+                    <small class="text-success text-uppercase fw-bold" style="font-size: 0.7rem; letter-spacing: 1px;">Estado de actividad</small>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="chart-container">
-        <canvas id="performanceChart"></canvas>
-    </div>
-
-    <h4 class="mb-3" style="font-weight: 700; letter-spacing: 1px;">HISTORIAL DE MISIONES</h4>
-    
-    {% if resultados %}
-    <div class="table-responsive">
-        <table class="history-table">
-            {% for test in resultados %}
-            <tr class="history-row">
-                <td style="font-weight: 700; font-size: 1.1rem;">{{ test.tema.nombre }}</td>
-                <td style="font-family: 'Share Tech Mono'; opacity: 0.7; color: var(--text-secondary);">
-                    {{ test.fecha|date:"d/m/Y - H:i" }}
-                </td>
-                <td class="text-end">
-                    <span class="badge-score {% if test.nota >= 5 %}pass{% else %}fail{% endif %}">
-                        NOTA: {{ test.nota|floatformat:1 }}
-                    </span>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    {% else %}
-    <div class="alert text-center p-4" style="background: var(--glass-bg); border: 1px dashed var(--accent-neon); border-radius: 20px;">
-        <h5 class="mb-0" style="color: var(--text-secondary);">No hay datos registrados. Realiza tu primer simulacro para ver estadísticas.</h5>
-    </div>
-    {% endif %}
-
-</div>
-
-<script>
-    // 1. GESTIÓN DEL TEMA (CLARO/OSCURO)
-    const theme = localStorage.getItem('theme');
-    // Aplicar tema si está guardado como 'dark'
-    if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-
-    // 2. CONFIGURACIÓN DE LA GRÁFICA CHART.JS
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    
-    // Colores dinámicos según el tema
-    const colorLine = isDark ? '#76ff03' : '#2e7d32'; // Verde neón vs Verde oscuro
-    const colorBg   = isDark ? 'rgba(118, 255, 3, 0.1)' : 'rgba(46, 125, 50, 0.1)';
-    const colorGrid = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
-    const colorText = isDark ? '#ffffff' : '#1c1e21';
-
-    const ctx = document.getElementById('performanceChart').getContext('2d');
-    
-    // Si no hay datos, Chart.js no falla, solo muestra vacío, pero Django debería pasar listas vacías si no hay datos.
-    const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: {{ fechas_grafica|safe }}, // Fechas eje X (Desde Django)
-            datasets: [{
-                label: 'Nota',
-                data: {{ notas_grafica|safe }}, // Notas eje Y (Desde Django)
-                borderColor: colorLine,
-                backgroundColor: colorBg,
-                borderWidth: 3,
-                tension: 0.4, // Suavizado de la línea
-                pointBackgroundColor: colorLine,
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false }, // Ocultar leyenda
-                tooltip: {
-                    backgroundColor: isDark ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.9)',
-                    titleColor: isDark ? '#fff' : '#000',
-                    bodyColor: isDark ? '#fff' : '#000',
-                    borderColor: colorLine,
-                    borderWidth: 1,
-                    displayColors: false,
-                    callbacks: {
-                        label: function(context) {
-                            return 'Nota: ' + context.parsed.y;
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 10,
-                    grid: { color: colorGrid },
-                    ticks: { color: colorText, font: { family: 'Share Tech Mono' } }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { color: colorText, font: { family: 'Rajdhani' } }
-                }
-            }
-        }
-    });
-</script>
-
-<div class="row mt-5 mb-5">
+    <div class="row mb-5">
         <div class="col-12">
             <div class="card glass-card border-0 shadow-lg" style="background: rgba(33, 37, 41, 0.95); border: 1px solid rgba(255,255,255,0.1);">
                 <div class="card-header bg-transparent border-0 pt-4 px-4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h3 class="text-warning fw-bold mb-0" style="font-family: 'Rajdhani', sans-serif;">🏆 TABLA DE LÍDERES</h3>
-                            <p class="text-muted small mb-0" style="font-family: 'Share Tech Mono';">OPERADORES DE ÉLITE - TOP 50</p>
+                            <p class="text-muted small mb-0" style="font-family: 'Share Tech Mono';">ALUMNOS DE ÉLITE - TOP 50</p>
                         </div>
                         <div class="text-end">
                             <span class="badge bg-warning text-dark" style="font-size: 1rem;">GLOBAL</span>
@@ -321,51 +134,88 @@
                 </div>
                 
                 <div class="card-body p-0">
-                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
                         <table class="table table-dark table-hover mb-0 align-middle" style="border-color: rgba(255,255,255,0.1);">
                             <thead class="sticky-top" style="background-color: #1c1f23; z-index: 2;">
                                 <tr style="font-family: 'Share Tech Mono'; letter-spacing: 1px; font-size: 0.9rem;">
-                                    <th scope="col" class="ps-4 py-3 text-secondary">POS</th>
+                                    <th scope="col" class="ps-4 py-3 text-secondary">Nº</th>
                                     <th scope="col" class="py-3 text-secondary">RANGO</th>
-                                    <th scope="col" class="py-3 text-secondary">OPERADOR</th>
-                                    <th scope="col" class="text-end pe-4 py-3 text-warning">PUNTOS (PREGUNTAS)</th>
+                                    <th scope="col" class="py-3 text-secondary">USUARIO</th>
+                                    <th scope="col" class="text-end pe-4 py-3 text-warning">PUNTOS XP</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for p in ranking %}
                                 <tr class="{% if p.usuario == user %}table-active{% endif %}" style="transition: background 0.2s;">
                                     <td class="ps-4 fw-bold font-monospace">
-                                        {% if forloop.counter == 1 %}🥇{% endif %}
-                                        {% if forloop.counter == 2 %}🥈{% endif %}
-                                        {% if forloop.counter == 3 %}🥉{% endif %}
-                                        <span class="{% if forloop.counter <= 3 %}text-warning{% else %}text-muted{% endif %}">
-                                            #{{ forloop.counter }}
-                                        </span>
+                                        {% if forloop.counter == 1 %}🥇{% elif forloop.counter == 2 %}🥈{% elif forloop.counter == 3 %}🥉{% else %}<span class="text-muted">#{{ forloop.counter }}</span>{% endif %}
                                     </td>
-                                    
                                     <td>
-                                        <span class="badge border border-secondary text-light fw-normal" style="background: rgba(255,255,255,0.05);">
-                                            {{ p.rango }}
-                                        </span>
+                                        <span class="badge border border-secondary text-light fw-normal" style="background: rgba(255,255,255,0.05);">{{ p.rango }}</span>
                                     </td>
-                                    
                                     <td>
-                                        <span class="fw-bold {% if p.usuario == user %}text-warning{% else %}text-light{% endif %}">
-                                            {{ p.usuario.username|upper }}
-                                        </span>
-                                        {% if p.usuario == user %}
-                                            <span class="badge bg-warning text-dark ms-2" style="font-size: 0.6em;">TÚ</span>
-                                        {% endif %}
+                                        <span class="fw-bold {% if p.usuario == user %}text-warning{% else %}text-light{% endif %}">{{ p.usuario.username|upper }}</span>
+                                        {% if p.usuario == user %}<span class="badge bg-warning text-dark ms-2" style="font-size: 0.6em;">TÚ</span>{% endif %}
                                     </td>
-                                    
-                                    <td class="text-end pe-4 font-monospace text-warning fw-bold">
-                                        {{ p.preguntas_respondidas }}
+                                    <td class="text-end pe-4 font-monospace text-warning fw-bold">{{ p.preguntas_respondidas }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted">No hay datos de clasificación disponibles aún.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm p-4" style="border-radius: 15px;">
+                <h4 class="fw-bold mb-4" style="font-family: 'Rajdhani', sans-serif;">📈 EVOLUCIÓN DE NOTAS</h4>
+                <div style="height: 300px;">
+                    <canvas id="notaChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h5 class="fw-bold text-secondary mb-3 ms-1" style="font-family: 'Rajdhani', sans-serif;">HISTORIAL DE NOTAS</h5>
+            <div class="card border-0 shadow-sm" style="border-radius: 15px; overflow: hidden;">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0 align-middle">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="py-3 ps-4">Fecha</th>
+                                    <th class="py-3">Tema</th>
+                                    <th class="py-3 text-center">Aciertos</th>
+                                    <th class="py-3 text-center">Fallos</th>
+                                    <th class="py-3 text-end pe-4">Nota</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for intento in datos_grafico reversed %}
+                                <tr>
+                                    <td class="ps-4 fw-bold text-secondary">{{ intento.fecha|date:"d M Y" }}</td>
+                                    <td>{{ intento.tema.nombre }}</td>
+                                    <td class="text-center text-success fw-bold">{{ intento.aciertos }}</td>
+                                    <td class="text-center text-danger fw-bold">{{ intento.fallos }}</td>
+                                    <td class="text-end pe-4">
+                                        <span class="badge {% if intento.nota >= 5 %}bg-success{% else %}bg-danger{% endif %} rounded-pill px-3">
+                                            {{ intento.nota }}
+                                        </span>
                                     </td>
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                    <td colspan="4" class="text-center py-4 text-muted">
-                                        No hay datos de clasificación disponibles aún.
+                                    <td colspan="5" class="text-center py-5 text-muted">
+                                        No hay datos registrados. Realiza tu primer simulacro para ver estadísticas.
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -377,4 +227,92 @@
         </div>
     </div>
 
+</div>
+
+<button id="theme-toggle" class="theme-toggle-btn" title="Cambiar Tema">
+    ☀️
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // --- 1. LÓGICA DEL GRÁFICO ---
+        const ctx = document.getElementById('notaChart');
+        const rawData = [
+            {% for intento in datos_grafico %} {{ intento.nota }}, {% endfor %}
+        ];
+        const rawLabels = [
+            {% for intento in datos_grafico %} "{{ intento.fecha|date:'d/m' }}", {% endfor %}
+        ];
+
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: rawLabels,
+                    datasets: [{
+                        label: 'Nota obtenida',
+                        data: rawData,
+                        borderColor: '#ffc107',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#000',
+                        pointBorderColor: '#ffc107',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 10, grid: { color: '#f0f0f0' } },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // --- 2. LÓGICA DEL TEMA (BOTÓN) ---
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Aplicar tema guardado al cargar
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+            toggleBtn.innerHTML = '🌙'; // Icono Luna
+            toggleBtn.style.backgroundColor = '#198754'; // Verde
+            toggleBtn.style.color = '#fff';
+        } else {
+            // Por defecto Oscuro
+            toggleBtn.innerHTML = '☀️'; // Icono Sol
+            toggleBtn.style.backgroundColor = '#ffc107'; // Amarillo
+            toggleBtn.style.color = '#000';
+        }
+
+        // Al hacer clic
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('light-mode')) {
+                // MODO CLARO
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerHTML = '🌙';
+                toggleBtn.style.backgroundColor = '#198754';
+                toggleBtn.style.color = '#fff';
+            } else {
+                // MODO OSCURO
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerHTML = '☀️';
+                toggleBtn.style.backgroundColor = '#ffc107';
+                toggleBtn.style.color = '#000';
+            }
+        });
+    });
+</script>
 {% endblock %}
