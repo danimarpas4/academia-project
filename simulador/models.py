@@ -17,14 +17,22 @@ class Tema(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='temas', null=True, blank=True)
     nombre = models.CharField(max_length=200)
     archivo_pdf = models.FileField(upload_to='temarios/', blank=True, null=True)
-    # Texto opcional del temario para poder convertirlo a audio
-    contenido_texto = models.TextField(blank=True, null=True, help_text="Texto del tema para poder generar audio MP3")
+    
+    # NUEVO CAMPO: Aquí subirás los MP3 que creas con tu script en Python
+    archivo_audio = models.FileField(
+        upload_to='temas_audio/', 
+        blank=True, 
+        null=True, 
+        help_text="Sube aquí el archivo MP3 generado (ej: '01_Reales_Ordenanzas.mp3')"
+    )
+
+    # Este lo dejamos por compatibilidad, pero ya no es urgente rellenarlo
+    contenido_texto = models.TextField(blank=True, null=True, help_text="Texto del tema (Opcional si ya subes el audio)")
 
     def __str__(self):
         # Muestra "Cabo - Legislación" para que te aclares en el admin
         nombre_curso = self.curso.nombre if self.curso else "Sin Curso"
         return f"{nombre_curso} - {self.nombre}"
-
 class Pregunta(models.Model):
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE, related_name='preguntas') 
     enunciado = models.TextField()
