@@ -1,62 +1,227 @@
 {% extends 'simulador/base.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>📂 Documentación y Temarios</h2>
-        <a href="{% url 'portada' %}" class="btn btn-outline-secondary">⬅ Volver al Panel</a>
+<style>
+    /* --- TRANSICIONES SUAVES --- */
+    body {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* --- BOTÓN FLOTANTE DE TEMA --- */
+    .theme-toggle-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #ffc107; /* Amarillo por defecto */
+        color: #000;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1050;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        transition: transform 0.2s;
+    }
+    .theme-toggle-btn:hover {
+        transform: scale(1.1);
+    }
+
+    /* --- ESTILOS DE TARJETA (POR DEFECTO OSCURO) --- */
+    .tema-card {
+        background: rgba(33, 37, 41, 0.95); /* Fondo oscuro */
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        margin-bottom: 20px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tema-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        border-color: #ffc107; /* Borde amarillo al pasar ratón */
+    }
+    
+    .icon-box {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 193, 7, 0.1);
+        color: #ffc107;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    /* --- OVERRIDES PARA MODO CLARO --- */
+    body.light-mode {
+        background-color: #f4f6f9 !important; /* Gris muy suave */
+        color: #333 !important;
+    }
+
+    body.light-mode .text-light {
+        color: #212529 !important;
+    }
+    
+    body.light-mode .text-muted {
+        color: #6c757d !important;
+    }
+
+    /* Tarjeta en modo claro */
+    body.light-mode .tema-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    body.light-mode .tema-card:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        border-color: #0d6efd; /* Azul en modo claro */
+    }
+
+    body.light-mode .icon-box {
+        background: #e7f1ff;
+        color: #0d6efd;
+    }
+
+    /* Títulos en modo claro */
+    body.light-mode h4.text-light {
+        color: #2c3e50 !important;
+        font-weight: 700;
+    }
+</style>
+
+<div class="container py-5">
+    
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <small class="text-secondary text-uppercase fw-bold" style="letter-spacing: 1px;">// BIBLIOTECA OFICIAL</small>
+            <h2 class="display-5 fw-bold text-light" style="font-family: 'Rajdhani', sans-serif;">DOCUMENTACIÓN Y TEMARIOS</h2>
+        </div>
+        <a href="{% url 'portada' %}" class="btn btn-outline-secondary px-4 rounded-pill">
+            <i class="fas fa-arrow-left me-2"></i> Volver al Panel
+        </a>
     </div>
 
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
                 {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
     {% endif %}
 
-    <div class="list-group shadow">
-        {% for tema in temas %}
-        <div class="list-group-item list-group-item-action p-4">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <div>
-                    <h4 class="mb-1 text-primary">{{ tema.nombre }}</h4>
-                    <p class="mb-0 text-muted">
-                        {{ tema.descripcion|default:"Sin descripción" }}
-                    </p>
-                </div>
-                <div class="btn-group">
-                    {% if tema.archivo_pdf %}
-                        <a href="{{ tema.archivo_pdf.url }}" class="btn btn-danger">
-                            ⬇ Descargar PDF
-                        </a>
-                    {% else %}
-                        <button class="btn btn-secondary" disabled>No PDF</button>
-                    {% endif %}
-
-                    {% if tema.contenido_texto %}
-                        <div class="d-flex flex-column gap-2" style="min-width: 250px;">
-                            <div class="mb-2">
-                                <small class="text-muted d-block mb-1">🎧 Reproducir audio:</small>
-                                <audio controls class="w-100" preload="none">
-                                    <source src="{% url 'descargar_tema_mp3' tema.id %}" type="audio/mpeg">
-                                    Tu navegador no soporta el elemento de audio.
-                                </audio>
-                            </div>
-                            <a href="{% url 'descargar_tema_mp3' tema.id %}?download=true" class="btn btn-success btn-sm">
-                                ⬇ Descargar MP3
-                            </a>
+    <div class="row">
+        <div class="col-12">
+            
+            {% for tema in temas %}
+            <div class="tema-card p-4">
+                <div class="row align-items-center">
+                    
+                    <div class="col-md-7 mb-3 mb-md-0 d-flex align-items-start">
+                        <div class="icon-box me-3 flex-shrink-0">
+                            <i class="fas fa-book"></i>
                         </div>
-                    {% else %}
-                        <button class="btn btn-outline-secondary" disabled>Audio no disponible</button>
-                    {% endif %}
+                        <div>
+                            <h4 class="mb-1 text-light">{{ tema.nombre }}</h4>
+                            <p class="mb-0 text-muted small">
+                                {{ tema.descripcion|default:"Documentación oficial del curso de ascenso." }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="d-flex flex-column gap-2">
+                            
+                            {% if tema.archivo_audio %}
+                                <div class="p-2 rounded d-flex align-items-center bg-opacity-10" 
+                                     style="background-color: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05);">
+                                    <div class="me-2 text-warning fs-5"><i class="fas fa-headphones-alt"></i></div>
+                                    <div class="flex-grow-1">
+                                        <audio controls class="w-100" style="height: 30px; opacity: 0.9;">
+                                            <source src="{{ tema.archivo_audio.url }}" type="audio/mpeg">
+                                        </audio>
+                                    </div>
+                                    <a href="{{ tema.archivo_audio.url }}" download class="ms-2 text-secondary" title="Descargar MP3">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+
+                            {% if tema.archivo_pdf %}
+                                <a href="{{ tema.archivo_pdf.url }}" target="_blank" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-file-pdf me-2"></i> Abrir Documento PDF
+                                </a>
+                            {% else %}
+                                <button class="btn btn-light text-muted border w-100" disabled>
+                                    <i class="fas fa-ban me-2"></i> PDF No disponible
+                                </button>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+
                 </div>
             </div>
+            {% empty %}
+            <div class="text-center py-5">
+                <div class="mb-3 text-muted" style="font-size: 3rem; opacity: 0.3;">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h4 class="text-light">No hay temarios disponibles</h4>
+                <p class="text-muted">La documentación se subirá próximamente.</p>
+            </div>
+            {% endfor %}
+
         </div>
-        {% empty %}
-        <div class="alert alert-warning">Aún no se han subido documentos.</div>
-        {% endfor %}
     </div>
 </div>
+
+<button id="theme-toggle" class="theme-toggle-btn" title="Cambiar Tema">
+    ☀️
+</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Recuperar tema guardado
+        const currentTheme = localStorage.getItem('theme');
+
+        // Función para aplicar estilos del botón según el tema
+        function updateButton(isLight) {
+            if (isLight) {
+                toggleBtn.innerHTML = '🌙'; // Luna
+                toggleBtn.style.backgroundColor = '#0d6efd'; // Azul
+                toggleBtn.style.color = '#fff';
+            } else {
+                toggleBtn.innerHTML = '☀️'; // Sol
+                toggleBtn.style.backgroundColor = '#ffc107'; // Amarillo
+                toggleBtn.style.color = '#000';
+            }
+        }
+
+        // Aplicar al cargar
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+            updateButton(true);
+        } else {
+            updateButton(false);
+        }
+
+        // Evento Click
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateButton(isLight);
+        });
+    });
+</script>
 {% endblock %}

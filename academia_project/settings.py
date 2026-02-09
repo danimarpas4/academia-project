@@ -148,7 +148,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Configuración de logging
 LOGGING = {
-    'version': 1,
+    'version': 1,  
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
