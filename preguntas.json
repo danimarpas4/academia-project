@@ -4,19 +4,39 @@
         "bloque": 1,
         "tema": 1,
         "titulo_tema": "Disposiciones Generales",
-        "pregunta": "¿Qué constituyen las Reales Ordenanzas para las Fuerzas Armadas?",
-        "opciones": ["Un reglamento disciplinario", "El código de conducta de los militares", "Un manual de instrucción técnica", "La norma suprema del Estado"],
+        "pregunta": "[RROO] ¿Qué constituyen las Reales Ordenanzas para las Fuerzas Armadas?",
+        "opciones": ["Un manual de táctica", "El código de conducta de los militares", "Un reglamento de uniformidad", "La ley de la carrera militar"],
         "correcta": 1,
-        "explicacion": "📚 Artículo 1.\nConstituyen el código de conducta de los militares y definen los principios éticos y las reglas de comportamiento de acuerdo con la Constitución."
+        "explicacion": "📚 Artículo 1.\nConstituyen el código de conducta de todos los miembros de las Fuerzas Armadas."
     },
     {
         "capitulo": 1,
         "bloque": 1,
         "tema": 1,
         "titulo_tema": "Disposiciones Generales",
-        "pregunta": "¿Cuál es el primer y más fundamental deber del militar?",
-        "opciones": ["La obediencia debida", "La disposición permanente para defender a España", "El respeto a la jerarquía", "La asistencia puntual al servicio"],
+        "pregunta": "[RROO] ¿Cómo actuará el militar ante las situaciones críticas, consciente de que su intervención, por la proximidad a la población civil, tiene una enorme trascendencia?",
+        "opciones": ["Con serenidad", "Con paciencia", "Con sacrificio", "Con ejemplaridad"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 2.\nActuará con la máxima competencia y espíritu de sacrificio, afrontando las situaciones críticas con serenidad, consciente de que su intervención, por la proximidad a la población civil, tiene una enorme trascendencia."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales",
+        "pregunta": "[RROO] En presencia de un superior, ¿deberá corregir las faltas?",
+        "opciones": ["Sí, debe corregir las faltas", "No, no debe corregir las faltas", "Solo si el superior lo permite", "Solo si se trata de una falta grave"],
         "correcta": 1,
+        "explicacion": "📚 Artículo 5.\nEn presencia de un superior, no deberá corregir las faltas o defectos que observe cuando corresponda a aquel hacerlo."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales",
+        "pregunta": "[RROO] ¿Cuál es el primer y más fundamental deber del militar?",
+        "opciones": ["La obediencia", "La puntualidad", "La disposición permanente para defender a España", "El compañerismo"],
+        "correcta": 2,
         "explicacion": "📚 Artículo 3.\nLa disposición permanente para defender a España, incluso con la entrega de la vida cuando fuera necesario."
     },
     {
@@ -24,7 +44,17 @@
         "bloque": 1,
         "tema": 1,
         "titulo_tema": "Disposiciones Generales",
-        "pregunta": "¿A qué características ajustará su comportamiento el militar?",
+        "pregunta": "[RROO] ¿A qué ajustará su conducta el militar según el artículo 4?",
+        "opciones": ["Al respeto de las personas y los derechos fundamentales", "A la jerarquía únicamente", "Al reglamento de su unidad", "A las órdenes de la autoridad civil"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 4.\nEl militar ajustará su conducta al respeto de las personas, de sus derechos fundamentales y libertades públicas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales",
+        "pregunta": "[RROO]¿A qué características ajustará su comportamiento el militar?",
         "opciones": ["Valor, fuerza y honor", "Disciplina, jerarquía y unidad", "Obediencia, silencio y trabajo", "Eficacia, rapidez y austeridad"],
         "correcta": 1,
         "explicacion": "📚 Artículo 7.\nAjustará su comportamiento a las características de las Fuerzas Armadas de disciplina, jerarquía y unidad, indispensables para la máxima eficacia."
@@ -34,7 +64,7 @@
         "bloque": 1,
         "tema": 2,
         "titulo_tema": "Del Militar",
-        "pregunta": "Según el Art. 14, ¿qué demuestra el llegar tarde a su obligación?",
+        "pregunta": "[RROO] Según el Art. 14, ¿qué demuestra el llegar tarde a su obligación?",
         "opciones": ["Falta de compañerismo", "Gran desidia e ineptitud para la carrera de las armas", "Poca organización", "Falta de respeto al superior"],
         "correcta": 1,
         "explicacion": "📚 Artículo 14 (Espíritu militar).\nEl llegar tarde a su obligación, aunque sea de minutos, son pruebas de gran desidia e ineptitud para la carrera de las armas."
@@ -43,8 +73,18 @@
         "capitulo": 1,
         "bloque": 1,
         "tema": 2,
+        "titulo_tema": "Del Juramento o Promesa ante la Bandera",
+        "pregunta": "[RROO] ¿Qué representa la Bandera de España según el artículo 6?",
+        "opciones": ["La historia militar", "La soberanía, independencia, unidad e integridad de la Patria", "El mando supremo del Rey", "La Constitución Española"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 6.\nEs el signo de la soberanía, independencia, unidad e integridad de la Patria y representa sus valores superiores."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 2,
         "titulo_tema": "Del Militar",
-        "pregunta": "¿Cuáles son las virtudes fundamentales del militar según el Art. 17?",
+        "pregunta": "[RROO] ¿Cuáles son las virtudes fundamentales del militar según el Art. 17?",
         "opciones": ["Valor, honor y lealtad", "Disciplina, valor, prontitud en la obediencia y exactitud en el servicio", "Compañerismo, sacrificio y austeridad", "Integridad, neutralidad y eficacia"],
         "correcta": 1,
         "explicacion": "📚 Artículo 17.\nTendrá presente que la disciplina, valor, prontitud en la obediencia y exactitud en el servicio son virtudes a las que nunca ha de faltar."
@@ -54,7 +94,7 @@
         "bloque": 1,
         "tema": 3,
         "titulo_tema": "De la Disciplina",
-        "pregunta": "Si un militar tiene una objeción sobre una orden recibida, ¿qué hará?",
+        "pregunta": "[RROO] Si un militar tiene una objeción sobre una orden recibida, ¿qué hará?",
         "opciones": ["No cumplirla", "Comentarlo con los compañeros", "La formularla ante quien se la hubiera dado", "Presentar un recurso después"],
         "correcta": 2,
         "explicacion": "📚 Artículo 49.\nLa formulará ante quien se la hubiera dado. Si su incumplimiento perjudicase a la misión, se reservará la objeción hasta haberla cumplido."
@@ -63,11 +103,191 @@
         "capitulo": 1,
         "bloque": 1,
         "tema": 3,
+        "titulo_tema": "De la Ética Militar",
+        "pregunta": "[RROO] ¿Qué factor de cohesión obliga a mandar con responsabilidad y a obedecer lo mandado?",
+        "opciones": ["El sueldo", "La disciplina", "El entrenamiento", "La antigüedad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 10.\nLa disciplina, factor de cohesión que obliga a mandar con responsabilidad y a obedecer lo mandado, será practicada y exigida en las Fuerzas Armadas como norma de actuación"
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 3,
         "titulo_tema": "De la Disciplina",
-        "pregunta": "¿Debe un militar atender indicaciones de otro de empleo inferior que esté de servicio?",
+        "pregunta": "[RROO]¿Debe un militar atender indicaciones de otro de empleo inferior que esté de servicio?",
         "opciones": ["No, la jerarquía manda", "Sí, atenderá sus indicaciones o instrucciones", "Solo si es Oficial", "Solo si es de su misma unidad"],
         "correcta": 1,
-        "explicacion": "📚 Artículo 50.\nAtenderá las indicaciones o instrucciones de otro que, aun siendo de empleo inferior, se encuentre de servicio y actúe por órdenes."
+        "explicacion": "📚 Artículo 50.\nAtenderá las indicaciones o instrucciones de otro que, aun siendo de empleo inferior, se encuentre de servicio y actúe por órdenes..."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales",
+        "pregunta": "[RROO] Según el Artículo 1, ¿qué constituyen las Reales Ordenanzas?",
+        "opciones": ["Un código penal", "El código de conducta de los militares", "Un manual técnico", "Una guía de combate"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 1.\nLas Reales Ordenanzas para las Fuerzas Armadas constituyen el código de conducta de todos los miembros de las Fuerzas Armadas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales",
+        "pregunta": "[RROO] ¿Qué definen las Reales Ordenanzas según el Art. 1?",
+        "opciones": ["Los sueldos", "Los principios éticos y las reglas de comportamiento", "Los tipos de armamento", "La estructura del ministerio"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 1.\nDefinen los principios éticos y las reglas de comportamiento de acuerdo con la Constitución y el resto del ordenamiento jurídico."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Ámbito de aplicación",
+        "pregunta": "[RROO] Según el Art. 2, ¿a quién son de aplicación las Reales Ordenanzas?",
+        "opciones": ["Solo a la tropa", "A todos los militares profesionales", "Solo a oficiales", "Al personal civil"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 2.\nSon de aplicación a todos los militares profesionales y a los alumnos de la enseñanza militar de formación."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Ámbito de aplicación",
+        "pregunta": "[RROO] ¿Están sujetos a las Reales Ordenanzas los alumnos de enseñanza militar (Art. 2)?",
+        "opciones": ["No", "Sí", "Solo en maniobras", "Depende del curso"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 2.\nSon de aplicación a todos los militares profesionales y a los alumnos de la enseñanza militar de formación."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Primer deber",
+        "pregunta": "[RROO] ¿Cuál es el primer y más fundamental deber del militar (Art. 3)?",
+        "opciones": ["Obedecer", "La disposición permanente para defender a España", "La puntualidad", "El saludo"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 3.\nLa disposición permanente para defender a España, incluso con la entrega de la vida cuando fuera necesario."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Primer deber",
+        "pregunta": "[RROO] ¿Hasta qué extremo debe llegar la defensa de España según el Art. 3?",
+        "opciones": ["Hasta ser herido", "Hasta la entrega de la vida cuando fuera necesario", "Hasta que acabe el contrato", "Hasta la retirada"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 3.\nIncluso con la entrega de la vida cuando fuera necesario."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Conducta",
+        "pregunta": "[RROO] Según el Art. 4, el militar ajustará su conducta al respeto de las personas y...",
+        "opciones": ["Al bien común", "A sus intereses", "A la política", "A la economía"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 4.\nEl militar ajustará su conducta al respeto de las personas, al bien común y al derecho internacional."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Actuación",
+        "pregunta": "[RROO] ¿Con arreglo a que principios debe actuar el militar según el Art. 5?",
+        "opciones": ["Eficacia, honradez y promoción del entorno cultural y medioambiental", "Rapidez y fuerza", "Miedo y castigo", "Lujo y poder"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 5.\nDeberá actuar con arreglo a los principios de objetividad, integridad, neutralidad, responsabilidad, imparcialidad, confidencialidad, dedicación al servicio, transparencia, ejemplaridad, austeridad, accesibilidad, eficacia, honradez y promoción del entorno cultural y medioambiental."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Símbolos",
+        "pregunta": "[RROO] ¿El militar, hacia qué mostrará el máximo respeto según el Art. 6?",
+        "opciones": ["Símbolos de la Patria", "Decorativos", "Opcionales", "Antiguos"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 6.\nMostrará el máximo respeto a la Bandera y Escudo de España y al Himno Nacional como símbolos de la Patria transmitidos por la historia."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disciplina",
+        "pregunta": "[RROO] ¿Qué es la disciplina según el Art. 10?",
+        "opciones": ["Obediencia ciega", "Factor de cohesión que obliga a mandar con responsabilidad y a obedecer lo mandado", "El reglamento de sanciones", "La autoridad del mando"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 10.\nLa disciplina, factor de cohesión que obliga a mandar con responsabilidad y a obedecer lo mandado,será practicada y exigida en las Fuerzas Armadas como norma de actuación. Tiene su expresión colectiva en el acatamiento a la Constitución y su manifestación individual en el cumplimiento de las órdenes recibidas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disciplina",
+        "pregunta": "[RROO] ¿Qué obliga la disciplina según el Art. 10?",
+        "opciones": ["A mandar con responsabilidad y obedecer lo mandado", "Solo a obedecer", "Solo a mandar", "A callar"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 10.\nObliga a mandar con responsabilidad y a obedecer lo mandado."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Dignidad",
+        "pregunta": "[RROO] ¿Qué debe respetar el militar según el Art. 11?",
+        "opciones": ["La dignidad de la persona y sus derechos inviolables", "La antigüedad", "El uniforme", "El armamento"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 11.\nLa dignidad y los derechos inviolables de la persona son valores que tiene obligación de respetar y derecho a exigir."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disponibilidad",
+        "pregunta": "[RROO] ¿Cuál es la disponibilidad del militar para el servicio (Art. 12)?",
+        "opciones": ["De 8 a 15", "Permanente", "Según convenio", "Cuando le llamen"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 12.\nEstará en disponibilidad permanente para el servicio."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Tradición",
+        "pregunta": "[RROO] ¿Qué debe hacer el militar con las tradiciones de su unidad (Art. 16)?",
+        "opciones": ["Conservarlas y transmitirlas", "Olvidarlas", "Cambiarlas", "Escribirlas"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 16.\nConservará y transmitirá el historial, tradiciones y símbolos de su unidad, para perpetuar su recuerdo, contribuir a fomentar el espíritu de unidad y reforzar las virtudes militares de sus componentes."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Uniformidad",
+        "pregunta": "[RROO] ¿Cómo vestirá el uniforme el militar (Art. 22)?",
+        "opciones": ["Con orgullo y propiedad", "Limpio", "Planchado", "Reglamentario"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 22.\nVestirá el uniforme con orgullo y propiedad."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "Responsabilidad",
+        "pregunta": "[RROO] ¿Es compartible la responsabilidad del mando (Art. 27)?",
+        "opciones": ["Sí", "No", "A veces", "Si se delega"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 27.\nLa responsabilidad en el ejercicio del mando militar no es renunciable ni puede ser compartida."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 3,
+        "titulo_tema": "De la Ética Militar",
+        "pregunta": "[BLOQUE 1] ¿Qué factor de cohesión obliga a mandar con responsabilidad y a obedecer lo mandado?",
+        "opciones": ["El sueldo", "La disciplina", "El entrenamiento", "La antigüedad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 10.\nLa disciplina, factor de cohesión que obliga a mandar con responsabilidad y a obedecer lo mandado, será practicada y exigida en las Fuerzas Armadas como norma de actuación"
     },
     {
         "capitulo": 1,
@@ -94,10 +314,10 @@
         "bloque": 1,
         "tema": 5,
         "titulo_tema": "De las Operaciones",
-        "pregunta": "En el uso legítimo de la fuerza, el militar hará un uso:",
-        "opciones": ["Contundente y rápido", "Gradual y proporcionado", "Mínimo e indispensable", "Disuasorio"],
-        "correcta": 1,
-        "explicacion": "📚 Artículo 84.\nHará un uso gradual y proporcionado de la misma, de acuerdo con las reglas de enfrentamiento."
+        "pregunta": "En misiones de paz, ¿cómo actuará el militar respecto a la cultura local?",
+        "opciones": ["Impondrá sus costumbres", "Ignorará la cultura local", "Respetará la cultura y costumbres salvo que comprometan la misión", "Evitará todo contacto"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 96.\nRespetará la cultura y costumbres propias de la zona de despliegue, salvo que comprometan la misión encomendada."
     },
     {
         "capitulo": 1,
@@ -108,16 +328,26 @@
         "opciones": ["Pedir evacuación si hay peligro", "Lo hará", "Interpretar la orden según la situación", "Replegarse ordenadamente"],
         "correcta": 1,
         "explicacion": "📚 Artículo 90.\nEl que tuviere orden de conservar su puesto a toda costa, lo hará."
-    },
+    },  
     {
         "capitulo": 1,
         "bloque": 1,
         "tema": 5,
         "titulo_tema": "De las Operaciones",
-        "pregunta": "En misiones de paz, ¿cómo actuará el militar respecto a la cultura local?",
-        "opciones": ["Impondrá sus costumbres", "Ignorará la cultura local", "Respetará la cultura y costumbres salvo que comprometan la misión", "Evitará todo contacto"],
-        "correcta": 2,
-        "explicacion": "📚 Artículo 96.\nRespetará la cultura y costumbres propias de la zona de despliegue, salvo que comprometan la misión encomendada."
+        "pregunta": "En el uso legítimo de la fuerza, el militar hará un uso:",
+        "opciones": ["Contundente y rápido", "Gradual y proporcionado", "Mínimo e indispensable", "Disuasorio"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 84.\nHará un uso gradual y proporcionado de la misma, de acuerdo con las reglas de enfrentamiento."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 4,
+        "titulo_tema": "De la Acción del Mando",
+        "pregunta": "¿Qué hará el mando si la evolución de los acontecimientos aconseja variar una orden?",
+        "opciones": ["Mantenerla para no perder autoridad", "No se empeñará en ella", "Pedir permiso al superior", "Someterlo a votación"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 61.\nMantendrá sus órdenes con determinación, pero no se empeñará en ellas si la evolución de los acontecimientos aconseja variarlas."
     },
     {
         "capitulo": 1,
@@ -1252,12 +1482,62 @@
     {
         "capitulo": 1,
         "bloque": 7,
+        "tema": 2,
+        "titulo_tema": "Mando orientado a la misión (MoM)",
+        "pregunta": "Liderazgo. Todos los analistas coinciden en que el futuro entorno de combate será altamente...",
+        "opciones": ["intratable", "inestable", "VUCA", "incierto"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 2.\nTodos los analistas coinciden en que el futuro entorno de combate será altamente inestable y con todas las características del entorno VUCA."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 2,
+        "titulo_tema": "Mando orientado a la misión (MoM)",
+        "pregunta": "Liderazgo. El mando orientado a la misión (MoM) es una cultura de...",
+        "opciones": ["iniciativa", "eficacia", "liderazgo", "descentralización"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 2.\nEl mando orientado a la misión (MoM) es una cultura de liderazgo, una filosofía de mando que tiende a la descentralización..."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 2,
+        "titulo_tema": "Mando orientado a la misión (MoM)",
+        "pregunta": "Liderazgo. El concepto de Mando orientado a la misión (MoM), es una filosofía de mando descentralizado que se basa en dos pilares fundamentales: ______ y ______.",
+        "opciones": ["La confianza y el entendimiento mutuo", "Iniciativa y Compromiso", "Liderazgo y Descentralización", "La confianza y el entendimiento propio"],
+        "correcta": 0,
+        "explicacion": "📚 Tema 2.\nEl concepto de Mando orientado a la misión (MoM), es una filosofía de mando descentralizado que se basa en dos pilares fundamentales: la confianza y el entendimiento mutuo."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 2,
+        "titulo_tema": "Mando orientado a la misión (MoM)",
+        "pregunta": "Liderazgo. En el siglo XXI, entramos en el ámbito donde prima la: _______.",
+        "opciones": ["cultura de liderazgo", "dimension emocional", "iniciativa", "tecnología"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 2.\nEn el siglo XXI, entramos en el ámbito donde prima la dimensión emocional, evolucionando el combatiente de ser un mero recurso humano..."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
         "tema": 1,
         "titulo_tema": "Modelo de liderazgo K-2",
         "pregunta": "¿Qué significan las siglas del entorno VUCA en el que se basa el liderazgo del futuro?",
         "opciones": ["Velocidad, Unión, Calidad y Astucia", "Volátil, Incierto, Complejo y Ambiguo", "Valor, Unidad, Compañerismo y Abnegación", "Visión, Utilidad, Claridad y Agilidad"],
         "correcta": 1,
         "explicacion": "📚 Tema 1 (Punto 1).\nUn entorno VUCA (Volátil, Incierto, Complejo y Ambiguo), que conjuga la inversión a largo plazo con una sólida formación en valores."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 1,
+        "titulo_tema": "Modelo de liderazgo K-2",
+        "pregunta": "Liderazgo. El punto de partida tiene como objetivo desarrollar un concepto que proporcione unidad de doctrina en materia de liderazgo. Dicho concepto tiene tres premisas fundamentales: Se apoya en un modelo, se aprende en la formación y se adquiere con _____",
+        "opciones": ["la paciencia", "la antigüedad", "la formación", "la experiencia"],
+        "correcta": 3,
+        "explicacion": "📚 Tema 1 (Punto 2).\nEl punto de partida tiene como objetivo desarrollar un concepto que proporcione unidad de doctrina en materia de liderazgo. Dicho concepto tiene tres premisas fundamentales: Se apoya en un modelo, se aprende en la formación y se adquiere con la experiencia."
     },
     {
         "capitulo": 1,
@@ -1425,7 +1705,7 @@
         "tema": 1,
         "titulo_tema": "Transmisiones",
         "pregunta": "Según el alfabeto fonético internacional, ¿cuál es la voz para la letra 'Ñ'?",
-        "opciones": ["NOÑO", "ÑU", "NOVEMBER", "ÑANDU"],
+        "opciones": ["ÑOÑO", "ÑU", "NOVEMBER", "ÑANDU"],
         "correcta": 0,
         "explicacion": "📚 Apartado 4.1 (Tabla).\nLetra N: NOVEMBER. Letra Ñ: ÑOÑO."
     },
@@ -1484,10 +1764,10 @@
         "bloque": 1,
         "tema": 2,
         "titulo_tema": "La Escuadra y el Equipo",
-        "pregunta": "¿Para qué situaciones es más adecuada la formación en 'Columna de a uno'?",
-        "opciones": ["Para el asalto a una posición", "Para avanzar por terreno abierto bajo fuego enemigo", "Para desplazamientos rápidos, de noche o con poca visibilidad", "Para ofrecer el máximo frente de fuego"],
-        "correcta": 2,
-        "explicacion": "📚 Formaciones.\nColumna de a uno: Es la formación de marcha por excelencia. Se utiliza para desplazamientos rápidos, de noche, con niebla o por terreno muy cubierto."
+        "pregunta": "¿Para qué situaciones es más adecuada la formación en 'hilera'?",
+        "opciones": ["Es idóneo para la infiltración. ", "Para avanzar por terreno abierto bajo fuego enemigo", "Para desplazamientos rápidos, de noche o con poca visibilidad", "Para ofrecer el máximo frente de fuego"],
+        "correcta": 0,
+        "explicacion": "📚 Formaciones.\nHilera: Es idóneo para la infiltración. Disposición de hombres uno detrás de otro, adoptando una formación sensiblemente triangular para obtener mayor seguridad y potencia de fuego en todas direcciones. El cabo levantará un brazo."
     },
     {
         "capitulo": 2,
@@ -1495,19 +1775,19 @@
         "tema": 2,
         "titulo_tema": "La Escuadra y el Equipo",
         "pregunta": "¿Qué formación adopta la escuadra para cruzar zonas batidas por el fuego enemigo o para el asalto?",
-        "opciones": ["Columna de a uno", "Cuña", "Línea o Guerrilla", "Rombo"],
+        "opciones": ["Hilera", "Cuña", "Línea o Guerrilla", "Rombo"],
         "correcta": 2,
-        "explicacion": "📚 Formaciones.\nLínea o Guerrilla: Se adopta para cruzar zonas batidas por el fuego enemigo en los últimos momentos del asalto. Permite el máximo volumen de fuego al frente."
+        "explicacion": "📚 Formaciones.\nFila o guerrilla: Se utiliza para franquear crestas y divisorias, cruzar zonas muy despejadas o batidas por el fuego y para ejecutar el asalto. Es el despliegue de mayor dificultad para la acción del mando. "
     },
     {
         "capitulo": 2,
         "bloque": 1,
         "tema": 2,
         "titulo_tema": "La Escuadra y el Equipo",
-        "pregunta": "¿Qué ventaja principal ofrece la formación en 'Cuña'?",
-        "opciones": ["Máxima velocidad de desplazamiento", "Buen frente de fuego y seguridad a los flancos", "Máxima ocultación", "Control absoluto del jefe de escuadra"],
-        "correcta": 1,
-        "explicacion": "📚 Formaciones.\nCuña: Permite hacer fuego al frente y a los flancos. Es adecuada para avanzar por terreno descubierto pero no batido intensamente."
+        "pregunta": "¿Qué ventaja principal ofrece la formación en 'Hilera'?",
+        "opciones": ["Facilitar la acción del mando. ", "Buen frente de fuego y seguridad a los flancos", "Máxima ocultación", "Control absoluto del jefe de escuadra"],
+        "correcta": 0,
+        "explicacion": "📚 Formaciones.\nHilera: apta para: . Facilitar la acción del mando. . Desplazamientos con rapidez. . Utilización de itinerarios estrechos. . Franqueamiento de puntos de paso obligado. . Es idóneo para la infiltración. . En situaciones de escasa visibilidad. "
     },
     {
         "capitulo": 2,
@@ -1694,10 +1974,10 @@
         "bloque": 2,
         "tema": 2,
         "titulo_tema": "Orientación",
-        "pregunta": "Para localizar el Norte Geográfico de noche mediante la Osa Mayor, ¿cuántas veces debemos prolongar la distancia entre las guardas (Merak y Dubhe)?",
+        "pregunta": "Para localizar el Norte Geográfico de noche mediante la Osa Mayor, ¿cuántas veces debemos prolongar la distancia entre las dos estrellas posteriores hasta encontrar la estrella polar, situada en la Osa Menor?",
         "opciones": ["3 veces", "4 veces", "5 veces", "10 veces"],
         "correcta": 2,
-        "explicacion": "📚 Apartado 2.11.4.\nLlevando 5 veces la distancia entre las estrellas del costado del carro opuesto al timón (Merak y Dubhe) en la dirección de éstas."
+        "explicacion": "📚 Apartado 2.11.4.\nLocalizar en la bóveda celeste la constelación Osa Mayor y prolongar la línea que une las dos estrellas posteriores 5 veces la distancia que separa dichas estrellas hasta encontrar una estrella de brillo muy vivo que es la estrella Polar."
     },
     {
         "capitulo": 2,
@@ -1954,7 +2234,7 @@
         "bloque": 3,
         "tema": 2,
         "titulo_tema": "Fusil HK G-36E",
-        "pregunta": "¿De qué material están fabricados el cajón de mecanismos, la empuñadura, el culatín y el guardamanos?",
+        "pregunta": "HK G-36E. ¿De qué material están fabricados el cajón de mecanismos, la empuñadura, el culatín y el guardamanos?",
         "opciones": ["Acero estampado", "Aleación ligera de aluminio", "Material sintético altamente resistente", "Madera laminada"],
         "correcta": 2,
         "explicacion": "📚 Datos Generales.\nEstán fabricados de material sintético altamente resistente, resultando un arma muy ligera."
@@ -1984,7 +2264,7 @@
         "bloque": 3,
         "tema": 2,
         "titulo_tema": "Fusil HK G-36E",
-        "pregunta": "En la descripción general del arma, ¿qué pieza corresponde al número 1?",
+        "pregunta": "HK G-36E. En la descripción general del arma, ¿qué pieza corresponde al número 1?",
         "opciones": ["El cañón", "La bocacha apagallamas", "La palanca de montar", "El tapón de gases"],
         "correcta": 1,
         "explicacion": "📚 Descripción General.\n1.- Bocacha apagallamas."
@@ -2004,7 +2284,7 @@
         "bloque": 3,
         "tema": 2,
         "titulo_tema": "Fusil HK G-36E",
-        "pregunta": "Si se produce una interrupción por 'Vaina no expulsada', ¿cuál puede ser una causa probable?",
+        "pregunta": "HK G-36E. Si se produce una interrupción por 'Vaina no expulsada', ¿cuál puede ser una causa probable?",
         "opciones": ["Aguja percutora rota", "Recámara sucia o extractor roto", "Cargador mal colocado", "Seguro puesto"],
         "correcta": 1,
         "explicacion": "📚 Tabla de Interrupciones.\nVaina no expulsada: Recámara sucia, extractor roto o muelle del extractor roto."
@@ -2014,17 +2294,17 @@
         "bloque": 3,
         "tema": 2,
         "titulo_tema": "Fusil HK G-36E",
-        "pregunta": "Si observamos una 'Expulsión violenta de vainas', ¿a qué se debe generalmente?",
-        "opciones": ["A que el paso de gases es excesivo", "A que el muelle recuperador está muy fuerte", "A que la munición es defectuosa", "A que el cierre está sucio"],
+        "pregunta": "HK G-36E. Si observamos una 'Expulsión violenta de vainas', ¿a qué se debe generalmente?",
+        "opciones": ["El ajuste del brocal está graduado para un paso de gases demasiado pequeño", "A que el muelle recuperador está muy fuerte", "A que la munición es defectuosa", "A que el cierre está sucio"],
         "correcta": 0,
-        "explicacion": "📚 Tabla de Interrupciones.\nExpulsión violenta... Causa: El paso de gases es excesivo. Remedio: Reducir el paso de gases."
+        "explicacion": "📚 Tabla de Interrupciones.\nExpulsión violenta... Causa: El ajuste del brocal está graduado para un paso de gases demasiado pequeño"
     },
     {
         "capitulo": 2,
         "bloque": 3,
         "tema": 2,
         "titulo_tema": "Fusil HK G-36E",
-        "pregunta": "¿Es necesario utilizar herramientas especiales para el desmontaje básico de limpieza?",
+        "pregunta": "HK G-36E. ¿Es necesario utilizar herramientas especiales para el desmontaje básico de limpieza?",
         "opciones": ["Sí, un destornillador plano", "Sí, un botador especial", "No, se desmonta con facilidad sin herramientas", "Sí, la llave del HK"],
         "correcta": 2,
         "explicacion": "📚 Datos Generales.\nEl fusil G36 E se desmonta con facilidad en sus componentes principales, sin necesidad de herramientas."
@@ -2094,7 +2374,7 @@
         "bloque": 3,
         "tema": 3,
         "titulo_tema": "Pistola HK USP",
-        "pregunta": "¿De qué material está fabricado el armazón de la pistola?",
+        "pregunta": "HK USP. ¿De qué material está fabricado el armazón de la pistola?",
         "opciones": ["Acero inoxidable", "Aluminio aeronáutico", "Polímero reforzado con fibra de vidrio", "Aleación ligera"],
         "correcta": 2,
         "explicacion": "📚 Características Generales.\nEl armazón está fabricado en polímero integral... mezcla de plástico poliamídico y fibra de vidrio."
@@ -2104,7 +2384,7 @@
         "bloque": 3,
         "tema": 3,
         "titulo_tema": "Pistola HK USP",
-        "pregunta": "¿Qué función tiene la palanca de retenida de la corredera?",
+        "pregunta": "HK USP. ¿Qué función tiene la palanca de retenida de la corredera?",
         "opciones": ["Solo desmontar el arma", "Mantener la corredera abierta cuando el cargador está vacío", "Activar el seguro", "Expulsar el cargador"],
         "correcta": 1,
         "explicacion": "📚 Funcionamiento.\nTras producirse el disparo del último cartucho... la palanca de retención de la corredera mantiene el sistema de cierre en posición abierta."
@@ -2124,7 +2404,7 @@
         "bloque": 3,
         "tema": 3,
         "titulo_tema": "Pistola HK USP",
-        "pregunta": "¿Qué ocurre tras el disparo durante la secuencia de funcionamiento?",
+        "pregunta": "HK USP. ¿Qué ocurre tras el disparo durante la secuencia de funcionamiento?",
         "opciones": ["El cañón permanece fijo y solo se mueve la corredera", "El grupo cañón-corredera retrocede unido un breve recorrido hasta que el cañón bascula y se desbloquea", "Los gases empujan el pistón", "El martillo se queda abatido"],
         "correcta": 1,
         "explicacion": "📚 Secuencia de funcionamiento.\nTras producirse el disparo... el grupo cañón-corredera se desplaza, bloqueado, hacia atrás. Tras retroceder conjuntamente... el descenso del cañón produce el desbloqueo."
@@ -2134,7 +2414,7 @@
         "bloque": 3,
         "tema": 3,
         "titulo_tema": "Pistola HK USP",
-        "pregunta": "¿Qué pieza del despiece básico contiene el muelle recuperador?",
+        "pregunta": "HK USP. ¿Qué pieza del despiece básico contiene el muelle recuperador?",
         "opciones": ["El cañón", "La corredera", "El eje de la palanca de retenida", "El conjunto de recuperación (varilla guía y muelle)"],
         "correcta": 3,
         "explicacion": "📚 Despiece.\nEl conjunto de recuperación formado por el muelle recuperador y su varilla guía es una pieza independiente en el despiece básico."
@@ -2164,7 +2444,7 @@
         "bloque": 3,
         "tema": 4,
         "titulo_tema": "Ametralladora MG-42",
-        "pregunta": "¿Cómo se realiza la alimentación de la ametralladora?",
+        "pregunta": "MG-42. ¿Cómo se realiza la alimentación de la ametralladora?",
         "opciones": ["Mediante cargadores de petaca de 30 cartuchos", "Mediante cinta de eslabón irreintegrable (desintegrable)", "Mediante tambor de 100 cartuchos", "Mediante peine de 5 cartuchos"],
         "correcta": 1,
         "explicacion": "Alimentación.\nLa alimentación se realiza mediante cinta de eslabón irreintegrable (generalmente de 50 cartuchos, que pueden empalmarse)."
@@ -2184,7 +2464,7 @@
         "bloque": 3,
         "tema": 4,
         "titulo_tema": "Ametralladora MG-42",
-        "pregunta": "En ambientes secos y polvorientos (desiertos), ¿cómo debe ser el engrase del arma?",
+        "pregunta": "MG-42. En ambientes secos y polvorientos (desiertos), ¿cómo debe ser el engrase del arma?",
         "opciones": ["Abundante para evitar la fricción", "Moderado", "Debe evitarse el exceso de grasa, estando más segura seca y limpia", "Solo con aceite de motor"],
         "correcta": 2,
         "explicacion": "Mantenimiento.\nEn ambientes secos y polvorientos... un arma excesivamente engrasada está más expuesta a interrupciones que estando seca y limpia, sin engrase alguno."
@@ -2194,7 +2474,7 @@
         "bloque": 3,
         "tema": 4,
         "titulo_tema": "Ametralladora MG-42",
-        "pregunta": "¿Quién debe llevar a cabo las inspecciones técnicas del arma?",
+        "pregunta": "MG-42. ¿Quién debe llevar a cabo las inspecciones técnicas del arma?",
         "opciones": ["El usuario del arma", "El jefe de pelotón", "Los especialistas con las herramientas adecuadas", "El oficial de servicio"],
         "correcta": 2,
         "explicacion": "Mantenimiento.\nLas inspecciones técnicas se llevan a cabo por los especialistas con las herramientas adecuadas, tales como medidores, calibradores, etc."
@@ -2225,16 +2505,16 @@
         "tema": 4,
         "titulo_tema": "Ametralladora MG-42",
         "pregunta": "¿Cuál es la cadencia de tiro teórica aproximada de la MG-42?",
-        "opciones": ["600 disparos/minuto", "800 disparos/minuto", "1.100 - 1.300 disparos/minuto", "1.800 disparos/minuto"],
+        "opciones": ["600 disparos/minuto", "800 disparos/minuto", "1.300 disparos/minuto", "1.800 disparos/minuto"],
         "correcta": 2,
-        "explicacion": "Datos Técnicos.\nLa MG-42 se caracteriza por una cadencia de tiro muy elevada, situada teóricamente entre 1.100 y 1.300 disparos por minuto."
+        "explicacion": "Datos Técnicos.\nLa MG-42 se caracteriza por una cadencia de tiro muy elevada, situada teóricamente en 1.300 disparos por minuto."
     },
     {
         "capitulo": 2,
         "bloque": 3,
         "tema": 4,
         "titulo_tema": "Ametralladora MG-42",
-        "pregunta": "¿Qué elemento se utiliza para montar el arma (llevar el cierre atrás)?",
+        "pregunta": "MG-42. ¿Qué elemento se utiliza para montar el arma (llevar el cierre atrás)?",
         "opciones": ["El disparador", "La palanca de montar", "El guardamonte", "La ventana de alimentación"],
         "correcta": 1,
         "explicacion": "Manejo.\nPara montar el arma se utiliza la palanca de montar, tirando de ella enérgicamente hacia atrás."
