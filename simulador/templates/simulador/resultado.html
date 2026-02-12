@@ -1,155 +1,61 @@
 {% extends 'simulador/base.html' %}
-{% load static %}
 
 {% block content %}
-
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-<style>
-    /* VARIABLES DE TEMA (HEREDA DEL SISTEMA) */
-    :root {
-        --bg-body: #050505;
-        --glass-bg: rgba(20, 30, 20, 0.85);
-        --text-primary: #ffffff;
-        --accent-neon: #76ff03; /* Verde éxito */
-        --accent-fail: #ff3d00; /* Rojo fallo */
-        --glass-border: rgba(255, 255, 255, 0.1);
-    }
-
-    [data-theme="light"] {
-        --bg-body: #f5f7fa;
-        --glass-bg: rgba(255, 255, 255, 0.95);
-        --text-primary: #1c1e21;
-        --accent-neon: #2e7d32;
-        --accent-fail: #d32f2f;
-        --glass-border: rgba(0, 0, 0, 0.1);
-    }
-
-    body {
-        background-color: var(--bg-body);
-        font-family: 'Rajdhani', sans-serif;
-        color: var(--text-primary);
-    }
-
-    .result-card {
-        max-width: 600px;
-        margin: 50px auto;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border-radius: 30px;
-        padding: 40px;
-        border: 1px solid var(--glass-border);
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        text-align: center;
-    }
-
-    .score-circle {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        border: 5px solid var(--accent-neon);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 30px;
-        font-size: 3.5rem;
-        font-weight: 800;
-        box-shadow: 0 0 30px rgba(118, 255, 3, 0.2);
-    }
-    
-    /* Si suspende, cambiamos colores a rojo */
-    .failed .score-circle {
-        border-color: var(--accent-fail);
-        box-shadow: 0 0 30px rgba(255, 61, 0, 0.2);
-        color: var(--accent-fail);
-    }
-    
-    .stat-box {
-        background: rgba(0,0,0,0.05);
-        border-radius: 15px;
-        padding: 15px;
-        margin-top: 20px;
-    }
-
-    .btn-action {
-        width: 100%;
-        padding: 15px;
-        border-radius: 50px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-top: 10px;
-        border: none;
-        transition: transform 0.2s;
-    }
-    .btn-action:hover { transform: scale(1.02); }
-
-    .btn-primary-tactical {
-        background: var(--accent-neon);
-        color: #000;
-    }
-    [data-theme="light"] .btn-primary-tactical { color: #fff; }
-    
-    .btn-secondary-tactical {
-        background: transparent;
-        border: 1px solid var(--text-primary);
-        color: var(--text-primary);
-    }
-</style>
-
-<div class="container">
-    <div class="result-card {% if resultado.nota < 5 %}failed{% endif %}">
-        
-        <h5 style="font-family: 'Share Tech Mono'; opacity: 0.7;">// INFORME DE MISIÓN</h5>
-        <h2 class="mb-4">{{ resultado.tema.nombre }}</h2>
-
-        <div class="score-circle">
-            {{ resultado.nota|floatformat:1 }}
-        </div>
-
-        {% if resultado.nota >= 5 %}
-            <h3 style="color: var(--accent-neon); font-weight: 800; letter-spacing: 2px;">¡MISIÓN CUMPLIDA!</h3>
-            <p>Has superado los objetivos satisfactoriamente.</p>
-        {% else %}
-            <h3 style="color: var(--accent-fail); font-weight: 800; letter-spacing: 2px;">MISIÓN FALLIDA</h3>
-            <p>Es necesario reforzar el entrenamiento en este sector.</p>
-        {% endif %}
-
-        <div class="row g-2 mt-4">
-            <div class="col-6">
-                <div class="stat-box">
-                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent-neon);">{{ resultado.aciertos }}</div>
-                    <small style="font-family: 'Share Tech Mono';">ACIERTOS</small>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-white shadow-lg border-secondary">
+                
+                <div class="card-header text-center p-4 {% if resultado.nota >= 5 %}bg-success{% else %}bg-danger{% endif %}">
+                    <h1 class="display-4 fw-bold mb-0">
+                        {% if resultado.nota >= 5 %}
+                            ¡APTO! 🎖️
+                        {% else %}
+                            NO APTO 💀
+                        {% endif %}
+                    </h1>
+                    <p class="mb-0 fs-5 opacity-75">Informe de Resultados</p>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="stat-box">
-                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent-fail);">{{ resultado.fallos }}</div>
-                    <small style="font-family: 'Share Tech Mono';">FALLOS</small>
+
+                <div class="card-body p-5 text-center">
+                    
+                    <div class="mb-4">
+                        <span class="display-1 fw-bold">{{ resultado.nota|floatformat:1 }}</span>
+                        <span class="fs-4 text-muted">/ 10</span>
+                    </div>
+
+                    <div class="row g-3 mb-5">
+                        <div class="col-6">
+                            <div class="p-3 rounded border border-success bg-opacity-10 bg-success">
+                                <h3 class="text-success fw-bold">{{ resultado.aciertos }}</h3>
+                                <small>Aciertos</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded border border-danger bg-opacity-10 bg-danger">
+                                <h3 class="text-danger fw-bold">{{ resultado.fallos }}</h3>
+                                <small>Fallos/Blancos</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-3">
+                        <a href="{% url 'configurar_test' %}" class="btn btn-warning btn-lg fw-bold text-dark">
+                            🔄 NUEVA MISIÓN
+                        </a>
+                        
+                        <a href="{% url 'estadisticas' %}" class="btn btn-outline-light">
+                            📊 Ver Estadísticas Globales
+                        </a>
+                        
+                        <a href="{% url 'portada' %}" class="btn btn-outline-secondary">
+                            🏠 Volver al Cuartel General
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
-
-        <hr class="my-4" style="border-color: var(--glass-border);">
-
-        <div class="d-grid gap-2">
-            <a href="{% url 'examen' resultado.tema.id %}" class="btn btn-action btn-primary-tactical">
-                REPETIR MISIÓN
-            </a>
-            
-            <a href="{% url 'portada' %}" class="btn btn-action btn-secondary-tactical">
-                VOLVER A LA BASE
-            </a>
-        </div>
-
     </div>
 </div>
-
-<script>
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-</script>
-
 {% endblock %}

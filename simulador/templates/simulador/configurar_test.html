@@ -2,182 +2,104 @@
 {% load static %}
 
 {% block content %}
-
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-<style>
-    /* --- VARIABLES DE TEMA (IGUAL QUE PORTADA) --- */
-    :root {
-        /* MODO CLARO POR DEFECTO */
-        --bg-body: #f5f7fa; 
-        --glass-bg: rgba(255, 255, 255, 0.85);
-        --glass-border: rgba(0, 0, 0, 0.05);
-        --text-primary: #1c1e21;
-        --accent-neon: #2e7d32; /* Verde táctico oscuro */
-        --accent-select: #4caf50;
-        --glass-shadow: rgba(0, 0, 0, 0.1);
-    }
-
-    /* MODO OSCURO */
-    [data-theme="dark"] {
-        --bg-body: #050505;
-        --glass-bg: rgba(20, 30, 20, 0.65);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --text-primary: #ffffff;
-        --accent-neon: #76ff03; /* Verde neón */
-        --accent-select: #76ff03;
-        --glass-shadow: rgba(0, 0, 0, 0.5);
-    }
-
-    body {
-        background-color: var(--bg-body);
-        font-family: 'Rajdhani', sans-serif;
-        color: var(--text-primary);
-        transition: background-color 0.5s ease;
-    }
-
-    .page-title {
-        font-weight: 800;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        margin-bottom: 30px;
-    }
-
-    /* --- TARJETAS DE SELECCIÓN (RADIO CARDS) --- */
-    .selection-card {
-        cursor: pointer;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border: 2px solid var(--glass-border); /* Borde más grueso */
-        border-radius: 20px;
-        padding: 20px;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-
-    /* Input invisible (el truco) */
-    .topic-radio {
-        position: absolute;
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-
-    /* Cuando pasas el ratón */
-    .selection-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--accent-neon);
-        box-shadow: 0 10px 20px var(--glass-shadow);
-    }
-
-    /* CUANDO ESTÁ SELECCIONADO (ESTADO ACTIVO) */
-    .topic-radio:checked + .selection-card {
-        background: rgba(46, 125, 50, 0.1); /* Tinte verde suave */
-        border-color: var(--accent-select);
-        box-shadow: 0 0 25px rgba(118, 255, 3, 0.3);
-        transform: scale(1.02);
-    }
-    /* En modo oscuro, el fondo seleccionado cambia */
-    [data-theme="dark"] .topic-radio:checked + .selection-card {
-        background: rgba(118, 255, 3, 0.15);
-    }
-
-    /* Icono de check que aparece al seleccionar */
-    .check-icon {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        font-size: 1.2rem;
-        color: var(--accent-select);
-        opacity: 0;
-        transform: scale(0);
-        transition: all 0.3s cubic-bezier(1, -0.4, 0, 1.4);
-    }
-    .topic-radio:checked + .selection-card .check-icon {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    /* BOTÓN DE DESPLIEGUE */
-    .btn-deploy {
-        background: var(--accent-neon);
-        color: #fff;
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 700;
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        padding: 15px 40px;
-        border: none;
-        border-radius: 50px;
-        width: 100%;
-        transition: all 0.3s;
-        box-shadow: 0 10px 20px var(--glass-shadow);
-    }
-    [data-theme="light"] .btn-deploy { color: #fff; }
-    [data-theme="dark"] .btn-deploy { color: #000; } /* Contraste negro en neón */
-
-    .btn-deploy:hover {
-        transform: translateY(-3px);
-        filter: brightness(1.1);
-        box-shadow: 0 15px 30px var(--glass-shadow);
-    }
-
-</style>
-
 <div class="container py-5">
-    <div class="text-center">
-        <h5 style="font-family: 'Share Tech Mono'; color: var(--accent-neon);">// FASE 1: PREPARACIÓN</h5>
-        <h1 class="page-title">CONFIGURAR SIMULACIÓN</h1>
-    </div>
-
-    <form method="POST">
-        {% csrf_token %}
-        
-        <div class="row g-4 justify-content-center mb-5">
-            <p class="text-center mb-0 text-muted" style="font-family: 'Share Tech Mono';">SELECCIONA UN OBJETIVO:</p>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
             
-            {% for tema in temas %}
-            <div class="col-md-6 col-lg-4">
-                <label style="width: 100%; height: 100%;">
-                    <input type="radio" name="tema_seleccionado" value="{{ tema.id }}" class="topic-radio" required>
-                    
-                    <div class="selection-card">
-                        <div class="check-icon">✔</div>
-                        <h3 style="font-weight: 700; font-size: 1.5rem; margin-bottom: 5px;">{{ tema.nombre }}</h3>
-                        <p class="text-muted mb-0">{{ tema.preguntas.count }} preguntas disponibles</p>
-                    </div>
-                </label>
-            </div>
-            {% empty %}
-            <div class="col-12 text-center">
-                <div class="alert alert-warning">No hay temas disponibles en la base de datos.</div>
-            </div>
-            {% endfor %}
-        </div>
+            <div class="card bg-dark text-white border-secondary shadow-lg">
+                
+                <div class="card-header border-secondary p-4" style="background: rgba(13, 110, 253, 0.2);">
+                    <h2 class="h4 mb-0 fw-bold text-uppercase" style="letter-spacing: 2px;">
+                        ⚙️ Configuración de Misión
+                    </h2>
+                </div>
 
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <button type="submit" class="btn-deploy">
-                    INICIAR COMBATE
-                </button>
-                <a href="{% url 'portada' %}" class="d-block text-center mt-3 text-muted" style="text-decoration: none; font-family: 'Share Tech Mono';">CANCELAR MISIÓN</a>
+                <div class="card-body p-4">
+                    
+                    <form method="POST" action="{% url 'configurar_test' %}">
+                        {% csrf_token %}
+
+                        <h5 class="text-warning mb-3 border-bottom border-secondary pb-2">1. Objetivo (Temario)</h5>
+                        
+                        <div class="form-check mb-3 p-3 rounded" style="background-color: #2c2c2c;">
+                            <input class="form-check-input" type="checkbox" id="todos" onchange="toggle(this)">
+                            <label class="form-check-label fw-bold text-white" for="todos">
+                                🛡️ SIMULACRO GENERAL (Seleccionar todo)
+                            </label>
+                        </div>
+
+                        <div class="row g-2 mb-4" style="max-height: 300px; overflow-y: auto;">
+                            {% for tema in temas %}
+                            <div class="col-md-6">
+                                <div class="form-check p-2 rounded h-100 d-flex align-items-center hover-effect" style="background-color: #1a1a1a; border: 1px solid #444;">
+                                    <input class="form-check-input case ms-1 me-2 bg-dark border-secondary" type="checkbox" name="temas" value="{{ tema.id }}" id="t{{ tema.id }}">
+                                    <label class="form-check-label w-100 cursor-pointer text-light" for="t{{ tema.id }}">
+                                        {{ tema.nombre }}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <h5 class="text-warning mb-3 border-bottom border-secondary pb-2 mt-4">2. Parámetros</h5>
+                        
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label text-info">Munición (Nº Preguntas)</label>
+                                <select name="cantidad" class="form-select bg-dark text-white border-secondary">
+                                    <option value="10">10 (Rápido)</option>
+                                    <option value="20" selected>20 (Estándar)</option>
+                                    <option value="50">50 (Simulacro)</option>
+                                    <option value="100">100 (Examen Oficial)</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-info">Cronómetro</label>
+                                <select name="tiempo" class="form-select bg-dark text-white border-secondary">
+                                    <option value="0" selected>Sin límite</option>
+                                    <option value="10">10 Minutos</option>
+                                    <option value="20">20 Minutos</option>
+                                    <option value="45">45 Minutos</option>
+                                    <option value="90">1 Hora y media</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-5">
+                            <button type="submit" class="btn btn-warning btn-lg py-3 fw-bold text-dark text-uppercase shadow-sm hover-scale">
+                                🚀 Iniciar Maniobra
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
+
         </div>
-    </form>
+    </div>
 </div>
 
 <script>
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
+    function toggle(source) {
+        checkboxes = document.getElementsByClassName('case');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+        }
     }
 </script>
 
+<style>
+    /* Efectos extra para que parezca una app moderna */
+    .hover-scale { transition: transform 0.2s; }
+    .hover-scale:hover { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 193, 7, 0.4); }
+    
+    .hover-effect:hover { border-color: #0d6efd !important; background-color: #222 !important; }
+    
+    /* Scrollbar oscura personalizada */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; }
+    ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0d6efd; }
+</style>
 {% endblock %}

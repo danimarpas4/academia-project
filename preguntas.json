@@ -1,0 +1,2344 @@
+[
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales",
+        "pregunta": "¿Qué constituyen las Reales Ordenanzas para las Fuerzas Armadas?",
+        "opciones": ["Un reglamento disciplinario", "El código de conducta de los militares", "Un manual de instrucción técnica", "La norma suprema del Estado"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 1.\nConstituyen el código de conducta de los militares y definen los principios éticos y las reglas de comportamiento de acuerdo con la Constitución."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales",
+        "pregunta": "¿Cuál es el primer y más fundamental deber del militar?",
+        "opciones": ["La obediencia debida", "La disposición permanente para defender a España", "El respeto a la jerarquía", "La asistencia puntual al servicio"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 3.\nLa disposición permanente para defender a España, incluso con la entrega de la vida cuando fuera necesario."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales",
+        "pregunta": "¿A qué características ajustará su comportamiento el militar?",
+        "opciones": ["Valor, fuerza y honor", "Disciplina, jerarquía y unidad", "Obediencia, silencio y trabajo", "Eficacia, rapidez y austeridad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 7.\nAjustará su comportamiento a las características de las Fuerzas Armadas de disciplina, jerarquía y unidad, indispensables para la máxima eficacia."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "Del Militar",
+        "pregunta": "Según el Art. 14, ¿qué demuestra el llegar tarde a su obligación?",
+        "opciones": ["Falta de compañerismo", "Gran desidia e ineptitud para la carrera de las armas", "Poca organización", "Falta de respeto al superior"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 14 (Espíritu militar).\nEl llegar tarde a su obligación, aunque sea de minutos, son pruebas de gran desidia e ineptitud para la carrera de las armas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "Del Militar",
+        "pregunta": "¿Cuáles son las virtudes fundamentales del militar según el Art. 17?",
+        "opciones": ["Valor, honor y lealtad", "Disciplina, valor, prontitud en la obediencia y exactitud en el servicio", "Compañerismo, sacrificio y austeridad", "Integridad, neutralidad y eficacia"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 17.\nTendrá presente que la disciplina, valor, prontitud en la obediencia y exactitud en el servicio son virtudes a las que nunca ha de faltar."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 3,
+        "titulo_tema": "De la Disciplina",
+        "pregunta": "Si un militar tiene una objeción sobre una orden recibida, ¿qué hará?",
+        "opciones": ["No cumplirla", "Comentarlo con los compañeros", "La formularla ante quien se la hubiera dado", "Presentar un recurso después"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 49.\nLa formulará ante quien se la hubiera dado. Si su incumplimiento perjudicase a la misión, se reservará la objeción hasta haberla cumplido."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 3,
+        "titulo_tema": "De la Disciplina",
+        "pregunta": "¿Debe un militar atender indicaciones de otro de empleo inferior que esté de servicio?",
+        "opciones": ["No, la jerarquía manda", "Sí, atenderá sus indicaciones o instrucciones", "Solo si es Oficial", "Solo si es de su misma unidad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 50.\nAtenderá las indicaciones o instrucciones de otro que, aun siendo de empleo inferior, se encuentre de servicio y actúe por órdenes."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 4,
+        "titulo_tema": "De la Acción del Mando",
+        "pregunta": "¿Puede compartirse la responsabilidad en el ejercicio del mando?",
+        "opciones": ["Sí, en el segundo jefe", "Sí, en operaciones", "No es renunciable ni puede ser compartida", "Depende de la orden"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 55.\nLa responsabilidad en el ejercicio del mando militar no es renunciable ni puede ser compartida."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 4,
+        "titulo_tema": "De la Acción del Mando",
+        "pregunta": "¿Qué hará el mando si la evolución de los acontecimientos aconseja variar una orden?",
+        "opciones": ["Mantenerla para no perder autoridad", "No se empeñará en ella", "Pedir permiso al superior", "Someterlo a votación"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 61.\nMantendrá sus órdenes con determinación, pero no se empeñará en ellas si la evolución de los acontecimientos aconseja variarlas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 5,
+        "titulo_tema": "De las Operaciones",
+        "pregunta": "En el uso legítimo de la fuerza, el militar hará un uso:",
+        "opciones": ["Contundente y rápido", "Gradual y proporcionado", "Mínimo e indispensable", "Disuasorio"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 84.\nHará un uso gradual y proporcionado de la misma, de acuerdo con las reglas de enfrentamiento."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 5,
+        "titulo_tema": "De las Operaciones",
+        "pregunta": "¿Qué hará el que tuviere orden de conservar su puesto a toda costa?",
+        "opciones": ["Pedir evacuación si hay peligro", "Lo hará", "Interpretar la orden según la situación", "Replegarse ordenadamente"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 90.\nEl que tuviere orden de conservar su puesto a toda costa, lo hará."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 1,
+        "tema": 5,
+        "titulo_tema": "De las Operaciones",
+        "pregunta": "En misiones de paz, ¿cómo actuará el militar respecto a la cultura local?",
+        "opciones": ["Impondrá sus costumbres", "Ignorará la cultura local", "Respetará la cultura y costumbres salvo que comprometan la misión", "Evitará todo contacto"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 96.\nRespetará la cultura y costumbres propias de la zona de despliegue, salvo que comprometan la misión encomendada."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "Según el RD 194/2010, ¿quién es el responsable de la seguridad de la unidad?",
+        "opciones": ["El oficial de guardia", "El jefe de seguridad", "El jefe de la unidad", "El Suboficial Mayor"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 7.\nEl jefe de la unidad será el responsable de su seguridad y elaborará el plan de seguridad de la unidad."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Qué clasificación de materia clasificada tendrá, como norma general, el Plan de Seguridad?",
+        "opciones": ["Confidencial", "Difusión Limitada", "Secreto", "Reservado"],
+        "correcta": 3,
+        "explicacion": "📚 Artículo 9.\nTendrá carácter de materia clasificada en la categoría de reservado, si bien algunos apartados podrán tener clasificación inferior para su difusión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿A quién afecta la seguridad en las Fuerzas Armadas según el Artículo 4?",
+        "opciones": ["Solo a la Policía Militar", "Solo a la guardia de seguridad", "A todos sus miembros", "A los oficiales y suboficiales"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 4.\nLa seguridad en las Fuerzas Armadas afecta a todos sus miembros; cada uno le prestará atención permanente."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Cómo prestarán su servicio los componentes de la guardia de seguridad durante la ejecución de la misma?",
+        "opciones": ["Como centinelas puros", "Como agentes de seguridad privada", "Como policía militar, naval o aérea", "Como auxiliares del mando"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 15.\nPrestarán su servicio como policía militar, naval o aérea durante la ejecución de la misma, llevando la identificación visual que lo acredite."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "El cabo de guardia inspeccionará los puestos y pasará revista de armas:",
+        "opciones": ["Solo al finalizar la guardia", "Una vez al día", "Antes y después de la realización de cualquier relevo", "Cuando se lo ordene el Oficial"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 21.\nInspeccionará los puestos [...] y pasará revista de armas, antes y después de la realización de cualquier relevo."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Qué es un centinela según el RD 194/2010?",
+        "opciones": ["Cualquier miembro de la guardia", "Un componente que guarda un puesto confiado a su responsabilidad portando arma de fuego a la vista", "El jefe de la patrulla", "El encargado de las cámaras de seguridad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 24.\nSon centinelas los componentes [...] que, en acto de servicio de armas y cumpliendo una consigna, guardan un puesto confiado a su responsabilidad portando a la vista el arma de fuego."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Puede el centinela entregar su arma a otra persona?",
+        "opciones": ["Sí, si es un oficial", "Sí, si es su relevo o el Cabo de Guardia", "Solo al Jefe de la Unidad", "Nunca, bajo ningún pretexto"],
+        "correcta": 3,
+        "explicacion": "📚 Artículo 25.\nNunca dejará el arma de la mano ni la entregará a persona alguna bajo ningún pretexto."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Cómo debe ser el uso del arma por parte del centinela si resulta amenazada la seguridad?",
+        "opciones": ["Inmediato y letal", "Disuasorio exclusivamente", "Gradual y proporcionado", "Solo tras recibir orden expresa"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 25.\nPodrá hacer uso gradual y proporcionado de su arma, procurando causar el menor daño posible, previas las conminaciones necesarias."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Qué diferencia principal hay entre un centinela y un vigilante?",
+        "opciones": ["El vigilante no lleva arma", "El vigilante ocupa puestos que complementan al centinela y puede ir sin arma", "El vigilante tiene más autoridad", "No hay diferencia, son sinónimos"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 28.\nLos vigilantes ocupan puestos que complementan los de centinela. Pueden ser fijos o móviles, así como cumplir sus cometidos con armas o sin ellas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Qué carácter tienen los miembros de la Policía Militar en el ejercicio de sus funciones?",
+        "opciones": ["De autoridad administrativa", "Agente de la autoridad", "Mero auxiliar", "Personal civil"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 29.\nTendrán el carácter de agente de la autoridad en el ejercicio de sus funciones."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Cuándo intervendrá la Policía Militar ante delitos flagrantes?",
+        "opciones": ["Siempre", "Nunca, es competencia civil", "Estando de servicio y en ausencia de las fuerzas y cuerpos de seguridad", "Solo dentro del cuartel"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 32.\nEstando de servicio y en ausencia de miembros de las fuerzas y cuerpos de seguridad [...] intervendrán ante delitos flagrantes."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Normas sobre Mando y Régimen Interior (OM 50/2011)",
+        "pregunta": "Como norma general, ¿cuál será la duración máxima de las guardias de seguridad?",
+        "opciones": ["12 horas", "48 horas", "24 horas", "Una semana"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 81.\nComo norma general, la duración de estas guardias no superará las veinticuatro horas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Normas sobre Mando y Régimen Interior (OM 50/2011)",
+        "pregunta": "¿Es compatible la guardia de seguridad con otros servicios?",
+        "opciones": ["Sí, si hay poco personal", "Sí, con servicios administrativos", "Como norma general exigirá dedicación exclusiva y será incompatible", "Depende del Capitán"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 80.\nComo norma general, una guardia de seguridad exigirá dedicación exclusiva y su realización será incompatible con otras guardias."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Normas sobre Mando y Régimen Interior (OM 50/2011)",
+        "pregunta": "¿De quién depende el Jefe de la guardia de seguridad fuera del horario de trabajo?",
+        "opciones": ["Del Jefe de la Unidad", "Del Capitán de Cuartel", "Del Suboficial de Guardia", "Del Cabo de Guardia"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 84.\nComo norma general, dependerá directamente del jefe de la instalación y, fuera de las horas habituales de trabajo, del capitán de cuartel."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Normas sobre Mando y Régimen Interior (OM 50/2011)",
+        "pregunta": "¿Qué es un destacamento de seguridad?",
+        "opciones": ["Un grupo de centinelas", "Una unidad designada para establecer una guardia en una instalación ajena", "El equipo de escolta del Coronel", "Una patrulla móvil"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 80.\nUnidad o fracción de ella que, separada de su unidad superior, sea designada para establecer una guardia de seguridad en una instalación ajena."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "Según el RD 194/2010, ¿quién es el responsable de la seguridad de la unidad?",
+        "opciones": ["El oficial de guardia", "El jefe de seguridad", "El jefe de la unidad", "El Suboficial Mayor"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 7.\nEl jefe de la unidad será el responsable de su seguridad y elaborará el plan de seguridad de la unidad."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Qué clasificación de materia clasificada tendrá, como norma general, el Plan de Seguridad?",
+        "opciones": ["Confidencial", "Difusión Limitada", "Secreto", "Reservado"],
+        "correcta": 3,
+        "explicacion": "📚 Artículo 9.\nTendrá carácter de materia clasificada en la categoría de reservado, si bien algunos apartados podrán tener clasificación inferior para su difusión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿A quién afecta la seguridad en las Fuerzas Armadas según el Artículo 4?",
+        "opciones": ["Solo a la Policía Militar", "Solo a la guardia de seguridad", "A todos sus miembros", "A los oficiales y suboficiales"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 4.\nLa seguridad en las Fuerzas Armadas afecta a todos sus miembros; cada uno le prestará atención permanente."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Cómo prestarán su servicio los componentes de la guardia de seguridad durante la ejecución de la misma?",
+        "opciones": ["Como centinelas puros", "Como agentes de seguridad privada", "Como policía militar, naval o aérea", "Como auxiliares del mando"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 15.\nPrestarán su servicio como policía militar, naval o aérea durante la ejecución de la misma, llevando la identificación visual que lo acredite."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "El cabo de guardia inspeccionará los puestos y pasará revista de armas:",
+        "opciones": ["Solo al finalizar la guardia", "Una vez al día", "Antes y después de la realización de cualquier relevo", "Cuando se lo ordene el Oficial"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 21.\nInspeccionará los puestos [...] y pasará revista de armas, antes y después de la realización de cualquier relevo."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Qué es un centinela según el RD 194/2010?",
+        "opciones": ["Cualquier miembro de la guardia", "Un componente que guarda un puesto confiado a su responsabilidad portando arma de fuego a la vista", "El jefe de la patrulla", "El encargado de las cámaras de seguridad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 24.\nSon centinelas los componentes [...] que, en acto de servicio de armas y cumpliendo una consigna, guardan un puesto confiado a su responsabilidad portando a la vista el arma de fuego."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Puede el centinela entregar su arma a otra persona?",
+        "opciones": ["Sí, si es un oficial", "Sí, si es su relevo o el Cabo de Guardia", "Solo al Jefe de la Unidad", "Nunca, bajo ningún pretexto"],
+        "correcta": 3,
+        "explicacion": "📚 Artículo 25.\nNunca dejará el arma de la mano ni la entregará a persona alguna bajo ningún pretexto."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Cómo debe ser el uso del arma por parte del centinela si resulta amenazada la seguridad?",
+        "opciones": ["Inmediato y letal", "Disuasorio exclusivamente", "Gradual y proporcionado", "Solo tras recibir orden expresa"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 25.\nPodrá hacer uso gradual y proporcionado de su arma, procurando causar el menor daño posible, previas las conminaciones necesarias."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Qué diferencia principal hay entre un centinela y un vigilante?",
+        "opciones": ["El vigilante no lleva arma", "El vigilante ocupa puestos que complementan al centinela y puede ir sin arma", "El vigilante tiene más autoridad", "No hay diferencia, son sinónimos"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 28.\nLos vigilantes ocupan puestos que complementan los de centinela. Pueden ser fijos o móviles, así como cumplir sus cometidos con armas o sin ellas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Qué carácter tienen los miembros de la Policía Militar en el ejercicio de sus funciones?",
+        "opciones": ["De autoridad administrativa", "Agente de la autoridad", "Mero auxiliar", "Personal civil"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 29.\nTendrán el carácter de agente de la autoridad en el ejercicio de sus funciones."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Normas de seguridad en las FAS (RD 194/2010)",
+        "pregunta": "¿Cuándo intervendrá la Policía Militar ante delitos flagrantes?",
+        "opciones": ["Siempre", "Nunca, es competencia civil", "Estando de servicio y en ausencia de las fuerzas y cuerpos de seguridad", "Solo dentro del cuartel"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 32.\nEstando de servicio y en ausencia de miembros de las fuerzas y cuerpos de seguridad [...] intervendrán ante delitos flagrantes."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Normas sobre Mando y Régimen Interior (OM 50/2011)",
+        "pregunta": "Como norma general, ¿cuál será la duración máxima de las guardias de seguridad?",
+        "opciones": ["12 horas", "48 horas", "24 horas", "Una semana"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 81.\nComo norma general, la duración de estas guardias no superará las veinticuatro horas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Normas sobre Mando y Régimen Interior (OM 50/2011)",
+        "pregunta": "¿Es compatible la guardia de seguridad con otros servicios?",
+        "opciones": ["Sí, si hay poco personal", "Sí, con servicios administrativos", "Como norma general exigirá dedicación exclusiva y será incompatible", "Depende del Capitán"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 80.\nComo norma general, una guardia de seguridad exigirá dedicación exclusiva y su realización será incompatible con otras guardias."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Normas sobre Mando y Régimen Interior (OM 50/2011)",
+        "pregunta": "¿De quién depende el Jefe de la guardia de seguridad fuera del horario de trabajo?",
+        "opciones": ["Del Jefe de la Unidad", "Del Capitán de Cuartel", "Del Suboficial de Guardia", "Del Cabo de Guardia"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 84.\nComo norma general, dependerá directamente del jefe de la instalación y, fuera de las horas habituales de trabajo, del capitán de cuartel."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Normas sobre Mando y Régimen Interior (OM 50/2011)",
+        "pregunta": "¿Qué es un destacamento de seguridad?",
+        "opciones": ["Un grupo de centinelas", "Una unidad designada para establecer una guardia en una instalación ajena", "El equipo de escolta del Coronel", "Una patrulla móvil"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 80.\nUnidad o fracción de ella que, separada de su unidad superior, sea designada para establecer una guardia de seguridad en una instalación ajena."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales (OM 50/2011)",
+        "pregunta": "¿Qué documento debe tener una Unidad desde nivel brigada hasta batallón para reflejar su estructura orgánica?",
+        "opciones": ["El Libro de Normas de Régimen Interior", "El Libro de Organización", "El Plan de Seguridad", "La Plantilla Orgánica"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 6.\nLas Unidades desde nivel brigada hasta batallón o grupo inclusive dispondrán de un Libro de Organización que reflejará la estructura orgánica vigente."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Disposiciones Generales (OM 50/2011)",
+        "pregunta": "¿Qué diferencia existe entre una Base y un Acuartelamiento?",
+        "opciones": ["La Base es temporal y el Acuartelamiento permanente", "La Base puede no tener continuidad física y el Acuartelamiento es un recinto", "El Acuartelamiento tiene unidad de servicios y la Base no", "Son sinónimos"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 7.\nLa Base es el conjunto de propiedades no necesariamente con continuidad física. El Acuartelamiento es un recinto militar donde se alojan unidades."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "De la Acción del Mando",
+        "pregunta": "¿Cuáles son los tres caracteres con los que se puede ejercer el mando?",
+        "opciones": ["Titular, Suplente y Auxiliar", "Titular, Interino y Accidental", "Jefe, Segundo Jefe y Suboficial", "Titular, Delegado y Comisionado"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 10.\nEl mando se podrá ejercer con carácter titular, interino o accidental."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "De la Acción del Mando",
+        "pregunta": "El mando accidental se asume por ausencia del titular o interino. ¿Puede modificar las normas establecidas?",
+        "opciones": ["Sí, tiene plena potestad", "No, salvo autorización expresa o emergencia", "Sí, pero solo por escrito", "Solo si dura más de un mes"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 10.\nNo podrá modificar las instrucciones y normas establecidas, salvo autorización expresa o en caso de emergencia."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "De la Acción del Mando",
+        "pregunta": "En la sucesión de mando, en caso de igualdad de empleo y perteneciendo al mismo cuerpo y escala, ¿quién prevalece?",
+        "opciones": ["El de mayor edad", "El más antiguo en el empleo", "El que tenga mejor IPEC", "El primero en el escalafón"],
+        "correcta": 3,
+        "explicacion": "📚 Artículo 12.\nEn caso de igualdad en el empleo, prevalecerá el orden en el escalafón, si se trata de personal perteneciente al mismo cuerpo y escala."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Del Régimen Interior",
+        "pregunta": "¿Qué documento establece las normas que rigen la vida y funcionamiento interno de la instalación?",
+        "opciones": ["El Plan de Seguridad", "Las Reales Ordenanzas", "El Libro de Normas de Régimen Interior", "La Orden del Día"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 32.\nEl Libro de Normas de Régimen Interior establecerá las normas que rigen la vida y funcionamiento interno de la instalación."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Los Servicios de las Instalaciones",
+        "pregunta": "¿Cuál es la finalidad de la Unidad de Servicios?",
+        "opciones": ["Dar seguridad perimetral exclusivamente", "Descargar a las unidades alojadas de cometidos que distraigan de su función", "Organizar las guardias de orden", "Controlar el tráfico"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 52.\nSu finalidad es descargar a las unidades alojadas de aquellos cometidos que puedan distraerles de su función específica."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Las Guardias (OM 50/2011)",
+        "pregunta": "Según su naturaleza, las guardias pueden ser:",
+        "opciones": ["De seguridad, de orden, de los servicios y aeronáuticas", "Ordinarias y extraordinarias", "Armadas y sin armas", "De oficiales, suboficiales y tropa"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 79.\nAtendiendo a su naturaleza, las guardias pueden ser de seguridad, de orden, de los servicios y aeronáuticas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Las Guardias (OM 50/2011)",
+        "pregunta": "¿Qué tipo de guardias garantizan la continuidad de la acción de mando fuera del horario habitual?",
+        "opciones": ["Guardias de seguridad", "Guardias de servicios", "Guardias de orden", "Guardias de honor"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 79.\nSon guardias de orden las que garantizan la continuidad de la acción de mando fuera del horario habitual de trabajo."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Las Guardias (OM 50/2011)",
+        "pregunta": "¿Qué duración podrá tener la guardia de Tropa de Cuartel?",
+        "opciones": ["Siempre 24 horas", "Entre 24 y 96 horas", "Máximo 48 horas", "Solo horario nocturno"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 95.\nEsta guardia, cuya duración podrá estar comprendida entre las veinticuatro y las noventa y seis horas, se nombrará por turno independiente."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Las Guardias (OM 50/2011)",
+        "pregunta": "¿Quién vigila especialmente que se respete el silencio en los alojamientos desde el toque de silencio hasta diana?",
+        "opciones": ["El Cabo de Cuartel", "El Suboficial de Guardia", "Los Imaginarias", "El Cuartelero"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 97.\nRepartidos en turnos, los Imaginarias vigilarán especialmente que se mantenga el orden y se respete el silencio en los alojamientos."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Las Guardias (OM 50/2011)",
+        "pregunta": "En caso de coincidencia de guardias, ¿cuál tiene preferencia absoluta?",
+        "opciones": ["Guardia de Orden de la Instalación", "Guardia de Seguridad", "Guardia de Servicios", "La que sea más larga"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 107.\nEn caso de coincidencia de dos o más guardias, el orden de preferencia será: de seguridad, de orden de instalación, de orden de unidad."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Las Guardias (OM 50/2011)",
+        "pregunta": "¿Se pueden prestar más de dos guardias seguidas?",
+        "opciones": ["Sí, si son de distinta naturaleza", "Sí, en caso de arresto", "No, cualesquiera que sean su clase o duración", "Depende del criterio del Jefe"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 107.\nNo se podrán prestar más de dos guardias seguidas cualesquiera que sean su clase o duración."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Las Guardias (OM 50/2011)",
+        "pregunta": "Como norma general, ¿cómo se nombran las guardias de seguridad en cuanto a antigüedad?",
+        "opciones": ["De menor a mayor antigüedad", "De mayor a menor antigüedad", "Por orden alfabético", "Aleatoriamente"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 105.\nComo norma general, las guardias de seguridad se nombrarán de mayor a menor antigüedad, y en orden inverso para las restantes."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Están sujetos al Régimen Disciplinario los alumnos de los centros docentes militares de formación?",
+        "opciones": ["No, tienen un régimen exclusivamente académico", "Sí, están sujetos a lo previsto en esta ley", "Solo durante las prácticas", "Solo si tienen empleo eventual de alférez"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 2.\nLos alumnos de los centros docentes militares de formación... están sujetos a lo previsto en esta ley. Las infracciones académicas van por normas específicas."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Impide la iniciación de un procedimiento penal la tramitación de un expediente disciplinario por los mismos hechos?",
+        "opciones": ["Sí, debe paralizarse inmediatamente", "No, no impedirá la incoación y tramitación", "Depende de la gravedad del delito", "Solo si lo autoriza el juez"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 4.\nLa iniciación de un procedimiento penal no impedirá la incoación y tramitación de expedientes disciplinarios, pero la resolución definitiva deberá esperar a la sentencia firme."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "Según el artículo 10, ¿cuándo se entiende que una conducta es reiterada?",
+        "opciones": ["Cuando se realiza 2 veces en un año", "Cuando se realiza 3 o más veces en dos años", "Cuando se realiza 3 veces en un año", "Cuando se realiza 5 veces en toda la carrera"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 10.\nSe entiende que una conducta típica es reiterada cuando se realiza en tres o más ocasiones en el periodo de dos años."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Cuál de las siguientes sanciones NO corresponde a una falta leve?",
+        "opciones": ["Reprensión", "Privación de salida (alumnos)", "Arresto de 1 a 14 días", "Pérdida de destino"],
+        "correcta": 3,
+        "explicacion": "📚 Artículo 11.\nLa pérdida de destino es una sanción para faltas graves. Las leves son reprensión, privación de salida, sanción económica (1-7 días) y arresto (1-14 días)."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Qué es la reprensión?",
+        "opciones": ["Una bronca verbal del mando", "La reprobación disciplinaria expresa y por escrito", "Un arresto domiciliario", "Una anotación negativa sin sanción"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 12.\nEs la reprobación disciplinaria expresa que, por escrito, dirige el superior con competencia... para su anotación en la hoja de servicios."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Dónde se cumple el arresto por falta leve (1 a 14 días)?",
+        "opciones": ["En un establecimiento disciplinario militar (celda)", "En su domicilio o en la unidad, sin ser celda", "Siempre en el domicilio", "En el calabozo de la guardia"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 15.\nConsiste en la permanencia... en su domicilio o en el lugar de la unidad... Esta restricción de libertad implica que el lugar no puede ser una celda."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Cuándo prescriben las faltas muy graves?",
+        "opciones": ["A los 2 años", "A los 3 años", "A los 4 años", "A los 5 años"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 24.\nLas faltas leves prescriben a los dos meses, las graves a los dos años y las muy graves a los tres años."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Qué capacidad sancionadora tiene un Jefe de Compañía (o unidad similar)?",
+        "opciones": ["Solo reprensión", "Todas las sanciones por falta leve", "Reprensión, económica hasta 5 días y arresto hasta 3 días", "Reprensión y arresto hasta 14 días"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 32.\nLos jefes de compañía... las sanciones de reprensión, sanción económica hasta cinco días y arresto hasta tres días."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Qué capacidad sancionadora tiene un Jefe de Pelotón (Suboficial)?",
+        "opciones": ["No tiene potestad sancionadora", "La sanción de reprensión", "Arresto de 1 día", "Sanción económica de 1 día"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 32.\nLos jefes de pelotón o unidad similar con categoría de Suboficial, la sanción de reprensión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "El plazo para cancelar una sanción por falta grave es de:",
+        "opciones": ["1 año", "2 años", "3 años", "4 años"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 65.\nLas notas de las sanciones... serán canceladas... transcurrido el plazo de un año (leves), dos años (graves) o cuatro años (muy graves)."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Cuál es el plazo para interponer un recurso de alzada?",
+        "opciones": ["15 días", "Un mes", "Dos meses", "Tres meses"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 69.\nEl recurso podrá interponerse en un plazo de un mes, que se iniciará el día siguiente al de notificación de la sanción."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "Si un militar observa una infracción disciplinaria y no tiene competencia para sancionar, ¿qué debe hacer?",
+        "opciones": ["Nada, no es su responsabilidad", "Corregirla verbalmente y olvidarlo", "Formular parte disciplinario a quien tenga competencia", "Arrestar al infractor preventivamente"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 42.\nFormulará directa e inmediatamente parte disciplinario a quien la tenga para sancionar la falta."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "La sanción de Suspensión de Empleo, aplicable solo a militares profesionales, tiene una duración máxima de:",
+        "opciones": ["6 meses", "1 año", "2 años", "3 años"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 19.\nSupone la privación de todas las funciones propias del empleo por un periodo mínimo de un mes y máximo de un año."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "¿Cuándo comienza la prescripción de una falta?",
+        "opciones": ["Desde que se descubre", "Desde que se sanciona", "Desde el día en que la infracción se hubiera cometido", "Desde que el mando recibe el parte"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 24.\nEstos plazos comenzarán a contarse desde el día en que la infracción se hubiera cometido."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 1,
+        "titulo_tema": "Régimen Disciplinario (LO 8/2014)",
+        "pregunta": "En las sanciones económicas, ¿cómo se calcula la cuantía diaria?",
+        "opciones": ["Sueldo base dividido por 30", "Sueldo más complementos dividido por 30", "Sueldo más complemento de empleo dividido por 60", "Sueldo base dividido por 60"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 60.\nSe calculará tomando el sueldo y el complemento de empleo... se dividirá por sesenta aquella cantidad y se multiplicará por el número de días."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿A quién se aplica el Código Penal Militar además de a las Fuerzas Armadas?",
+        "opciones": ["A la Policía Nacional en misiones internacionales", "A la Guardia Civil en tiempo de conflicto armado o estado de sitio", "A los funcionarios civiles de Defensa", "A cualquier ciudadano en zona militar"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 1.\nSe aplica a la Guardia Civil en tiempo de conflicto armado, estado de sitio, misiones militares o integrados en unidades de las FAS."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "A efectos del Código Penal Militar, ¿quién se considera 'centinela'?",
+        "opciones": ["Solo quien está en una garita", "El militar que, en acto de servicio de armas y cumpliendo consigna, guarda un puesto con arma de fuego a la vista", "Cualquier militar de guardia", "El Oficial de Guardia"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 4.\nEs el militar que, en acto de servicio de armas... guarda un puesto... portando a la vista el arma de fuego. También operadores de transmisiones y vigilancia electrónica."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Qué se entiende por 'orden' según el artículo 8 del CPM?",
+        "opciones": ["Cualquier mandato de un superior", "Todo mandato relativo al servicio que un superior da a un subordinado en forma adecuada y dentro de sus atribuciones", "Las instrucciones escritas en la Orden del Día", "Los consejos de un superior"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 8.\nEs todo mandato relativo al servicio que un superior militar da a un subordinado, en forma adecuada y dentro de las atribuciones que le corresponden."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Cuál de las siguientes es una Pena Grave según el Código Penal Militar?",
+        "opciones": ["Pérdida de empleo", "Suspensión militar de empleo", "Multa de dos a seis meses", "Prisión de tres meses a tres años"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 11.\nSon penas graves: Prisión superior a tres años, Pérdida de empleo e Inhabilitación absoluta para mando de buque o aeronave."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Qué delito comete el militar que se niega a obedecer las órdenes legítimas de sus superiores relativas al servicio?",
+        "opciones": ["Sedición", "Insubordinación", "Deslealtad", "Abuso de autoridad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 44 (Insubordinación).\nEl militar que se negare a obedecer o no cumpliere las órdenes legítimas... será castigado con pena de prisión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Cuándo se considera Sedición Militar?",
+        "opciones": ["Cuando un militar insulta a un superior", "Cuando 4 o más militares se niegan a obedecer o hacen reclamaciones colectivas en tumulto", "Cuando se abandona el puesto frente al enemigo", "Cuando se vende material militar"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 38.\nLos militares que, mediante concierto... en número de cuatro o más... se negaren a obedecer o no cumplieren las órdenes."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Qué pena conlleva el delito de Traición Militar con el propósito de favorecer al enemigo?",
+        "opciones": ["Prisión de 15 a 25 años", "Prisión permanente revisable", "Pérdida de destino", "Suspensión de empleo"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 24.\nSerá castigado con la pena de prisión de quince a veinticinco años el militar que... favorezca al enemigo (inducir a rendirse, fugarse, sabotaje...)."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "El superior que maltratare de obra a un subordinado comete el delito de:",
+        "opciones": ["Insubordinación", "Abuso de autoridad", "Extralimitación", "Falta muy grave"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 46 (Abuso de autoridad).\nEl superior que maltratare de obra a un subordinado será castigado con la pena de seis meses a cinco años de prisión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿En qué consiste el delito de Cobardía según el artículo 51?",
+        "opciones": ["Tener miedo en combate", "Rehusar permanecer en el puesto, abandonarlo o incumplir la misión por temor a un riesgo personal", "No presentarse a filas", "Fingir enfermedad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 51.\nEl militar que por temor a un riesgo personal rehusare permanecer o situarse en su puesto, lo abandonare o incumpliere la misión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Qué ocurre si un militar da a sabiendas información falsa sobre asuntos del servicio?",
+        "opciones": ["Es una falta leve", "Es una falta grave", "Comete delito de Deslealtad", "Comete delito de Perjurio"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 55 (Deslealtad).\nEl militar que sobre asuntos del servicio diere a sabiendas información falsa... será castigado con prisión de seis meses a cuatro años."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "Según el artículo 7, ¿quién se considera 'enemigo'?",
+        "opciones": ["Cualquier país extranjero", "Los miembros de fuerzas armadas en conflicto con España, grupos armados, terroristas, etc.", "Los partidos políticos opositores", "Los delincuentes comunes"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 7.\nMiembros de fuerzas armadas en conflicto con España, fuerzas/bandas que operen a sus órdenes, grupos armados no estatales, etc."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Qué pena se impone al militar que ultrajare a la Bandera o Himno de España?",
+        "opciones": ["Multa de 1 a 3 meses", "Arresto de 1 mes", "Prisión de 3 meses y un día a 3 años", "Expulsión del ejército"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 36.\nEl militar que ofendiere o ultrajare a España, su Bandera, Himno... será castigado con la pena de tres meses y un día a tres años de prisión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Qué pena accesoria lleva consigo la condena a prisión superior a 3 años?",
+        "opciones": ["Suspensión de empleo", "Pérdida de empleo", "Revocación de ascensos", "Multa proporcional"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 15.\nLa pena de prisión que exceda de tres años, llevará consigo la accesoria de pérdida de empleo."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 4,
+        "tema": 2,
+        "titulo_tema": "Código Penal Militar (LO 14/2015)",
+        "pregunta": "¿Es delito insultar a un superior?",
+        "opciones": ["Sí, es un delito de Insubordinación (insulto a superior)", "No, es solo falta grave", "Solo si es por escrito", "Depende de la graduación"],
+        "correcta": 0,
+        "explicacion": "📚 Artículo 43.\nEl militar que... coaccionare, amenazare, calumniare o injuriare gravemente a un superior... será castigado con pena de prisión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Qué norma desarrolla la organización del Ejército de Tierra?",
+        "opciones": ["La Ley de la Carrera Militar", "La Orden DEF/708/2020", "La Instrucción 14/2021 del JEME", "Las Reales Ordenanzas"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 1.\nLa Instrucción 14/2021, de 8 de marzo, del Jefe de Estado Mayor del Ejército de Tierra, desarrolla la organización del Ejército de Tierra."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "Bajo la autoridad del JEME, ¿en qué tres grandes bloques se estructura el Ejército de Tierra?",
+        "opciones": ["Ministerio, Cuartel General y Unidades", "Cuartel General, Fuerza y Apoyo a la Fuerza", "Fuerza Terrestre, Fuerza Logística y Cuartel General", "Unidades, Centros y Organismos"],
+        "correcta": 1,
+        "explicacion": "📚 Punto 1.\nLas unidades del ET se encuadran en el Cuartel General, la Fuerza y el Apoyo a la Fuerza."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Cuál es el principal órgano de apoyo del JEME responsable de proporcionarle elementos de juicio para fundamentar sus decisiones?",
+        "opciones": ["El Gabinete del JEME", "El Estado Mayor del Ejército de Tierra (EME)", "La Asesoría Jurídica", "El Consejo Superior del Ejército"],
+        "correcta": 1,
+        "explicacion": "📚 Punto 1.1.1.\nEl Estado Mayor del Ejército de Tierra (EME) es el principal órgano de apoyo del JEME."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿De qué órgano depende el Regimiento de Transmisiones 22?",
+        "opciones": ["Del Mando de Transmisiones (MATRANS)", "De la Brigada Logística", "De la Jefatura del Ciberespacio y de los Servicios de Asistencia Técnica (JCISAT)", "Del Gabinete del JEME"],
+        "correcta": 2,
+        "explicacion": "📚 Punto 1.1.3.\nEl Regimiento de Transmisiones 22 depende de JCISAT (encuadrada en el Cuartel General)."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Qué órganos constituyen la Fuerza del Ejército de Tierra?",
+        "opciones": ["FUTER y FLO", "CGTAD, Fuerza Terrestre y Mando de Canarias", "Fuerza Terrestre y Mando de Apoyo Logístico", "CGTAD y FUTER exclusivamente"],
+        "correcta": 1,
+        "explicacion": "📚 Punto 1.2.\nLa Fuerza del Ejército de Tierra está constituida por: a) El Cuartel General Terrestre de Alta Disponibilidad. b) La Fuerza Terrestre. c) El Mando de Canarias del ET."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Cuál es el cometido principal del Cuartel General Terrestre de Alta Disponibilidad (CGTAD)?",
+        "opciones": ["La gestión de personal", "Prepararse para ser utilizado como estructura de mando en operaciones (Cuerpo de Ejército)", "La defensa de las Islas Canarias", "El apoyo logístico a la zona sur"],
+        "correcta": 1,
+        "explicacion": "📚 Punto 1.2.1.\nSu cometido principal es prepararse para ser utilizado como estructura de mando... Constituir y adiestrarse como Cuartel General de Cuerpo de Ejército."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Dónde se encuadra la Brigada 'Rey Alfonso XIII' II de La Legión?",
+        "opciones": ["En la División 'San Marcial'", "En la División 'Castillejos'", "En el Mando de Canarias", "En el Mando de Apoyo a la Maniobra"],
+        "correcta": 1,
+        "explicacion": "📚 Punto 1.2.2.2.\nLa División 'Castillejos' se articula en... d) Brigada 'Rey Alfonso XIII' II de La Legión."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Qué unidad NO pertenece a la División 'San Marcial'?",
+        "opciones": ["Brigada 'Almogávares' VI de Paracaidistas", "Mando de Operaciones Especiales (MOE)", "Fuerzas Aeromóviles del ET (FAMET)", "Brigada 'Guadarrama' XII"],
+        "correcta": 3,
+        "explicacion": "📚 Punto 1.2.2.3.\nLa Brigada 'Guadarrama' XII pertenece a la División 'Castillejos'. La San Marcial agrupa Paracaidistas, Montaña, MOE y FAMET."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Dentro de qué mando se encuentra la Brigada Logística (BRILOG)?",
+        "opciones": ["Mando de Apoyo Logístico (MALE)", "Mando de Apoyo a la Maniobra (MAM)", "Inspección General del Ejército", "División 'Castillejos'"],
+        "correcta": 1,
+        "explicacion": "📚 Punto 1.2.2.4.\nEl Mando de Apoyo a la Maniobra se articula en... f) La Brigada Logística. (Ojo: Aunque sea logística, orgánicamente está en la Fuerza, en el MAM)."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿De quién dependen las Comandancias Generales de Ceuta y Melilla?",
+        "opciones": ["Directamente del JEME", "De la Fuerza Terrestre (FUTER)", "Del Mando de Canarias del ET", "Del Mando de Operaciones"],
+        "correcta": 2,
+        "explicacion": "📚 Punto 1.2.3.\nEl Mando de Canarias del Ejército de Tierra se articula en... b) La Comandancia General de Ceuta. c) La Comandancia General de Melilla."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Qué órganos forman el Apoyo a la Fuerza?",
+        "opciones": ["MAPER, MADOC, MALE, IGE y DAE", "FUTER, FLO y MAPER", "Cuartel General, FUTER y MALE", "MAPER, MALE y Dirección de Acuartelamiento"],
+        "correcta": 0,
+        "explicacion": "📚 Punto 1.3.\nEl Apoyo a la Fuerza está formado por: Mando de Personal, Mando de Adiestramiento y Doctrina, Mando de Apoyo Logístico, Inspección General del ET y Dirección de Asuntos Económicos."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Quién es el responsable de la asistencia sanitaria en el ámbito del ET?",
+        "opciones": ["La Brigada de Sanidad", "El Mando de Apoyo Logístico", "El Mando de Personal (MAPER)", "La Inspección General"],
+        "correcta": 2,
+        "explicacion": "📚 Punto 1.3.1.\nEl Mando de Personal es el órgano... responsable... en materia de gestión de personal, asistencia al personal y asistencia sanitaria."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Qué órgano es responsable de las infraestructuras y la prevención de riesgos laborales?",
+        "opciones": ["El Mando de Ingenieros", "La Inspección General del Ejército de Tierra (IGE)", "La Dirección de Asuntos Económicos", "El Cuartel General"],
+        "correcta": 1,
+        "explicacion": "📚 Punto 1.3.4.\nLa Inspección General del Ejército de Tierra es el órgano... responsable... de los procesos relacionados con las infraestructuras... y la prevención de riesgos laborales."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Quién se encarga de la contratación y contabilidad en el ET?",
+        "opciones": ["La Dirección de Asuntos Económicos (DAE)", "El Mando de Apoyo Logístico (MALE)", "La Jefatura de Asuntos Económicos del FUTER", "El Gabinete del JEME"],
+        "correcta": 0,
+        "explicacion": "📚 Punto 1.3.5.\nLa Dirección de Asuntos Económicos es la responsable de... la contratación y contabilidad."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 1,
+        "titulo_tema": "Organización del Ejército de Tierra (Instr. 14/2021)",
+        "pregunta": "¿Qué unidad depende directamente del JEME y tiene consideración de Fuerza, aunque forma parte del Cuartel General?",
+        "opciones": ["El Regimiento de Infantería 'Inmemorial del Rey' nº 1", "El Regimiento de Transmisiones 22", "La Guardia Real", "El Batallón de Policía Militar I"],
+        "correcta": 0,
+        "explicacion": "📚 Punto 1.1.\nTambién forma parte del Cuartel General del Ejército el Regimiento de Infantería 'Inmemorial del Rey' nº 1... con consideración de Fuerza."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "¿Cuál de las siguientes NO es una situación administrativa de los militares profesionales?",
+        "opciones": ["Servicio activo", "Servicios especiales", "Vacaciones retribuidas", "Suspensión de empleo"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 107.\nLas situaciones son: Servicio activo, Servicios especiales, Excedencia, Suspensión de funciones, Suspensión de empleo, Reserva y Servicio en la Administración civil."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "¿A qué situaciones administrativas solo pueden acceder los militares de carrera?",
+        "opciones": ["Servicio activo y Reserva", "Reserva y Servicio en la Administración civil", "Servicios especiales y Excedencia", "Suspensión de funciones y empleo"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 107.\nA la situación administrativa de reserva y de servicio en la Administración civil solo podrán acceder los militares de carrera."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "¿En qué situación se encuentra un militar pendiente de asignación de destino?",
+        "opciones": ["Excedencia forzosa", "Servicio activo", "Suspensión de funciones", "Servicios especiales"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 108.\nTambién se hallarán en servicio activo cuando estén pendientes de asignación de destino por haber cesado en el que tuvieran."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "Si un militar es elegido alcalde o diputado, ¿a qué situación administrativa pasa?",
+        "opciones": ["Excedencia por cargo público", "Servicios especiales", "Reserva", "Servicio activo"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 109.\nPasan a Servicios Especiales cuando sean designados candidatos o elegidos para órganos representativos públicos (diputados, senadores, asambleas autonómicas...)."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "En la situación de Servicios Especiales, ¿se cobra el sueldo militar?",
+        "opciones": ["Sí, íntegramente", "No, percibirán las retribuciones del puesto o cargo que desempeñen", "Sí, pero solo el sueldo base sin complementos", "Solo el 50%"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 109.\nPercibirán las retribuciones del puesto o cargo que desempeñen y no las que les correspondan como militares (aunque sí cobran trienios)."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "¿Cuál de las siguientes es una modalidad de Excedencia?",
+        "opciones": ["Excedencia por estudios", "Excedencia por cuidado de familiares", "Excedencia por enfermedad común", "Excedencia por matrimonio"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 110.\nLas modalidades son: Prestación de servicios en el sector público, Interés particular, Agrupación familiar, Cuidado de familiares y Violencia de género."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "¿Por qué motivo se puede acordar el pase a la situación de Suspensión de Funciones?",
+        "opciones": ["Por una falta grave", "Por procesamiento en procedimiento penal o falta muy grave", "Por bajo rendimiento", "Por enfermedad de larga duración"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 111.\nSe podrá acordar como consecuencia del procesamiento... en un procedimiento penal o por la incoación de un expediente disciplinario por falta muy grave."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "¿Cuál es el periodo máximo de permanencia en Suspensión de Funciones?",
+        "opciones": ["3 meses", "6 meses (o la duración de la prisión preventiva)", "1 año", "Indefinido"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 111.\nEl periodo máximo será de seis meses o el de la duración de la prisión preventiva si fuese superior."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "Si un militar profesional es condenado por sentencia firme a pena de prisión, ¿a qué situación pasa?",
+        "opciones": ["Suspensión de funciones", "Suspensión de empleo", "Reserva", "Servicios especiales"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 112.\nPasarán a Suspensión de Empleo por condena en sentencia firme a pena de prisión del Código Penal Militar o Código Penal."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "¿El tiempo en Suspensión de Funciones computa a efectos de trienios y derechos pasivos?",
+        "opciones": ["Sí, siempre", "No", "Solo si es por falta grave", "Sí, pero solo la mitad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 111.\nEl tiempo permanecido en la situación de suspensión de funciones NO será computable como tiempo de servicios ni a efectos de trienios."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "¿Qué ocurre si un militar de tropa aprueba una oposición y se hace Policía Nacional?",
+        "opciones": ["Pasa a la reserva", "Se resuelve su compromiso", "Pasa a excedencia voluntaria", "Pasa a servicios especiales"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 118.\nEl compromiso se resolverá... c) Por el ingreso en un centro de formación de la Guardia Civil o del Cuerpo Nacional de Policía."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 5,
+        "tema": 2,
+        "titulo_tema": "Situaciones Administrativas (Ley 39/2007)",
+        "pregunta": "Si como resultado de un reconocimiento médico se establece una insuficiencia de condiciones psicofísicas que conlleva limitación para ocupar destinos:",
+        "opciones": ["Se le expulsa del ejército", "Se le garantiza el principio de igualdad de trato en los destinos a los que pueda acceder", "Pasa a retiro forzoso", "Pierde la condición de militar"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 120.\nSe les garantizará el principio de igualdad de trato en los destinos a los que puedan acceder... y se establecerán medios para reorientar su perfil profesional."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 1,
+        "titulo_tema": "Derechos y Deberes (LO 9/2011)",
+        "pregunta": "Según la LO 9/2011, ¿puede un militar fundar o afiliarse a un partido político?",
+        "opciones": ["Sí, como cualquier ciudadano", "Sí, pero sin ocupar cargos directivos", "No, está sujeto al deber de neutralidad política", "Solo si está en la reserva"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 7.\nEl militar está sujeto al deber de neutralidad política. No podrá fundar ni afiliarse a partidos políticos."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 1,
+        "titulo_tema": "Derechos y Deberes (LO 9/2011)",
+        "pregunta": "¿Tienen los militares derecho de sindicación?",
+        "opciones": ["Sí, para defender sus intereses", "Solo las asociaciones profesionales", "No, no podrá fundar ni afiliarse a sindicatos", "Sí, pero sin derecho a huelga"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 7.\nEl militar no podrá ejercer el derecho de sindicación y, en consecuencia, no podrá fundar ni afiliarse a sindicatos."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 1,
+        "titulo_tema": "Derechos y Deberes (LO 9/2011)",
+        "pregunta": "En las Fuerzas Armadas, el principio de igualdad implica que:",
+        "opciones": ["Todos cobran lo mismo", "No cabrá discriminación alguna por razón de nacimiento, origen, género, religión u opinión", "Todos tienen el mismo empleo", "Se aplica el mismo horario a todas las unidades"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 4.\nNo cabrá discriminación alguna por razón de nacimiento, origen racial o étnico, género, sexo, orientación sexual, religión, etc."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 2,
+        "titulo_tema": "Derechos y Deberes de carácter profesional",
+        "pregunta": "¿Dónde debe residir el militar?",
+        "opciones": ["En el acuartelamiento obligatoriamente", "En el municipio de su destino, salvo autorización para otro distinto", "En cualquier lugar de la provincia", "A menos de 1 hora de la unidad"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 23.\nEl lugar de residencia del militar será el del municipio de su destino. También podrá ser uno distinto siempre que se asegure el cumplimiento de sus obligaciones."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 2,
+        "titulo_tema": "Derechos y Deberes de carácter profesional",
+        "pregunta": "Respecto a la disponibilidad para el servicio, los militares estarán:",
+        "opciones": ["Disponibles de 08:00 a 15:00", "En disponibilidad permanente", "Disponibles solo cuando estén de guardia", "Disponibles según su contrato"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 22.\nLos militares estarán en disponibilidad permanente para el servicio."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 2,
+        "titulo_tema": "Derechos y Deberes de carácter profesional",
+        "pregunta": "¿Qué obligación tiene el militar respecto a los datos no clasificados relativos al servicio?",
+        "opciones": ["Publicarlos para ser transparente", "Guardar la debida discreción", "Compartirlos solo con familiares", "Ninguna, si no son secretos"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 21.\nGuardará la debida discreción sobre hechos o datos no clasificados relativos al servicio... sin que pueda difundirlos por ningún medio."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 3,
+        "titulo_tema": "Asociaciones Profesionales",
+        "pregunta": "Las asociaciones profesionales de miembros de las FAS:",
+        "opciones": ["Pueden tener carácter lucrativo", "Pueden realizar actividades políticas", "Deben tener ámbito nacional y no tener carácter lucrativo", "Pueden tener su sede dentro de los cuarteles"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 33.\nDeberán tener ámbito nacional... y en ningún caso tendrán carácter lucrativo. No podrán establecer su domicilio social en las unidades."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 4,
+        "titulo_tema": "Observatorio de la vida militar",
+        "pregunta": "¿A qué organismo está adscrito el Observatorio de la vida militar?",
+        "opciones": ["Al Ministerio de Defensa", "Al Cuartel General del Ejército", "A las Cortes Generales", "Al Defensor del Pueblo"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 53.\nSe crea el Observatorio de la vida militar como órgano colegiado... adscrito a las Cortes Generales."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 5,
+        "titulo_tema": "Iniciativas y Quejas (RD 176/2014)",
+        "pregunta": "¿Ante quién se presentan las iniciativas y propuestas en la unidad?",
+        "opciones": ["Directamente ante el General Jefe", "Ante el oficial, suboficial mayor o cabo mayor designado a tal efecto", "Ante el buzón de sugerencias anónimo", "Ante la asociación profesional"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 6 (RD 176/2014).\nSe podrán presentar... ante el oficial, suboficial mayor o cabo mayor designados a tal efecto, quienes las trasladarán al jefe de unidad."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 5,
+        "titulo_tema": "Iniciativas y Quejas (RD 176/2014)",
+        "pregunta": "¿Cómo deben presentarse las quejas?",
+        "opciones": ["Siempre por escrito y mediante abogado", "Siguiendo el conducto regular, de buen modo, verbalmente o por escrito", "Públicamente en formación", "A través de los medios de comunicación"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 11 (RD 176/2014).\nPodrán presentar sus quejas siguiendo el conducto regular... y haciéndolo de buen modo, verbalmente o por escrito."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 5,
+        "titulo_tema": "Iniciativas y Quejas (RD 176/2014)",
+        "pregunta": "¿Qué debe incluir necesariamente toda queja por escrito?",
+        "opciones": ["Solo el motivo de la queja", "Nombre, TIM, empleo, destino, motivo, fecha y firma", "Nombre y DNI", "Puede ser anónima"],
+        "correcta": 1,
+        "explicacion": "📚 Artículo 11 (RD 176/2014).\nIncluirá necesariamente el nombre, la tarjeta de identidad militar, empleo y destino... motivo... fecha... y firma."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 6,
+        "tema": 5,
+        "titulo_tema": "Iniciativas y Quejas (RD 176/2014)",
+        "pregunta": "Si un mando no es competente para resolver una queja recibida, ¿qué debe hacer?",
+        "opciones": ["Rechazarla", "Archivarla", "Trasladarla por escrito a quien corresponda e informar al interesado", "Devolverla al interesado para que la envíe él"],
+        "correcta": 2,
+        "explicacion": "📚 Artículo 11 (RD 176/2014).\nSi no es competente, la trasladará por escrito a quien corresponda para que actúe, dando conocimiento al interesado."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 1,
+        "titulo_tema": "Modelo de liderazgo K-2",
+        "pregunta": "¿Cuál es el 'centro de gravedad' del Ejército según el propósito del JEME sobre liderazgo?",
+        "opciones": ["La tecnología", "El combatiente", "La estructura orgánica", "El armamento"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1 (Punto 1).\nEl centro de gravedad es el combatiente y nuestra primera prioridad es su formación, motivación y moral."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 1,
+        "titulo_tema": "Modelo de liderazgo K-2",
+        "pregunta": "¿Qué significan las siglas del entorno VUCA en el que se basa el liderazgo del futuro?",
+        "opciones": ["Velocidad, Unión, Calidad y Astucia", "Volátil, Incierto, Complejo y Ambiguo", "Valor, Unidad, Compañerismo y Abnegación", "Visión, Utilidad, Claridad y Agilidad"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1 (Punto 1).\nUn entorno VUCA (Volátil, Incierto, Complejo y Ambiguo), que conjuga la inversión a largo plazo con una sólida formación en valores."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 1,
+        "titulo_tema": "Modelo de liderazgo K-2",
+        "pregunta": "En la distinción entre Jefe y Líder, ¿con qué se relaciona el 'Jefe'?",
+        "opciones": ["Con la 'auctoritas' y la actitud", "Con la gestión de recursos tangibles y la aptitud ('potestas')", "Con la influencia sobre las personas", "Con los recursos intangibles"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1 (Punto 2).\nComo jefe, dirigiendo, gestionando y administrando los recursos ('potestas'). Estos se denominan recursos tangibles y tienen que ver con la aptitud."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 1,
+        "titulo_tema": "Modelo de liderazgo K-2",
+        "pregunta": "¿Cuáles son las 3 dimensiones del liderazgo en el Modelo K2?",
+        "opciones": ["Táctica, Técnica y Logística", "Aptitud, Actitud y Ética", "Mando, Dirección y Ejecución", "Valor, Honor y Disciplina"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1 (Punto 3).\nLas dimensiones son la aptitud (habilidades), la actitud (competencias) y la ética (excelencia basada en valores)."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 1,
+        "titulo_tema": "Modelo de liderazgo K-2",
+        "pregunta": "¿A qué nivel de responsabilidad corresponde el 'Microliderazgo'?",
+        "opciones": ["Nivel estratégico (Crear cultura)", "Nivel indirecto (Líder de líderes)", "Nivel directo (Líder de equipo)", "Nivel personal (Autoliderazgo)"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 1 (Punto 3).\nEl microliderazgo corresponde al nivel directo de mando ('Líder de equipo') y se adquiere en la formación de oficiales, suboficiales y cabos."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 1,
+        "titulo_tema": "Modelo de liderazgo K-2",
+        "pregunta": "¿Cuál es la primera etapa o 'campamento base' en el ascenso a la cima del liderazgo?",
+        "opciones": ["El Equipazgo", "La Decisión", "El Autoliderazgo", "La Misión"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 1 (Punto 3).\nAsí tendemos al autoliderazgo, basado en el autoconocimiento y el autodesarrollo, como primer paso."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 2,
+        "titulo_tema": "Mando orientado a la misión (MoM)",
+        "pregunta": "En la evolución del liderazgo, ¿qué símil se utiliza para el siglo XIX (control del caos y obediencia ciega)?",
+        "opciones": ["Entorno Rafting", "Entorno Vela", "Entorno Remo", "Entorno Motor"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 2 (Punto 1).\nSe simula a un entorno de remos: el jefe es el único que sabe dónde está la meta y da las órdenes, los demás obedecen ciegamente."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 2,
+        "titulo_tema": "Mando orientado a la misión (MoM)",
+        "pregunta": "¿Qué caracteriza al entorno 'Rafting' del siglo XXI?",
+        "opciones": ["El jefe decide todo", "Cada miembro conoce la meta y tiene iniciativa para adaptarse a los cambios rápidos", "Se necesita solo fuerza física", "Es un entorno estático y seguro"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 2 (Punto 1).\nEn el entorno rafting, cada miembro conoce la meta y usa su iniciativa individual para adaptar la toma de decisiones al entorno inmediato."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 2,
+        "titulo_tema": "Mando orientado a la misión (MoM)",
+        "pregunta": "¿En qué dos pilares fundamentales se basa el 'Mission Command' (Mando Orientado a la Misión)?",
+        "opciones": ["La jerarquía y la disciplina", "La confianza y el entendimiento mutuo", "El control y la sanción", "La tecnología y la potencia de fuego"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 2 (Punto 2).\nEs una filosofía de mando descentralizado basada en dos pilares fundamentales: la confianza y el entendimiento mutuo."
+    },
+    {
+        "capitulo": 1,
+        "bloque": 7,
+        "tema": 2,
+        "titulo_tema": "Mando orientado a la misión (MoM)",
+        "pregunta": "¿Cuál de los siguientes es un elemento básico de la filosofía del mando tipo misión?",
+        "opciones": ["Controlar todos los detalles (Detailed Command)", "Ejercer la iniciativa disciplinada", "Evitar cualquier riesgo", "Esperar órdenes para todo"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 2 (Punto 2).\nLos elementos básicos son: confianza, comprensión compartida, clara intención, iniciativa disciplinada, órdenes tipo misión y aceptar riesgos prudentes."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción Técnica de Combate",
+        "pregunta": "En la construcción de un pozo de tirador, ¿qué margen superior debe tener el escalón de disparo para protegerse del paso de un carro?",
+        "opciones": ["Al menos 40 centímetros", "Al menos 50 centímetros", "Al menos 60 centímetros", "Al menos 1 metro"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 1.2.\nEl escalón de disparo: el ocupante, sentado en él, debe tener al menos 60 centímetros de margen superior para protegerse del paso de un carro de combate."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción Técnica de Combate",
+        "pregunta": "Durante el avance por saltos, si el enemigo NO está apercibido, ¿cuánto tiempo se estima que tarda en reaccionar y disparar?",
+        "opciones": ["1 segundo", "3 segundos", "6 segundos", "9 segundos"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 1.5 (Avance por saltos).\nSi el enemigo no está apercibido, el tiempo que necesita para advertir el salto... será de unos 6 segundos. Si acecha, podrá reaccionar en 1 segundo."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción Técnica de Combate",
+        "pregunta": "¿Cuáles son las condiciones para que la observación sea eficaz?",
+        "opciones": ["Rápida, Segura y Concisa", "Disimulada, Completa, Constante y Limitada", "Lejana, Oculta y Silenciosa", "General, Específica y Detallada"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.3.\nPara que sea eficaz debe ser: Disimulada (que no nos vean), Completa (toda la zona), Constante (no dejar de observar) y Limitada (en zona no muy extensa)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción NBQ",
+        "pregunta": "¿Cuál es el tiempo máximo establecido para colocarse la máscara NBQ y comprobar su hermeticidad?",
+        "opciones": ["6 segundos", "9 segundos", "15 segundos", "30 segundos"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 3.2.1.3.\nLa máscara NBQ debe colocarse en un máximo de 9 segundos."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción NBQ",
+        "pregunta": "¿Cuánto tiempo mantiene sus propiedades el filtro de la máscara en un ambiente de contaminación media?",
+        "opciones": ["Aproximadamente 1 hora", "Aproximadamente 6 horas", "Aproximadamente 12 horas", "Aproximadamente 24 horas"],
+        "correcta": 0,
+        "explicacion": "📚 Apartado 3.2.1.2.\nEl filtro, en un ambiente NBQ de contaminación media, mantiene sus propiedades y eficacia, aproximadamente, durante 1 hora."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción NBQ",
+        "pregunta": "¿Durante cuánto tiempo protege el uniforme NBQ en un ambiente medianamente contaminado?",
+        "opciones": ["6 horas", "12 horas", "24 horas", "48 horas"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 3.2.2.5.\nEl uniforme NBQ protege durante 24 horas en un ambiente medianamente contaminado por los agentes químicos conocidos."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción NBQ",
+        "pregunta": "En el papel detector de agentes químicos, ¿qué indica un color de amarillo a naranja?",
+        "opciones": ["Agentes Vesicantes", "Agentes Neurotóxicos (tipo G)", "Agentes Neurotóxicos (tipo V)", "Ausencia de contaminación"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 3.2.3.2.\nDe amarillo a naranja: agentes neurotóxicos (tipo G). De rojo a violeta: vesicantes. De azul-verde a negro: neurotóxicos (tipo V)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción NBQ",
+        "pregunta": "Respecto a los autoinyectores de atropina y oxima, ¿cuál es el máximo que se puede administrar?",
+        "opciones": ["Uno", "Dos", "Tres", "Sin límite"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 3.2.3.2.\nEn caso necesario, se administrarán uno, dos o un máximo de tres autoinyectores, con intervalos de 15 minutos. No administrar más de tres."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Transmisiones",
+        "pregunta": "Según el alfabeto fonético internacional, ¿cuál es la voz para la letra 'Ñ'?",
+        "opciones": ["NOÑO", "ÑU", "NOVEMBER", "ÑANDU"],
+        "correcta": 0,
+        "explicacion": "📚 Apartado 4.1 (Tabla).\nLetra N: NOVEMBER. Letra Ñ: ÑOÑO."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Transmisiones",
+        "pregunta": "¿Qué caracteriza a una Red Dirigida?",
+        "opciones": ["Las estaciones pueden comunicarse libremente", "Es el sistema de pequeñas unidades", "Las estaciones deben obtener permiso de la 'directora' antes de comunicarse entre sí", "No hay estación directora"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 4.1.\nEn este tipo de red, las estaciones deberán obtener permiso de la 'directora' antes de comunicarse entre sí. Se emplean en grandes unidades."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Transmisiones",
+        "pregunta": "En un mensaje radio, ¿para qué sirve la 'Llamada preliminar'?",
+        "opciones": ["Para cerrar el mensaje", "Para establecer el enlace y asegurar que la receptora está lista", "Para autenticar la estación", "Para pedir silencio radio"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 4.1.\nSirve para establecer el enlace... Cuando la estación que llama desea asegurarse de que la 'directora' está lista para recibir un mensaje."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 1,
+        "titulo_tema": "Instrucción Técnica de Combate",
+        "pregunta": "¿Qué diferencia hay entre la preparación del terreno 'Rápida' y 'Completa'?",
+        "opciones": ["La rápida es con maquinaria y la completa a mano", "La rápida se prepara con el útil de mango corto individual y la completa cuando hay tiempo y medios", "La rápida es para tiradores y la completa para vehículos", "No hay diferencia"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.\nLa organización del terreno puede ser: Rápida (se prepara con el útil de mango corto individual) y Completa (siempre que se disponga de tiempo y medios)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Cuál es la composición orgánica de una Escuadra de Infantería?",
+        "opciones": ["Un Cabo y cuatro soldados", "Un Cabo y tres soldados", "Un Cabo 1º y tres soldados", "Dos binomios de soldados"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1 (Generalidades).\nLa escuadra es la unidad elemental de la Infantería... Está compuesta por un cabo y tres soldados."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Quién es el responsable de la moral, disciplina e instrucción de la escuadra?",
+        "opciones": ["El Jefe de Pelotón", "El Cabo (Jefe de Escuadra)", "El soldado más antiguo", "El Suboficial de la Sección"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.1 (Misiones del jefe de escuadra).\nEs el responsable de la moral, disciplina e instrucción de su unidad, así como del estado del material."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Para qué situaciones es más adecuada la formación en 'Columna de a uno'?",
+        "opciones": ["Para el asalto a una posición", "Para avanzar por terreno abierto bajo fuego enemigo", "Para desplazamientos rápidos, de noche o con poca visibilidad", "Para ofrecer el máximo frente de fuego"],
+        "correcta": 2,
+        "explicacion": "📚 Formaciones.\nColumna de a uno: Es la formación de marcha por excelencia. Se utiliza para desplazamientos rápidos, de noche, con niebla o por terreno muy cubierto."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Qué formación adopta la escuadra para cruzar zonas batidas por el fuego enemigo o para el asalto?",
+        "opciones": ["Columna de a uno", "Cuña", "Línea o Guerrilla", "Rombo"],
+        "correcta": 2,
+        "explicacion": "📚 Formaciones.\nLínea o Guerrilla: Se adopta para cruzar zonas batidas por el fuego enemigo en los últimos momentos del asalto. Permite el máximo volumen de fuego al frente."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Qué ventaja principal ofrece la formación en 'Cuña'?",
+        "opciones": ["Máxima velocidad de desplazamiento", "Buen frente de fuego y seguridad a los flancos", "Máxima ocultación", "Control absoluto del jefe de escuadra"],
+        "correcta": 1,
+        "explicacion": "📚 Formaciones.\nCuña: Permite hacer fuego al frente y a los flancos. Es adecuada para avanzar por terreno descubierto pero no batido intensamente."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "En el reconocimiento de un punto, ¿qué elemento se encarga de la acción principal en el objetivo?",
+        "opciones": ["El elemento de seguridad", "El elemento de mando", "El elemento de reconocimiento y observación", "Toda la patrulla a la vez"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 4.1.\nEl elemento de reconocimiento y observación es el encargado de realizar la acción en el objetivo (reconocer, observar, etc.)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Qué misión tiene el elemento de seguridad en una patrulla de reconocimiento?",
+        "opciones": ["Dirigir la acción", "Facilitar la progresión y la retirada del elemento de reconocimiento", "Llevar las transmisiones", "Interrogar a los prisioneros"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 4.1.\nEl elemento de seguridad tomará posiciones para facilitar la progresión, la acción en el objetivo y la retirada del elemento de reconocimiento."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Qué significa la señal de brazo levantado verticalmente?",
+        "opciones": ["Alto el fuego", "Atención o Reunión", "Despliegue", "Enemigo a la vista"],
+        "correcta": 1,
+        "explicacion": "📚 Señales.\nBrazo levantado verticalmente: Atención. También se utiliza para llamar a los jefes de escuadra (Reunión)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Cuál es la distancia normal entre combatientes en orden abierto (dispersión)?",
+        "opciones": ["1 a 2 metros", "5 a 10 metros", "15 a 20 metros", "Más de 25 metros"],
+        "correcta": 1,
+        "explicacion": "📚 Formaciones.\nLa dispersión normal entre hombres es de 5 a 10 metros, dependiendo del terreno y la visibilidad."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 1,
+        "tema": 2,
+        "titulo_tema": "La Escuadra y el Equipo",
+        "pregunta": "¿Qué técnica utiliza la patrulla para el reconocimiento de una zona?",
+        "opciones": ["Avanzar en línea recta hasta el final", "Establecer un PRN y destacar al elemento de reconocimiento para recorrerla por partes", "Rodear la zona sin entrar en ella", "Enviar a un solo hombre"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 4.2.\nDesde el PRN elegido se destacará el elemento de reconocimiento, que recorrerá por partes la zona asignada, mientras el de seguridad le protege."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "¿Qué sistema de coordenadas es el más utilizado en la cartografía militar al nivel que nos interesa?",
+        "opciones": ["Coordenadas Geográficas", "Coordenadas Polares", "Coordenadas Rectangulares (UTM)", "Coordenadas Azimutales"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 1.1.\nEn la cartografía militar, al nivel que nos interesa, el sistema más utilizado es el de coordenadas rectangulares dadas para una proyección tipo Universal Transversa Mercator (UTM)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "Al dar las coordenadas rectangulares de un punto, ¿qué cifras se ponen en primer lugar?",
+        "opciones": ["Las de la línea vertical (Y)", "Las de la línea horizontal (X)", "Indistintamente", "Primero la latitud y luego la longitud"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.2.\nLas coordenadas se dan poniendo en primer lugar los números correspondientes a la línea horizontal (X), y a continuación los de la línea vertical (Y)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "¿Qué precisión de localización nos ofrece una coordenada de 6 dígitos (ej: 355053)?",
+        "opciones": ["Error inferior a 1.000 metros", "Error inferior a 100 metros", "Error inferior a 10 metros", "Error inferior a 1 metro"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.2.\nSi damos como coordenadas '355053', la precisión es mayor, pues estamos dando la situación del punto con un error inferior a 100 metros."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "¿Qué elementos necesitamos para situar un punto por coordenadas polares?",
+        "opciones": ["Una referencia conocida, brújula, medio para medir distancias y medio para medir ángulos", "Un GPS y un mapa", "Solo una brújula y el mapa", "Dos referencias conocidas en el terreno"],
+        "correcta": 0,
+        "explicacion": "📚 Apartado 1.5.\nNecesitaremos: Una referencia de coordenadas conocidas, una brújula, un medio para medir distancias y un medio para medir ángulos."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "¿Cuál es la diferencia angular entre un rumbo y su rumbo inverso?",
+        "opciones": ["90 grados", "180 grados", "360 grados", "Depende del cuadrante"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.6.\nSe puede decir que el rumbo inverso (R BA) difiere del rumbo (RAB) en 180°, para una misma dirección."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "En un mapa escala 1:50.000, ¿cuál es la equidistancia normal entre dos curvas de nivel contiguas (no directoras)?",
+        "opciones": ["10 metros", "20 metros", "50 metros", "100 metros"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.7.1.\nSi se trata de un mapa escala 1:50.000, la diferencia de nivel (intervalo) entre dos curvas contiguas es de 20 metros."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "¿Cómo se denominan las curvas de nivel de trazo más grueso que llevan rotulada su altitud?",
+        "opciones": ["Curvas maestras o directoras", "Curvas intercaladas", "Curvas de pendiente", "Curvas de configuración"],
+        "correcta": 0,
+        "explicacion": "📚 Apartado 1.7.1.\nHay unas curvas de color marrón con un trazo más grueso (curvas directoras o maestras) rotuladas con la cifra correspondiente a su altitud."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "¿Qué indica una pendiente del 6%?",
+        "opciones": ["Que el ángulo de la cuesta es de 6 grados", "Que subimos 6 metros por cada 100 metros de distancia reducida", "Que la distancia geométrica es 6 veces la altura", "Que subimos 60 metros cada kilómetro de distancia geométrica"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.8.2.\nNos indica que nos acercamos a una pendiente en la que por cada 100 metros que avancemos, en distancia reducida, subiremos seis metros."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "Para localizar nuestra posición exacta mediante el método de la intersección, ¿cuántas referencias del terreno necesitamos como mínimo?",
+        "opciones": ["Una referencia", "Dos referencias (aunque es preferible tres)", "Cuatro referencias", "No hacen falta referencias si tenemos brújula"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 1.6.1.\nDe las referencias identificadas, necesitaremos un mínimo de dos, pero es preferible tener tres localizadas sobre el mapa."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 1,
+        "titulo_tema": "Cartografía",
+        "pregunta": "Si un punto se encuentra entre dos curvas de nivel, a menos de 1/4 de distancia de una de ellas, ¿qué altitud se le asigna?",
+        "opciones": ["La del punto medio entre ambas", "Se interpola matemáticamente", "La misma de dicha curva de nivel más próxima", "La de la curva superior siempre"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 1.7.2.\nSi se encuentra a menos de 1/4 de distancia de una de las curvas de nivel, se considerará que su altitud es la misma de dicha curva de nivel."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "¿En qué consiste orientar un mapa?",
+        "opciones": ["En poner el Norte hacia arriba", "En colocarlo de tal forma que las líneas del mapa coincidan o resulten paralelas a sus homólogas en el terreno", "En determinar nuestras coordenadas exactas", "En usar la brújula para medir rumbos"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 2.1.\nOrientar un mapa es colocarlo de tal modo que las líneas que forman los accidentes en él representados coincidan o resulten paralelas a sus homólogas en el terreno."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "¿Qué norte señala siempre la aguja imantada de la brújula?",
+        "opciones": ["El Norte Geográfico", "El Norte de la Cuadrícula", "El Norte Magnético", "El Norte Lambert"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 2.2.\nLa brújula es un instrumento que contiene una aguja imantada que siempre marca el norte (magnético)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "¿A cuántas milésimas artilleras equivalen los 360 grados de una circunferencia?",
+        "opciones": ["6.000 milésimas", "6.200 milésimas", "6.400 milésimas", "3.600 milésimas"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 2.2.\nTeniendo presente que una circunferencia son 360° que equivalen a 6.400 milésimas."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "Para localizar el Norte Geográfico de noche mediante la Osa Mayor, ¿cuántas veces debemos prolongar la distancia entre las guardas (Merak y Dubhe)?",
+        "opciones": ["3 veces", "4 veces", "5 veces", "10 veces"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 2.11.4.\nLlevando 5 veces la distancia entre las estrellas del costado del carro opuesto al timón (Merak y Dubhe) en la dirección de éstas."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "Utilizando un reloj de agujas para orientarse en el hemisferio Norte, ¿qué marca la dirección SUR?",
+        "opciones": ["La aguja horaria apuntando al sol", "La línea que pasa por las 12", "La bisectriz del ángulo que forman la aguja horaria (apuntando al sol) y la línea de las 12", "La bisectriz del ángulo entre el minutero y las 12"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 2.11.3.\nLa bisectriz del ángulo que forman la aguja horaria (dirigida hacia el sol) y la línea de las 12, nos marcará la dirección Sur."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "Cuando la Luna está en fase Creciente (forma de D), ¿qué dirección señala a las 18:00 horas?",
+        "opciones": ["Norte", "Sur", "Este", "Oeste"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 2.11.5.\nCuando la Luna está en su fase creciente, a las 18 horas señala la dirección Sur."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "¿En qué fase lunar la luna presenta forma de 'C'?",
+        "opciones": ["Luna Llena", "Cuarto Creciente", "Cuarto Menguante (o decreciente)", "Luna Nueva"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 2.11.5.\nLa fase decreciente tiene forma de C, es decir, con los cuernos a la derecha."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "Si estamos en Luna Llena, ¿a qué hora señalará la luna la dirección Sur?",
+        "opciones": ["A las 18:00 horas", "A las 24:00 horas (medianoche)", "A las 06:00 horas", "No señala el Sur en luna llena"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 2.11.5.\nCuando la Luna está llena, a las 24 horas señalará el Sur."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "¿Qué estrella nos indica la dirección del Norte Geográfico con muy poca variacion?",
+        "opciones": ["Sirio", "La Estrella Polar", "Antares", "Betelgeuse"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 2.11.4.\nLa Estrella Polar materializa, con error despreciable, la situación del Norte Geográfico."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 2,
+        "titulo_tema": "Orientación",
+        "pregunta": "¿Cómo se denominan los accidentes del terreno fácilmente identificables que usamos para orientar el mapa?",
+        "opciones": ["Puntos de cota", "Vértices geodésicos", "Referencias", "Jalones"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 2.1.\nAquellos accidentes naturales o artificiales que resultan fácilmente identificables en el terreno se denominan referencias."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 3,
+        "titulo_tema": "Navegación",
+        "pregunta": "¿En qué consiste la navegación?",
+        "opciones": ["En orientarse para poder desplazarse de un punto a otro del terreno", "En saber utilizar el GPS", "En determinar el Norte con la brújula", "En medir distancias en el mapa"],
+        "correcta": 0,
+        "explicacion": "📚 Apartado 3.1.\nLa navegación consiste en orientarse para poder desplazarse de un punto a otro del terreno."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 3,
+        "titulo_tema": "Navegación",
+        "pregunta": "Para navegar de un punto a otro, ¿qué dos cosas debemos saber fundamentalmente?",
+        "opciones": ["La hora de salida y la de llegada", "El equipo necesario y la meteorología", "En qué punto nos encontramos y a dónde queremos dirigirnos", "El rumbo inicial y la velocidad de marcha"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 3.1.\nPara navegar de un punto a otro debemos saber en qué punto nos encontramos y a dónde queremos dirigirnos para llegar al punto final."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 3,
+        "titulo_tema": "Navegación",
+        "pregunta": "En la navegación con mapa, ¿en qué debe basarse el itinerario elegido?",
+        "opciones": ["En la línea recta más corta", "En caminos asfaltados exclusivamente", "En una serie de puntos que coincidan con referencias claramente identificables en el terreno", "En evitar cualquier pendiente"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 3.2.\nEl itinerario elegido debe estar basado en una serie de puntos que coincidirán con referencias claramente identificables en el terreno."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 3,
+        "titulo_tema": "Navegación",
+        "pregunta": "Si navegamos con mapa y brújula y el punto final ES visible desde el inicial, ¿cómo procedemos?",
+        "opciones": ["Caminamos en línea recta sin mirar la brújula", "Basta con introducir en la brújula el rumbo correspondiente a la orientación determinada y materializarlo", "Debemos triangular nuestra posición primero", "Calculamos la distancia a pasos"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 3.3.\nSi el punto final es visible desde el inicial, bastará con introducir en la brújula el rumbo correspondiente y materializarlo sobre el terreno."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 3,
+        "titulo_tema": "Navegación",
+        "pregunta": "Si el punto final NO es visible desde el inicial, ¿qué debemos identificar en el mapa?",
+        "opciones": ["El punto más alto de la zona", "Una serie de puntos intermedios que enlazándolos nos lleven hasta el final", "La declinación magnética exacta", "El camino más largo pero seguro"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 3.3.\nSi, por el contrario, el punto final no es visible, se identificarán la serie de puntos intermedios que enlazándolos sucesivamente nos lleven hasta el final."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 3,
+        "titulo_tema": "Navegación",
+        "pregunta": "En la navegación por tramos (punto final no visible), ¿qué debemos medir en el mapa de cada tramo?",
+        "opciones": ["Solo la distancia", "Solo el rumbo inverso", "Su orientación y su longitud", "La pendiente media"],
+        "correcta": 2,
+        "explicacion": "📚 Apartado 3.3.\nDe cada tramo y tomando como origen el punto inicial del mismo, mediremos su orientación y su longitud."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 3,
+        "titulo_tema": "Navegación",
+        "pregunta": "Si al llegar al final de un tramo (según la distancia recorrida) no logramos identificar la referencia del terreno, ¿qué debemos hacer?",
+        "opciones": ["Darnos por perdidos y volver al inicio", "Recorrer sobre la dirección materializada una distancia equivalente a la longitud medida en el mapa", "Cambiar de rumbo aleatoriamente", "Esperar a que mejore la visibilidad"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 3.3.\nEn el caso de no ser posible esta identificación, recorreremos sobre la dirección materializada una distancia equivalente a la longitud medida en el mapa."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 2,
+        "tema": 3,
+        "titulo_tema": "Navegación",
+        "pregunta": "¿Qué métodos podemos emplear para medir distancias durante la navegación a pie?",
+        "opciones": ["Telémetro láser exclusivamente", "Podómetro, paso talonado, velocidad de marcha", "Cuenta kilómetros del vehículo", "Estimación visual solamente"],
+        "correcta": 1,
+        "explicacion": "📚 Apartado 3.3.\nPara medir esta distancia podemos emplear distintos métodos: podómetro, paso talonado, velocidad de marcha o cualquier otro procedimiento."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "¿En qué condiciones físicas y psicológicas es imprescindible manejar el armamento?",
+        "opciones": ["Bajo supervisión médica", "En perfectas condiciones, nunca bajo efectos de alcohol, medicamentos o drogas", "Habiendo descansado al menos 8 horas", "Solo si se ha pasado el TGCF"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1.\nPor las posibles consecuencias... es imprescindible manejarlo en perfectas condiciones físicas y psicológicas, por ejemplo, no se debe manejar un arma habiendo tomado alcohol, o bajo los efectos de medicamentos o drogas."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "Antes del empleo del arma o de su limpieza, ¿qué debemos comprobar?",
+        "opciones": ["Que tiene el seguro puesto", "Que el alza está graduada", "Que está descargada, sin cargador, recámara libre y cañón sin cuerpos extraños", "Que está perfectamente engrasada"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 1.\nSe deberá comprobar que: El arma está descargada, se ha retirado el sistema de alimentación, está libre la recámara y en el cañón no se encuentra ningún cuerpo extraño."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "En el momento de la entrega o recepción de un arma, ¿cómo debe estar ésta?",
+        "opciones": ["Con el cierre abierto", "Con el seguro puesto y la boca del cañón apuntando a una dirección segura", "Desmontada en sus grupos principales", "Con el cargador puesto pero sin cartucho en recámara"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1.\nEl arma tiene que tener puesto el seguro y la boca del cañón tiene que apuntar hacia una dirección segura."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "Si no conocemos el estado de carga de un arma, ¿cómo debemos tratarla?",
+        "opciones": ["Como si estuviera descargada", "Como si estuviera cargada y lista para el disparo", "Preguntando al compañero más cercano", "Accionando el disparador en vacío"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1.\nSiempre que no se conozca el estado de carga del arma, ésta debe ser tratada como si estuviera cargada y lista para el disparo."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "¿Cuándo se debe poner el dedo en el disparador?",
+        "opciones": ["En cuanto encaramos el arma", "Durante el desplazamiento táctico", "Nunca hasta el momento de hacer fuego", "Para comprobar la tensión del muelle"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 1.\nNo tocar nunca el disparador hasta el momento de hacer fuego."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "¿Se puede apuntar con el arma a personas durante la instrucción?",
+        "opciones": ["Sí, si el arma está descargada", "Sí, si es un ejercicio de combate en población", "No, nunca durante su manipulación o ejercicios", "Solo si lo ordena el instructor"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 1.\nNo apuntar nunca con el arma a personas durante su manipulación o durante los ejercicios."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "Si un arma sufre un golpe fuerte o caída que pueda afectar a su funcionamiento, ¿quién debe inspeccionarla?",
+        "opciones": ["El usuario del arma", "El Cabo de la Escuadra", "El fabricante o personal técnico experto en armas", "El oficial de tiro"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 1.\nEn caso de golpes fuertes... ésta debe ser inspeccionada por el fabricante o por personal técnico experto en armas de fuego."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "¿Qué precaución debemos tener con los blancos durante los ejercicios de tiro?",
+        "opciones": ["Que sean visibles a larga distancia", "Que estén fabricados de un material que evite el rebote de los proyectiles", "Que sean biodegradables", "Que tengan la silueta reglamentaria"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1.\nTener presente que los blancos... estén fabricados de un material que evite el rebote de los proyectiles."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "Durante el desmontaje y montaje del arma, ¿se puede aplicar violencia para encajar las piezas?",
+        "opciones": ["Sí, si alguna pieza está dura por el uso", "Solo si usamos herramientas adecuadas", "No, no aplicar violencia alguna", "Depende del modelo de arma"],
+        "correcta": 2,
+        "explicacion": "📚 Tema 1.\nNo aplicar violencia alguna durante la manipulación, despiece, limpieza y ensamblaje del arma."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 1,
+        "titulo_tema": "Normas Generales en el Uso de las Armas",
+        "pregunta": "¿Qué tipo de munición debemos usar?",
+        "opciones": ["Cualquiera que encaje en la recámara", "Únicamente cartuchos en perfecto estado, suministrados oficialmente y del calibre correspondiente", "Munición recargada por nosotros mismos", "La que encontremos en el campo de tiro"],
+        "correcta": 1,
+        "explicacion": "📚 Tema 1.\nUsar únicamente cartuchos en perfecto estado y que hayan sido suministrados oficialmente, y sean del calibre correspondiente a cada arma."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "¿Qué tipo de funcionamiento tiene el fusil HK G-36E?",
+        "opciones": ["Automático, por retroceso de masas", "Automático, por toma de gases con cierre de cabeza giratoria", "Semiautomático, por inercia retardada", "De repetición manual"],
+        "correcta": 1,
+        "explicacion": "📚 Datos Generales.\nEl fusil G36 E es un arma de funcionamiento automático, por toma de gases con cierre de cabeza giratoria."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "¿De qué material están fabricados el cajón de mecanismos, la empuñadura, el culatín y el guardamanos?",
+        "opciones": ["Acero estampado", "Aleación ligera de aluminio", "Material sintético altamente resistente", "Madera laminada"],
+        "correcta": 2,
+        "explicacion": "📚 Datos Generales.\nEstán fabricados de material sintético altamente resistente, resultando un arma muy ligera."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "¿Cuál es la capacidad del cargador estándar del HK G-36E?",
+        "opciones": ["20 cartuchos", "25 cartuchos", "30 cartuchos", "35 cartuchos"],
+        "correcta": 2,
+        "explicacion": "📚 Datos Generales.\nEl arma se alimenta mediante cargadores de petaca de 30 cartuchos, que pueden acoplarse unos a otros."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "¿Dónde va integrado el visor óptico del fusil?",
+        "opciones": ["En el guardamanos", "En el asa de transporte", "Sobre el cañón", "En la culata"],
+        "correcta": 1,
+        "explicacion": "📚 Datos Generales.\nEl visor óptico va integrado en el asa de transporte."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "En la descripción general del arma, ¿qué pieza corresponde al número 1?",
+        "opciones": ["El cañón", "La bocacha apagallamas", "La palanca de montar", "El tapón de gases"],
+        "correcta": 1,
+        "explicacion": "📚 Descripción General.\n1.- Bocacha apagallamas."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "¿Qué pieza corresponde al número 4 en el esquema del fusil?",
+        "opciones": ["Palanca de montar", "Cierre", "Palanca del seguro", "Guardamonte"],
+        "correcta": 0,
+        "explicacion": "📚 Descripción General.\n4.- Palanca de montar."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "Si se produce una interrupción por 'Vaina no expulsada', ¿cuál puede ser una causa probable?",
+        "opciones": ["Aguja percutora rota", "Recámara sucia o extractor roto", "Cargador mal colocado", "Seguro puesto"],
+        "correcta": 1,
+        "explicacion": "📚 Tabla de Interrupciones.\nVaina no expulsada: Recámara sucia, extractor roto o muelle del extractor roto."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "Si observamos una 'Expulsión violenta de vainas', ¿a qué se debe generalmente?",
+        "opciones": ["A que el paso de gases es excesivo", "A que el muelle recuperador está muy fuerte", "A que la munición es defectuosa", "A que el cierre está sucio"],
+        "correcta": 0,
+        "explicacion": "📚 Tabla de Interrupciones.\nExpulsión violenta... Causa: El paso de gases es excesivo. Remedio: Reducir el paso de gases."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "¿Es necesario utilizar herramientas especiales para el desmontaje básico de limpieza?",
+        "opciones": ["Sí, un destornillador plano", "Sí, un botador especial", "No, se desmonta con facilidad sin herramientas", "Sí, la llave del HK"],
+        "correcta": 2,
+        "explicacion": "📚 Datos Generales.\nEl fusil G36 E se desmonta con facilidad en sus componentes principales, sin necesidad de herramientas."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 2,
+        "titulo_tema": "Fusil HK G-36E",
+        "pregunta": "¿Qué característica especial tienen los cargadores del HK G-36?",
+        "opciones": ["Son metálicos e inoxidables", "Tienen un indicador de carga digital", "Pueden acoplarse unos a otros", "Son desechables"],
+        "correcta": 2,
+        "explicacion": "📚 Datos Generales.\nCargadores de petaca de 30 cartuchos, que pueden acoplarse unos a otros."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿Cuál es el calibre de la pistola HK USP reglamentaria?",
+        "opciones": ["9 mm Corto", "9 x 19 mm Parabellum", "45 ACP", "7.62 mm"],
+        "correcta": 1,
+        "explicacion": "📚 Características Generales.\nCalibre: 9 x 19 mm Parabellum."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿Cuál es la velocidad inicial del proyectil y el alcance eficaz de la HK USP?",
+        "opciones": ["300 m/s y 25 metros", "360 m/s y 50 metros", "400 m/s y 100 metros", "340 m/s y 50 metros"],
+        "correcta": 1,
+        "explicacion": "📚 Características Generales.\nVelocidad inicial del proyectil: 360 m/s. Alcance eficaz: 50 metros."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿Qué tipo de mecanismo de disparo tiene la HK USP?",
+        "opciones": ["Solo Doble Acción (DAO)", "Solo Simple Acción (SA)", "Simple y Doble Acción (SA/DA)", "Aguja lanzada"],
+        "correcta": 2,
+        "explicacion": "📚 Características Generales.\nMecanismo de disparo de simple/doble acción con martillo a la vista."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿Cuál es la capacidad del cargador de la pistola HK USP?",
+        "opciones": ["13 cartuchos", "15 cartuchos", "17 cartuchos", "12 cartuchos"],
+        "correcta": 1,
+        "explicacion": "📚 Características Generales.\nAutonomía de fuego: 15 disparos (más uno en recámara)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿Cómo funciona el sistema de acerrojamiento de la HK USP?",
+        "opciones": ["Cierre de masas (Blowback)", "Toma de gases", "Acerrojamiento semirrígido por corto retroceso basculante del cañón", "Cañón fijo"],
+        "correcta": 2,
+        "explicacion": "📚 Características Generales.\nAcerrojamiento semirrígido por interposición del bloque de la recámara. Desbloqueo por corto retroceso basculante del cañón."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿De qué material está fabricado el armazón de la pistola?",
+        "opciones": ["Acero inoxidable", "Aluminio aeronáutico", "Polímero reforzado con fibra de vidrio", "Aleación ligera"],
+        "correcta": 2,
+        "explicacion": "📚 Características Generales.\nEl armazón está fabricado en polímero integral... mezcla de plástico poliamídico y fibra de vidrio."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿Qué función tiene la palanca de retenida de la corredera?",
+        "opciones": ["Solo desmontar el arma", "Mantener la corredera abierta cuando el cargador está vacío", "Activar el seguro", "Expulsar el cargador"],
+        "correcta": 1,
+        "explicacion": "📚 Funcionamiento.\nTras producirse el disparo del último cartucho... la palanca de retención de la corredera mantiene el sistema de cierre en posición abierta."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "La HK USP dispone de un sistema de desamartillado. ¿Cómo se activa?",
+        "opciones": ["Presionando el disparador en vacío", "Presionando la palanca del seguro hacia abajo más allá de la posición de fuego", "Tirando del martillo hacia atrás", "Quitando el cargador"],
+        "correcta": 1,
+        "explicacion": "📚 Características.\nSistema de desamartillado: Permite bajar el martillo con seguridad presionando la palanca del seguro hacia abajo."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿Qué ocurre tras el disparo durante la secuencia de funcionamiento?",
+        "opciones": ["El cañón permanece fijo y solo se mueve la corredera", "El grupo cañón-corredera retrocede unido un breve recorrido hasta que el cañón bascula y se desbloquea", "Los gases empujan el pistón", "El martillo se queda abatido"],
+        "correcta": 1,
+        "explicacion": "📚 Secuencia de funcionamiento.\nTras producirse el disparo... el grupo cañón-corredera se desplaza, bloqueado, hacia atrás. Tras retroceder conjuntamente... el descenso del cañón produce el desbloqueo."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 3,
+        "titulo_tema": "Pistola HK USP",
+        "pregunta": "¿Qué pieza del despiece básico contiene el muelle recuperador?",
+        "opciones": ["El cañón", "La corredera", "El eje de la palanca de retenida", "El conjunto de recuperación (varilla guía y muelle)"],
+        "correcta": 3,
+        "explicacion": "📚 Despiece.\nEl conjunto de recuperación formado por el muelle recuperador y su varilla guía es una pieza independiente en el despiece básico."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "¿Cuál es el calibre de la ametralladora MG-42?",
+        "opciones": ["5.56 x 45 mm", "7.62 x 51 mm NATO", "12.70 mm", "9 mm Parabellum"],
+        "correcta": 1,
+        "explicacion": "Datos Técnicos.\nEl calibre de la ametralladora MG-42 es 7.62 x 51 mm NATO."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "¿Cuál es el principio de funcionamiento de la MG-42?",
+        "opciones": ["Toma de gases", "Retroceso de masas de largo recorrido", "Retroceso del cañón (corto recorrido) con cierre de rodillos", "Inercia de masas pura"],
+        "correcta": 2,
+        "explicacion": "Funcionamiento.\nFunciona por el principio de retroceso del cañón (corto recorrido) y utiliza un sistema de acerrojamiento por rodillos."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "¿Cómo se realiza la alimentación de la ametralladora?",
+        "opciones": ["Mediante cargadores de petaca de 30 cartuchos", "Mediante cinta de eslabón irreintegrable (desintegrable)", "Mediante tambor de 100 cartuchos", "Mediante peine de 5 cartuchos"],
+        "correcta": 1,
+        "explicacion": "Alimentación.\nLa alimentación se realiza mediante cinta de eslabón irreintegrable (generalmente de 50 cartuchos, que pueden empalmarse)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "¿Qué tipo de refrigeración tiene el cañón de la MG-42?",
+        "opciones": ["Por agua", "Por aire, con cambio rápido de cañón", "Por aceite", "No tiene sistema de refrigeración"],
+        "correcta": 1,
+        "explicacion": "Características.\nLa refrigeración es por aire. Debido a su alta cadencia de fuego, dispone de un sistema de cambio rápido de cañón para evitar el sobrecalentamiento."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "En ambientes secos y polvorientos (desiertos), ¿cómo debe ser el engrase del arma?",
+        "opciones": ["Abundante para evitar la fricción", "Moderado", "Debe evitarse el exceso de grasa, estando más segura seca y limpia", "Solo con aceite de motor"],
+        "correcta": 2,
+        "explicacion": "Mantenimiento.\nEn ambientes secos y polvorientos... un arma excesivamente engrasada está más expuesta a interrupciones que estando seca y limpia, sin engrase alguno."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "¿Quién debe llevar a cabo las inspecciones técnicas del arma?",
+        "opciones": ["El usuario del arma", "El jefe de pelotón", "Los especialistas con las herramientas adecuadas", "El oficial de servicio"],
+        "correcta": 2,
+        "explicacion": "Mantenimiento.\nLas inspecciones técnicas se llevan a cabo por los especialistas con las herramientas adecuadas, tales como medidores, calibradores, etc."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "¿Qué alcance eficaz aproximado tiene la MG-42 sobre bípode?",
+        "opciones": ["400 metros", "600 metros", "1.200 metros", "2.000 metros"],
+        "correcta": 1,
+        "explicacion": "Datos Técnicos.\nEl alcance eficaz sobre bípode es de aproximadamente 600 metros."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "Si empleamos la MG-42 sobre trípode, ¿cuál es su alcance eficaz estimado?",
+        "opciones": ["800 metros", "1.200 metros", "2.500 metros", "3.000 metros"],
+        "correcta": 1,
+        "explicacion": "Datos Técnicos.\nSobre trípode, el alcance eficaz aumenta considerablemente hasta los 1.200 metros aproximadamente."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "¿Cuál es la cadencia de tiro teórica aproximada de la MG-42?",
+        "opciones": ["600 disparos/minuto", "800 disparos/minuto", "1.100 - 1.300 disparos/minuto", "1.800 disparos/minuto"],
+        "correcta": 2,
+        "explicacion": "Datos Técnicos.\nLa MG-42 se caracteriza por una cadencia de tiro muy elevada, situada teóricamente entre 1.100 y 1.300 disparos por minuto."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 4,
+        "titulo_tema": "Ametralladora MG-42",
+        "pregunta": "¿Qué elemento se utiliza para montar el arma (llevar el cierre atrás)?",
+        "opciones": ["El disparador", "La palanca de montar", "El guardamonte", "La ventana de alimentación"],
+        "correcta": 1,
+        "explicacion": "Manejo.\nPara montar el arma se utiliza la palanca de montar, tirando de ella enérgicamente hacia atrás."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "¿Qué rama de la balística estudia el movimiento del proyectil en la atmósfera?",
+        "opciones": ["Balística Interior", "Balística Exterior", "Balística de Efectos", "Balística Terminal"],
+        "correcta": 1,
+        "explicacion": "📚 Balística.\nDenominamos balística al estudio del movimiento del proyectil... en la atmósfera (balística exterior)."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "¿Qué elementos componen el 'disparo' según la balística interior?",
+        "opciones": ["El arma, el tirador y el objetivo", "El proyectil, la carga de proyección y el artificio de fuego", "La vaina, la bala y el pistón", "El cañón, el cierre y el disparador"],
+        "correcta": 1,
+        "explicacion": "📚 Balística Interior.\nEstos elementos son el proyectil o sólido que se lanza, la carga de proyección... y el artificio de fuego que activa la carga."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "En un cartucho de arma ligera, ¿dónde se aloja la cápsula fulminante?",
+        "opciones": ["En la ojiva de la bala", "En el cuerpo de la vaina", "En el culote de la vaina", "En el interior de la carga de proyección"],
+        "correcta": 2,
+        "explicacion": "📚 Balística Interior.\nEn la parte inferior de la vaina se encuentra el culote, donde se aloja la cápsula fulminante, artificio de dar fuego."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "¿Qué define a la munición con balas incendiarias?",
+        "opciones": ["Que explota por impacto", "Que contiene un núcleo duro perforante", "Que contiene una mezcla química que se inflama al contacto con el aire o por impacto", "Que deja una estela visible en su trayectoria"],
+        "correcta": 2,
+        "explicacion": "📚 Tipos de munición.\nMunición con balas incendiarias: la munición... con balas que contengan una mezcla química que se inflama al contacto con el aire o por impacto."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "Según el Reglamento de Armas, ¿qué se considera un arma de fuego corta (1ª Categoría)?",
+        "opciones": ["Aquella cuyo cañón no exceda de 20 cm o longitud total no exceda de 40 cm", "Aquella cuyo cañón no exceda de 30 cm o longitud total no exceda de 60 cm", "Cualquier pistola o revólver independientemente de su medida", "Aquella que puede dispararse con una sola mano"],
+        "correcta": 1,
+        "explicacion": "📚 Clasificación de las armas.\n1ª Categoría: armas de fuego cortas; armas cuyo cañón no exceda de 30 centímetros o cuya longitud total no exceda de 60 centímetros."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "¿En qué categoría se clasifican las armas de fuego largas para vigilancia y guardería?",
+        "opciones": ["1ª Categoría", "2ª Categoría", "3ª Categoría", "7ª Categoría"],
+        "correcta": 1,
+        "explicacion": "📚 Clasificación de las armas.\n2ª Categoría: arma de fuego larga... Comprende las armas de fuego largas para vigilancia y las armas de fuego largas rayadas para caza mayor."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "¿Qué armas comprende la 4ª Categoría?",
+        "opciones": ["Armas blancas", "Armas de fuego antiguas o históricas", "Carabinas y pistolas accionadas por aire u otro gas comprimido", "Escopetas de caza"],
+        "correcta": 2,
+        "explicacion": "📚 Clasificación de las armas.\n4ª Categoría: carabinas, revólveres y pistolas accionadas por aire u otro gas comprimido no asimiladas a escopetas."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "¿A qué categoría pertenecen las armas blancas (cuchillos, machetes, etc.)?",
+        "opciones": ["4ª Categoría", "5ª Categoría", "6ª Categoría", "7ª Categoría"],
+        "correcta": 1,
+        "explicacion": "📚 Clasificación de las armas.\n5ª Categoría: armas blancas."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "¿En qué categoría se incluyen las ballestas, arcos y fusiles de pesca submarina?",
+        "opciones": ["3ª Categoría", "5ª Categoría", "6ª Categoría", "7ª Categoría"],
+        "correcta": 3,
+        "explicacion": "📚 Clasificación de las armas.\n7ª Categoría: otras armas; comprende las de inyección anestésica, ballestas, arcos, fusiles de pesca submarina..."
+    },
+    {
+        "capitulo": 2,
+        "bloque": 3,
+        "tema": 5,
+        "titulo_tema": "Teoría del Tiro",
+        "pregunta": "¿Cuál es la función principal de la vaina en un cartucho?",
+        "opciones": ["Perforar el objetivo", "Dar impulso a la bala", "Contener la carga de proyección y alojar la cápsula fulminante", "Dirigir el proyectil en el cañón"],
+        "correcta": 2,
+        "explicacion": "📚 Balística Interior.\nLa vaina, que en su interior se encuentra la carga de proyección... y en la parte inferior... se aloja la cápsula fulminante."
+    }  
+]
+
+

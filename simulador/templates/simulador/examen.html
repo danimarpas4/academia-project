@@ -1,134 +1,107 @@
 {% extends 'simulador/base.html' %}
-{% load static %}
 
 {% block content %}
-
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-<style>
-    /* VARIABLES DE TEMA (MODO OSCURO FORZADO PARA CONCENTRACIÓN EN EL EXAMEN O HEREDADO) */
-    :root {
-        --bg-body: #050505;
-        --glass-bg: rgba(20, 30, 20, 0.85);
-        --text-primary: #ffffff;
-        --accent-neon: #76ff03;
-        --accent-dim: rgba(118, 255, 3, 0.2);
-    }
-    
-    /* Si el usuario tiene modo claro, adaptamos */
-    [data-theme="light"] {
-        --bg-body: #f5f7fa;
-        --glass-bg: rgba(255, 255, 255, 0.95);
-        --text-primary: #1c1e21;
-        --accent-neon: #2e7d32;
-        --accent-dim: rgba(46, 125, 50, 0.1);
-    }
-
-    body {
-        background-color: var(--bg-body);
-        font-family: 'Rajdhani', sans-serif;
-        color: var(--text-primary);
-    }
-
-    /* CAJA DEL EXAMEN */
-    .exam-container {
-        max-width: 800px;
-        margin: 0 auto;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 40px;
-        border: 1px solid var(--accent-dim);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .question-box {
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--accent-dim);
-    }
-
-    .question-title {
-        font-weight: 700;
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-    }
-
-    /* ESTILO DE LOS RADIO BUTTONS */
-    .form-check-input {
-        background-color: transparent;
-        border-color: var(--text-primary);
-    }
-    .form-check-input:checked {
-        background-color: var(--accent-neon);
-        border-color: var(--accent-neon);
-    }
-
-    .btn-finish {
-        background: var(--accent-neon);
-        color: #000; /* Texto negro para contraste */
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        border-radius: 50px;
-        padding: 10px 30px;
-        border: none;
-        width: 100%;
-        margin-top: 20px;
-    }
-    
-    /* Modo claro ajuste de texto botón */
-    [data-theme="light"] .btn-finish { color: #fff; }
-    [data-theme="dark"] .btn-finish { color: #000; }
-</style>
-
-<div class="container py-5">
-    <div class="exam-container">
-        <div class="d-flex justify-content-between align-items-center mb-4 pb-3" style="border-bottom: 2px solid var(--accent-neon);">
-            <h2 class="m-0" style="text-transform: uppercase;">{{ tema.nombre }}</h2>
-            <a href="{% url 'portada' %}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
-                CANCELAR
-            </a>
-        </div>
-
-        <form method="post">
-            {% csrf_token %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
             
-            {% for pregunta in tema.preguntas.all %}
-            <div class="question-box">
-                <p class="question-title">
-                    <span style="color: var(--accent-neon);">{{ forloop.counter }}.</span> 
-                    {{ pregunta.enunciado }}
-                </p>
-                
-                <div class="ms-3">
-                    {% for opcion in pregunta.opciones.all %}
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" type="radio" 
-                               name="pregunta_{{ pregunta.id }}" 
-                               id="opcion_{{ opcion.id }}" 
-                               value="{{ opcion.id }}" required>
-                        <label class="form-check-label" for="opcion_{{ opcion.id }}">
-                            {{ opcion.texto }}
-                        </label>
-                    </div>
-                    {% endfor %}
-                </div>
+            {% if tiempo_limite > 0 %}
+            <div class="sticky-top mb-3 text-center" style="top: 20px; z-index: 1000;">
+                <span class="badge bg-danger fs-5 shadow-lg border border-warning" id="cronometro">
+                    ⏱️ {{ tiempo_limite }}:00
+                </span>
             </div>
-            {% endfor %}
+            {% endif %}
 
-            <button type="submit" class="btn-finish">
-                FINALIZAR SIMULACRO
-            </button>
-        </form>
+            <form method="POST" id="examenForm">
+                {% csrf_token %}
+                
+                <div class="card bg-dark text-white border-secondary shadow-lg">
+                    <div class="card-header bg-gradient bg-primary text-white p-4">
+                        <h2 class="h4 mb-0 fw-bold">📝 EJECUCIÓN DEL SIMULACRO</h2>
+                        <small class="text-light opacity-75">Responde con decisión. La duda mata.</small>
+                    </div>
+
+                    <div class="card-body p-4 bg-black">
+                        
+                        {% if not preguntas %}
+                            <div class="alert alert-warning text-center">
+                                ⚠️ No se han cargado preguntas. 
+                                <br>Vuelve a configuración y asegúrate de elegir temas que tengan contenido.
+                            </div>
+                        {% endif %}
+
+                        {% for p in preguntas %}
+                        <div class="mb-5 p-3 rounded border border-secondary" style="background-color: #1a1a1a;">
+                            <h5 class="mb-3 text-warning">
+                                <span class="badge bg-secondary me-2">{{ forloop.counter }}</span>
+                                {{ p.enunciado }}
+                            </h5>
+
+                            <div class="d-grid gap-2">
+                                {% for opcion in p.opciones.all %}
+                                <div class="form-check custom-radio-box p-0">
+                                    <input class="btn-check" type="radio" 
+                                           name="pregunta_{{ p.id }}" 
+                                           id="opt_{{ opcion.id }}" 
+                                           value="{{ opcion.id }}">
+                                    
+                                    <label class="btn btn-outline-light w-100 text-start p-3 border-secondary" 
+                                           for="opt_{{ opcion.id }}">
+                                        {{ opcion.texto }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <div class="d-grid gap-2 mt-5">
+                            <button type="submit" class="btn btn-success btn-lg py-3 fw-bold text-uppercase shadow hover-scale">
+                                ✅ FINALIZAR Y ENTREGAR
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 <script>
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
+    let tiempoRestante = {{ tiempo_limite }} * 60; // Convertir minutos a segundos
+    
+    if (tiempoRestante > 0) {
+        const display = document.getElementById('cronometro');
+        
+        const intervalo = setInterval(() => {
+            let minutos = Math.floor(tiempoRestante / 60);
+            let segundos = tiempoRestante % 60;
+            
+            segundos = segundos < 10 ? '0' + segundos : segundos;
+            display.textContent = `⏱️ ${minutos}:${segundos}`;
+            
+            if (tiempoRestante <= 0) {
+                clearInterval(intervalo);
+                alert("¡TIEMPO AGOTADO! Se entregará el examen automáticamente.");
+                document.getElementById('examenForm').submit();
+            }
+            tiempoRestante--;
+        }, 1000);
     }
 </script>
 
+<style>
+    /* Estilo para que las opciones parezcan botones modernos */
+    .btn-check:checked + .btn-outline-light {
+        background-color: #ffc107; /* Amarillo militar */
+        color: #000;
+        border-color: #ffc107;
+        font-weight: bold;
+    }
+    .btn-outline-light:hover {
+        background-color: #333;
+    }
+</style>
 {% endblock %}
