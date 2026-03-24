@@ -1,68 +1,260 @@
-{% extends 'simulador/base.html' %}
-
-{% block content %}
-<div class="text-center mb-5">
-    <h1 class="display-4 fw-bold">Academia ProMilitar 🇪🇸</h1>
-    <p class="lead text-muted">Elige tu objetivo profesional y comienza a prepararte.</p>
-</div>
-
-<div class="row justify-content-center">
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProMilitar | Preparación para el Ascenso</title>
+    <!-- Favicon Dinámico -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%225%22 y=%225%22 width=%2290%22 height=%2290%22 rx=%2220%22 fill=%22%23FFCC00%22 transform=%22rotate(3 50 50)%22/></svg>" type="image/svg+xml">
     
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card h-100 text-muted bg-light" style="opacity: 0.7;">
-            <div class="card-header">Ingreso</div>
-            <div class="card-body text-center">
-                <h4 class="card-title">Acceso a las FFAAS</h4>
-                <p class="card-text">Tropa y Marinería</p>
-                <hr>
-                <button class="btn btn-secondary btn-sm disabled">
-                    🚧 Próximamente
-                </button>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        military: {
+                            gold: '#FFCC00',
+                            dark: '#000000',
+                            zinc: '#18181b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.5s ease, color 0.5s ease; }
+        
+        /* Glassmorphism Dinámico */
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 204, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Blobs Animados de Fondo */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob { animation: blob 10s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
+
+        /* Efecto de Brillo (Shine) en Botones */
+        .btn-shine { position: relative; overflow: hidden; }
+        .btn-shine::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg) translate(-100%, 100%); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-shine:hover::after { transform: rotate(45deg) translate(100%, -100%); }
+
+        /* Pulso Dorado Activo */
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 204, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+        .pulse-gold-active { animation: pulse-gold 2s infinite; }
+
+        /* Revelado al hacer Scroll */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Smooth hover for nav links */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px;
+            background: #FFCC00; transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+    </style>
+</head>
+<body class="antialiased bg-black text-white">
+
+    <!-- Header -->
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-lg border-b border-zinc-900 shadow-2xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <div class="flex items-center gap-3 group cursor-pointer" onclick="document.getElementById('inicio').scrollIntoView({behavior: 'smooth'})">
+                    <div class="w-10 h-10 bg-[#FFCC00] flex items-center justify-center rounded-lg rotate-3 shadow-[0_0_15px_rgba(255,204,0,0.3)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                        <i class="fa-solid fa-shield-halved text-black text-xl -rotate-3 transition-transform duration-300 group-hover:rotate-3"></i>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="text-2xl font-black tracking-tighter text-white leading-none uppercase">PRO<span class="text-[#FFCC00]">MILITAR</span></span>
+                        <span class="text-[0.6rem] font-bold text-zinc-500 tracking-[0.3em] leading-none mt-1 uppercase">Academia Online</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="nav-link text-zinc-400 hover:text-[#FFCC00] font-bold text-sm transition-colors uppercase tracking-tight">Inicio</a>
+                    
+                    <!-- Dropdown Bots -->
+                    <div class="relative group">
+                        <button class="nav-link text-zinc-400 hover:text-[#FFCC00] font-bold text-sm transition-colors uppercase tracking-tight">Bots Gratuitos</button>
+                        <div class="absolute top-full right-0 w-48 mt-2 bg-zinc-900 rounded-xl border border-zinc-800 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a href="{% url 'registro' %}?curso=cabo" class="block px-4 py-3 text-sm text-zinc-300 hover:text-[#FFCC00] hover:bg-zinc-800 rounded-t-xl">Bot Ascenso a Cabo</a>
+                            <a href="{% url 'registro' %}?curso=cabo-primero" class="block px-4 py-3 text-sm text-zinc-300 hover:text-[#FFCC00] hover:bg-zinc-800 rounded-b-xl">Bot Cabo Primero</a>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Cursos -->
+                    <div class="relative group">
+                        <button class="nav-link text-zinc-400 hover:text-[#FFCC00] font-bold text-sm transition-colors uppercase tracking-tight">Cursos</button>
+                        <div class="absolute top-full right-0 w-48 mt-2 bg-zinc-900 rounded-xl border border-zinc-800 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a href="#cursos" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})" class="block px-4 py-3 text-sm text-zinc-300 hover:text-[#FFCC00] hover:bg-zinc-800 rounded-t-xl">Curso de Cabo</a>
+                            <a href="#cursos" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})" class="block px-4 py-3 text-sm text-zinc-300 hover:text-[#FFCC00] hover:bg-zinc-800">Curso Cabo Primero</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-zinc-500 cursor-not-allowed rounded-b-xl">Permanencia</a>
+                        </div>
+                    </div>
+
+                    <a href="https://t.me/addlist/q57lTY3FZTgwMzBk" target="_blank" class="bg-[#FFCC00] text-black px-6 py-2.5 rounded-full font-black text-xs transition-all hover:scale-105 pulse-gold-active btn-shine uppercase tracking-tighter shadow-[0_0_20px_rgba(255,204,0,0.2)]">
+                        Unirse al Canal
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card h-100 border-primary shadow-sm">
-            <div class="card-header bg-primary text-white">Promoción Interna</div>
-            <div class="card-body text-center">
-                <h4 class="card-title text-primary">Ascenso a Cabo</h4>
-                <p class="card-text">Temario completo y test</p>
-                <hr>
-                <a href="{% url 'temario_cabo' %}" class="btn btn-primary w-100">
-                    Entrar al Curso 🚀
-                </a>
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-40 pb-20 overflow-hidden min-h-screen">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-20 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[#FFCC00] rounded-full blur-[120px] animate-blob"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-zinc-600 rounded-full blur-[120px] animate-blob" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <div class="reveal inline-flex items-center px-4 py-1.5 rounded-full glass-panel border border-zinc-500/30 text-zinc-400 text-[10px] font-black tracking-widest uppercase mb-6 mt-10">
+                <i class="fa-solid fa-lock mr-2 text-[#FFCC00]"></i> Academia temporalmente cerrada
+            </div>
+            
+            <h1 class="reveal text-5xl md:text-8xl font-black text-white mb-6 leading-none tracking-tighter italic uppercase">
+                No dejes <span class="text-[#FFCC00]">TU ASCENSO</span><br>
+                a la suerte.
+            </h1>
+
+            <div class="reveal glass-panel inline-block border-2 border-[#FFCC00]/50 p-5 rounded-3xl mb-12 shadow-[0_0_30px_rgba(255,204,0,0.1)]">
+                <p class="text-white font-bold text-sm md:text-base">
+                    🚀 <span class="text-[#FFCC00] uppercase tracking-widest">Apertura Próximamente:</span> 
+                    Entra ahora en los bots para asegurar tu <span class="underline decoration-[#FFCC00] decoration-2">Precio de Preventa</span>.
+                </p>
+            </div>
+            
+            <p class="reveal text-zinc-400 text-sm md:text-base max-w-2xl mx-auto mb-16 leading-relaxed font-medium uppercase tracking-tight">
+                Estamos terminando de armar el arsenal web. Mientras tanto, instruye gratis en nuestros <strong class="text-white">Bots tácticos de Telegram</strong>. 
+                Preguntas oficiales 24/7.
+            </p>
+
+            <!-- ACCESO A BOTS -->
+            <h2 id="cursos" class="reveal text-xs font-black text-zinc-500 mb-10 uppercase tracking-[0.5em]">Selecciona tu vía de instrucción</h2>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-left mb-20">
+                
+                <!-- Curso: CABO -->
+                <div class="reveal glass-panel p-10 rounded-[2.5rem] border border-zinc-800 hover:border-[#FFCC00]/50 transition-all duration-500 group relative shadow-2xl">
+                    <div class="absolute top-6 right-8 bg-[#FFCC00] text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter shadow-lg">Feb 2027</div>
+                    <div class="flex items-center gap-4 mb-8 relative z-10">
+                        <div class="w-14 h-14 bg-[#FFCC00]/20 rounded-2xl flex items-center justify-center text-[#FFCC00] text-2xl border border-[#FFCC00]/20 transition-transform duration-300 group-hover:rotate-6">
+                            <i class="fa-solid fa-angle-up"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white italic uppercase tracking-tighter">Curso de <span class="text-[#FFCC00]">Cabo</span></h3>
+                    </div>
+                    <p class="text-zinc-400 text-xs mb-10 leading-relaxed font-medium">
+                        Temario oficial actualizado para la próxima convocatoria. Empieza tu instrucción con antelación para asegurar tu plaza.
+                    </p>
+                    <a href="{% url 'temario_cabo' %}" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 pulse-gold-active btn-shine uppercase tracking-tighter mb-4">
+                        Accede al curso
+                    </a>
+                    <a href="https://t.me/+c0fMDCCvFs42YWVk" class="block w-full text-center bg-zinc-800 border border-zinc-700 text-white font-black py-3 px-4 rounded-xl hover:bg-zinc-700 transition-colors uppercase text-[10px] tracking-widest">
+                        Accede a nuestro bot gratuito
+                    </a>
+                </div>
+
+                <!-- Curso: CABO PRIMERO -->
+                <div class="reveal glass-panel p-10 rounded-[2.5rem] border border-zinc-800 hover:border-[#FFCC00]/50 transition-all duration-500 group relative shadow-2xl">
+                    <div class="absolute top-6 right-8 bg-[#FFCC00] text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter shadow-lg">Junio 2026</div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-14 h-14 bg-[#FFCC00]/20 rounded-2xl flex items-center justify-center text-[#FFCC00] text-2xl border border-[#FFCC00]/20 transition-transform duration-300 group-hover:rotate-6">
+                            <i class="fa-solid fa-angles-up"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white italic uppercase tracking-tighter">Curso de Cabo <span class="text-[#FFCC00]">Primero</span></h3>
+                    </div>
+                    <p class="text-zinc-400 text-xs mb-10 leading-relaxed font-medium">
+                        Preparación automatizada para la convocatoria de 2026. Ráfagas horarias, estadísticas de unidad y simulacros multi-materia gratuitos.
+                    </p>
+                    <a href="{% url 'temario_cabo_primero' %}" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 pulse-gold-active btn-shine uppercase tracking-tighter mb-4">
+                        Accede al curso
+                    </a>
+                    <a href="https://t.me/+c0fMDCCvFs42YWVk" class="block w-full text-center bg-zinc-800 border border-zinc-700 text-white font-black py-3 px-4 rounded-xl hover:bg-zinc-700 transition-colors uppercase text-[10px] tracking-widest">
+                        Accede a nuestro bot gratuito
+                    </a>
+                </div>
+
+                <!-- Curso: PERMANENCIA -->
+                <div class="reveal glass-panel p-10 rounded-[2.5rem] border border-zinc-800 hover:border-[#FFCC00]/50 transition-all duration-500 group relative shadow-2xl opacity-70">
+                    <div class="absolute top-6 right-8 bg-zinc-800 text-zinc-400 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter shadow-lg">Próximamente</div>
+                    <div class="flex items-center gap-4 mb-8 relative z-10">
+                        <div class="w-14 h-14 bg-zinc-800 rounded-2xl flex items-center justify-center text-zinc-500 text-2xl border border-zinc-700 transition-transform duration-300 group-hover:rotate-6">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white italic uppercase tracking-tighter">Curso de <span class="text-[#FFCC00]">Permanencia</span></h3>
+                    </div>
+                    <p class="text-zinc-400 text-xs mb-10 leading-relaxed font-medium">
+                        Preparación automatizada para la convocatoria de Permanencia. Ráfagas horarias, estadísticas y simulacros.
+                    </p>
+                    <button class="w-full bg-zinc-800 text-zinc-400 font-black py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 uppercase tracking-tighter cursor-not-allowed mb-4">
+                        Próximamente
+                    </button>
+                    <button class="w-full bg-zinc-900 border border-zinc-800 text-zinc-600 font-black py-3 px-4 rounded-xl transition-colors uppercase text-[10px] tracking-widest cursor-not-allowed">
+                        Accede a nuestro bot gratuito
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card h-100 text-muted bg-light" style="opacity: 0.7;">
-            <div class="card-header">Promoción Interna</div>
-            <div class="card-body text-center">
-                <h4 class="card-title">Cabo Primero</h4>
-                <p class="card-text">Material de estudio</p>
-                <hr>
-                <button class="btn btn-secondary btn-sm disabled">
-                    🚧 Próximamente
-                </button>
+    <!-- Footer -->
+    <footer class="bg-black border-t border-zinc-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            
+            <div class="flex flex-col items-center gap-3 mb-8 group cursor-default">
+                <div class="w-12 h-12 bg-[#FFCC00] flex items-center justify-center rounded-xl rotate-3 shadow-[0_0_20px_rgba(255,204,0,0.2)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                    <i class="fa-solid fa-shield-halved text-black text-xl -rotate-3 transition-transform duration-300 group-hover:rotate-3"></i>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-xl font-black tracking-tighter text-white uppercase">PRO<span class="text-[#FFCC00]">MILITAR</span></span>
+                    <span class="text-[0.5rem] font-bold text-zinc-500 tracking-[0.4em] uppercase">Academia Online</span>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col-md-6 col-lg-3 mb-4">
-        <div class="card h-100 text-muted bg-light" style="opacity: 0.7;">
-            <div class="card-header">Carrera</div>
-            <div class="card-body text-center">
-                <h4 class="card-title">Permanencia</h4>
-                <p class="card-text">Estabilidad profesional</p>
-                <hr>
-                <button class="btn btn-secondary btn-sm disabled">
-                    🚧 Próximamente
-                </button>
-            </div>
+            <p class="text-zinc-600 text-[10px] font-bold tracking-[0.4em] uppercase mb-4">Misión: Tu Ascenso</p>
+            <p class="text-zinc-500 text-xs italic">© 2026 ProMilitar.es | Todos los derechos reservados.</p>
         </div>
-    </div>
+    </footer>
 
-</div>
-{% endblock %}
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>

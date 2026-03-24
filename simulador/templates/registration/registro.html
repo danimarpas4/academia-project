@@ -1,61 +1,98 @@
 {% extends 'simulador/base.html' %}
-{% load socialaccount %} {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow-lg border-0 rounded-lg mt-5 bg-dark border border-secondary">
-            <div class="card-header bg-warning text-dark font-weight-bold text-center">
-                <h3 class="my-2">Crear Cuenta</h3>
-            </div>
-            <div class="card-body text-white">
-                
-                <div class="d-grid gap-2 mb-4">
-    <a href="{% provider_login_url 'google' %}" class="btn btn-light btn-lg fw-bold d-flex align-items-center justify-content-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
-            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-            <path fill="none" d="M0 0h48v48H0z"/>
-        </svg>
-        Registrarse con Google
-    </a>
-</div>
 
-                <div class="text-center text-muted mb-3">- O usa tu correo -</div>
-
-                <form method="post">
-                    {% csrf_token %}
-                    {% for field in form %}
-                    <div class="mb-3">
-                        <label class="form-label text-warning">{{ field.label }}</label>
-                        {{ field }}
-                        {% if field.help_text %}
-                        <small class="form-text text-muted">{{ field.help_text }}</small>
-                        {% endif %}
-                    </div>
-                    {% endfor %}
-                    
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn-warning btn-lg fw-bold">Registrarse</button>
-                    </div>
-                </form>
-            </div>
+{% block content %}
+<div class="flex items-center justify-center min-h-[75vh] py-8">
+    <div class="w-full max-w-lg relative">
+        
+        <!-- Efecto de luz de fondo -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-zinc-600/20 to-[#FFCC00]/20 rounded-[2rem] blur-lg opacity-75"></div>
+        
+        <!-- Tarjeta de Registro -->
+        <div class="relative bg-zinc-950/90 backdrop-blur-xl border border-zinc-800 rounded-3xl p-8 shadow-2xl">
             
-            <div class="card-footer text-center py-4 border-top border-secondary">
-                <p class="text-white mb-2">¿Ya tienes cuenta en ProMilitar?</p>
-                <a href="{% url 'login' %}" class="btn btn-outline-light w-50">Iniciar Sesión</a>
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-black border border-zinc-800 flex items-center justify-center rounded-2xl shadow-lg mx-auto mb-6">
+                    <i class="fa-solid fa-user-plus text-[#FFCC00] text-2xl"></i>
+                </div>
+                <h2 class="text-3xl font-black text-white tracking-tighter">NUEVO <span class="text-[#FFCC00]">RECLUTA</span></h2>
+                <p class="text-zinc-500 text-sm mt-2 font-medium">Completa el formulario para iniciar tu instrucción</p>
+            </div>
+
+            <form method="post" class="space-y-5">
+                {% csrf_token %}
+                {% if curso_slug %}
+                    <input type="hidden" name="curso" value="{{ curso_slug }}">
+                {% else %}
+                    <div class="bg-blue-900/30 border border-blue-800 text-blue-400 p-4 rounded-xl text-sm mb-6">
+                        <p class="font-bold mb-1"><i class="fa-solid fa-info-circle mr-1"></i> Información:</p>
+                        <p>No has seleccionado un curso específico. Se te asignará un curso por defecto.</p>
+                    </div>
+                {% endif %}
+                
+                {% if form.errors %}
+                    <div class="bg-red-900/30 border border-red-800 text-red-400 p-4 rounded-xl text-sm mb-6">
+                        <p class="font-bold mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Por favor, corrige los siguientes errores:</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <!-- Renderizado de campos de Django personalizado con Tailwind -->
+                <div class="grid grid-cols-1 gap-5">
+                    {% for field in form %}
+                        <div>
+                            <label class="block text-zinc-400 text-xs font-bold mb-2 uppercase tracking-wider" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            <!-- Aplicamos estilos al input de Django mediante clases (requiere que el form en Django no las sobreescriba, o usamos un div contenedor que fuerce el estilo) -->
+                            <div class="[&>input]:w-full [&>input]:bg-black [&>input]:border [&>input]:border-zinc-800 [&>input]:text-white [&>input]:text-sm [&>input]:rounded-xl [&>input]:focus:ring-[#FFCC00] [&>input]:focus:border-[#FFCC00] [&>input]:block [&>input]:p-3 [&>input]:transition-colors">
+                                {{ field }}
+                            </div>
+                            {% if field.help_text %}
+                                <p class="text-zinc-600 text-[0.7rem] mt-1.5">{{ field.help_text }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-3.5 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,204,0,0.2)] flex items-center justify-center gap-2 mt-8">
+                    CREAR CUENTA Y ENTRAR <i class="fa-solid fa-check"></i>
+                </button>
+            </form>
+
+            <div class="mt-8 text-center border-t border-zinc-800 pt-6">
+                <p class="text-zinc-500 text-sm">
+                    ¿Ya estás en nuestras filas? <br>
+                    <a href="{% url 'login' %}" class="text-white hover:text-[#FFCC00] font-bold transition-colors mt-1 inline-block">Inicia sesión aquí</a>
+                </p>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    var inputs = document.querySelectorAll('input, select');
-    inputs.forEach(function(input) {
-        input.classList.add('form-control');
-        input.classList.add('bg-dark');
-        input.classList.add('text-white');
-        input.classList.add('border-secondary');
-    });
-</script>
+<!-- Pequeño ajuste en caso de que Django renderice <select> o <textarea> en el registro -->
+<style>
+    .bg-black select, .bg-black textarea {
+        width: 100%;
+        background-color: black;
+        border: 1px solid #27272a;
+        color: white;
+        font-size: 0.875rem;
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+    }
+    .bg-black select:focus, .bg-black textarea:focus {
+        outline: none;
+        border-color: #FFCC00;
+        box-shadow: 0 0 0 1px #FFCC00;
+    }
+</style>
 {% endblock %}

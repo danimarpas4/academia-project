@@ -1,99 +1,289 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Academia Militar - ProMilitar</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='8' fill='%23FFCC00' transform='rotate(10 20 20)'/></svg>">
     
+    <!-- Mantenemos Bootstrap temporalmente para no romper las vistas hijas (Fase 2 y 3) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Nuevos motores de diseño: Tailwind, FontAwesome y Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --military-gold: #FFCC00;
+            --military-dark: #000000;
+            --military-zinc: #18181b;
+        }
+        
         body {
-            background-color: #0f1110; /* Fondo oscuro táctico */
-            color: #e0e0e0;            /* Texto claro */
+            font-family: 'Inter', sans-serif;
+            background-color: var(--military-dark) !important;
+            color: #f8fafc !important;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+        
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FFCC00; }
+
+        /* Ajustes transitorios para que las tarjetas antiguas de Bootstrap se vean bien en el fondo negro */
         .card {
-            background-color: #1c1f23; /* Tarjetas oscuras */
-            border: 1px solid #3a3f44;
-            color: #fff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.5); /* Sombra más oscura */
+            background-color: rgba(24, 24, 27, 0.95) !important; /* zinc-900 */
+            border: 1px solid rgba(255, 204, 0, 0.1) !important;
+            color: #fff !important;
         }
-        /* Arreglamos la navbar para que pegue con lo oscuro */
-        .navbar {
-            background-color: #000 !important;
-            border-bottom: 2px solid #d4af37; /* Línea dorada fina */
+        
+        /* Reset para enlaces de Tailwind que chocan con Bootstrap */
+        a { text-decoration: none !important; }
+        
+        /* Contenedor principal que empuja el contenido bajo la navbar fija */
+        .main-content-wrapper {
+            flex: 1;
+            padding-top: 7rem; /* Espacio para la navbar */
+            padding-bottom: 3rem;
         }
-        /* Ajuste para enlaces en la navbar */
-        .navbar-light .navbar-brand, .navbar-light .nav-link {
-            color: #e0e0e0 !important;
+
+        /* Nuevos estilos para botones con efecto glow */
+        .action-button {
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-        /* Ajuste para las alertas (mensajes) */
-        .alert-success {
-            background-color: #198754;
+
+        .action-button::before {
+            content: \'\';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255,204,0,0.6) 0%, rgba(255,204,0,0) 70%);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            z-index: -1;
+        }
+
+        .action-button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Variantes de color para los botones */
+        .primary-button {
+            background-color: var(--military-gold);
+            color: var(--military-dark);
+            border: 2px solid var(--military-gold);
+            box-shadow: 0 0 15px rgba(255,204,0,0.3);
+        }
+
+        .primary-button:hover {
             color: white;
-            border-color: #157347;
+            box-shadow: 0 0 25px rgba(255,204,0,0.6);
+        }
+
+        .secondary-button {
+            background-color: rgba(24, 24, 27, 0.8); /* zinc-800 */
+            color: var(--military-gold);
+            border: 2px solid rgba(255,204,0,0.4);
+            box-shadow: 0 0 10px rgba(255,204,0,0.1);
+        }
+
+        .secondary-button:hover {
+            border-color: var(--military-gold);
+            color: white;
+            box-shadow: 0 0 20px rgba(255,204,0,0.4);
+        }
+
+        .tertiary-button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: none;
+        }
+
+        .tertiary-button:hover {
+            border-color: white;
+            color: var(--military-gold);
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        /* Animaciones */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
         }
     </style>
   </head>
   
-  <body> <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}">
-    <span style="font-size: 1.8rem; margin-right: 0.5rem; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));">🛡️</span>
-    
-    <div style="line-height: 1;">
-        <span style="font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 1.4rem; color: #fff; letter-spacing: 1px;">PRO</span><span style="font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.4rem; color: #ffc107; letter-spacing: 1px;">MILITAR</span>
-        <small class="d-block" style="font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: #aaa; letter-spacing: 2px;">ACADEMIA ONLINE</small>
-    </div>
-</a>
+  <body class="antialiased"> 
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="menuNavegacion">
-          <ul class="navbar-nav ms-auto">
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link text-warning fw-bold" href="{% url 'perfil' %}">
-                  Hola, {{ user.username }} 🪖
+    <!-- NUEVA NAVBAR TÁCTICA -->
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-zinc-900 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logotipo Oficial -->
+                <a href="{% url 'inicio' %}" class="flex items-center gap-3 group cursor-pointer">
+                    <div class="w-10 h-10 bg-[#FFCC00] flex items-center justify-center rounded-lg rotate-3 shadow-[0_0_15px_rgba(255,204,0,0.2)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                        <i class="fa-solid fa-shield-halved text-black text-xl -rotate-3 transition-transform duration-300 group-hover:rotate-3"></i>
+                    </div>
+                    <div class="flex flex-col justify-center pt-1">
+                        <span class="text-2xl font-extrabold tracking-tighter text-white leading-none">PRO<span class="text-[#FFCC00]">MILITAR</span></span>
+                        <span class="text-[0.65rem] font-bold text-zinc-400 tracking-[0.26em] leading-none mt-1" style="font-family: 'JetBrains Mono', monospace;">ACADEMIA ONLINE</span>
+                    </div>
                 </a>
-              </li>
-              <li class="nav-item">
-                <form action="{% url 'logout' %}" method="post" class="d-inline">
-                  {% csrf_token %}
-                  <button type="submit" class="nav-link btn btn-link text-white" style="text-decoration: none;">Cerrar Sesión</button>
-                </form>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'login' %}">Entrar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'registro' %}">Registrarse</a>
-              </li>
-            {% endif %}
-          </ul>
+
+                <!-- Menú Escritorio -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-6">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'portada' %}" class="text-zinc-300 hover:text-[#FFCC00] px-3 py-2 font-medium transition-colors">Dashboard</a>
+                            <a href="{% url 'ver_temario' %}" class="text-zinc-300 hover:text-[#FFCC00] px-3 py-2 font-medium transition-colors">Temario</a>
+                            <a href="{% url 'estadisticas' %}" class="text-zinc-300 hover:text-[#FFCC00] px-3 py-2 font-medium transition-colors">Rendimiento</a>
+                            
+                            <!-- Perfil Badge -->
+                            <a href="{% url 'perfil' %}" class="bg-zinc-900 border border-zinc-800 text-[#FFCC00] px-4 py-2 rounded-full font-bold text-sm ml-4 hover:border-[#FFCC00]/50 transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-user-astronaut"></i> {{ user.username }}
+                            </a>
+                            
+                            <form action="{% url 'logout' %}" method="post" class="m-0 p-0 inline">
+                                {% csrf_token %}
+                                <button type="submit" class="text-zinc-500 hover:text-red-500 px-3 py-2 font-medium transition-colors bg-transparent border-0 text-sm">
+                                    <i class="fa-solid fa-power-off"></i> Salir
+                                </button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'inicio' %}" class="text-zinc-300 hover:text-[#FFCC00] px-3 py-2 font-medium transition-colors">Inicio</a>
+                            <a href="{% url 'login' %}" class="text-zinc-300 hover:text-white px-3 py-2 font-medium transition-colors">Entrar</a>
+                            <a href="{% url 'registro' %}" class="bg-[#FFCC00] text-black px-6 py-2.5 rounded-full font-bold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(255,204,0,0.3)] ml-2">
+                                UNIRSE AHORA
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-[#FFCC00]">
+                        <span class="sr-only">Abrir menú</span>
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <!-- Menú Móvil (Desplegable) -->
+        <div class="md:hidden hidden bg-black border-b border-zinc-900" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'portada' %}" class="text-zinc-300 hover:bg-zinc-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
+                    <a href="{% url 'ver_temario' %}" class="text-zinc-300 hover:bg-zinc-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Temario</a>
+                    <a href="{% url 'estadisticas' %}" class="text-zinc-300 hover:bg-zinc-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Rendimiento</a>
+                    <a href="{% url 'perfil' %}" class="text-[#FFCC00] block px-3 py-2 rounded-md text-base font-bold"><i class="fa-solid fa-user-astronaut mr-2"></i>{{ user.username }}</a>
+                    <form action="{% url 'logout' %}" method="post" class="m-0 p-0">
+                        {% csrf_token %}
+                        <button type="submit" class="text-red-500 hover:bg-zinc-900 block w-full text-left px-3 py-2 rounded-md text-base font-medium">Cerrar Sesión</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'inicio' %}" class="text-zinc-300 hover:bg-zinc-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+                    <a href="{% url 'login' %}" class="text-zinc-300 hover:bg-zinc-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Iniciar Sesión</a>
+                    <a href="{% url 'registro' %}" class="text-[#FFCC00] block px-3 py-2 rounded-md text-base font-bold">Registrarse</a>
+                {% endif %}
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
+    <!-- Contenedor Principal (Donde se inyectan las vistas hijas) -->
+    <main class="main-content-wrapper container">
+        
+        <!-- Sistema de Alertas Django integrado con nuevo diseño -->
         {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endfor %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="alert flex items-center p-4 mb-4 text-sm rounded-lg border {% if message.tags == 'success' %}text-green-400 border-green-800 bg-green-900/20{% elif message.tags == 'error' %}text-red-400 border-red-800 bg-red-900/20{% else %}text-blue-400 border-blue-800 bg-blue-900/20{% endif %}" role="alert">
+                        <i class="fa-solid {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'error' %}fa-triangle-exclamation{% else %}fa-circle-info{% endif %} text-lg mr-3"></i>
+                        <div>{{ message }}</div>
+                        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
-    </div>
 
-    <div class="container">
+        <!-- Aquí va el contenido de cada página -->
         {% block content %}
         {% endblock %}
-    </div>
+        
+    </main>
 
+    <footer class="text-center py-10 border-t border-zinc-900 mt-10">
+        <a href="{% url 'inicio' %}" class="inline-flex flex-col items-center gap-2 group cursor-pointer">
+            <div class="w-10 h-10 bg-[#FFCC00] flex items-center justify-center rounded-lg rotate-3 shadow-[0_0_15px_rgba(255,204,0,0.2)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                <i class="fa-solid fa-shield-halved text-black text-xl -rotate-3 transition-transform duration-300 group-hover:rotate-3"></i>
+            </div>
+            <span class="text-zinc-500 text-sm font-medium">© 2026 ProMilitar</span>
+        </a>
+    </footer>
+
+    <!-- Scripts Esenciales -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Lógica del menú móvil
+        const btn = document.getElementById(\'mobile-menu-btn\');
+        const menu = document.getElementById(\'mobile-menu\');
+        
+        btn.addEventListener(\'click\', () => {
+            menu.classList.toggle(\'hidden\');
+        });
+    </script>
   </body>
 </html>

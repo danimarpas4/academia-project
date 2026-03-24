@@ -2,390 +2,521 @@
 {% load static %}
 
 {% block content %}
+<!-- Configuración de Tailwind para Modo Oscuro/Claro y Prevención de FOUC -->
+<script>
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = { darkMode: 'class' };
+    
+    if (localStorage.getItem('color-theme') === 'light') {
+        document.documentElement.classList.add('light');
+        document.documentElement.classList.remove('dark');
+    } else {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+    }
+</script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
+<!-- Estilos Avanzados (Animaciones y Overrides del Modo Claro) -->
 <style>
-    /* --- VARIABLES DE TEMA --- */
-    :root {
-        /* === POR DEFECTO: MODO CLARO (LABORATORIO) === */
-        --bg-body: #f5f7fa;
-        --bg-gradient-1: #ffffff;
-        --bg-gradient-2: #e4e7eb;
-        
-        --glass-bg: rgba(255, 255, 255, 0.85);
-        --glass-border: rgba(0, 0, 0, 0.05);
-        --glass-shadow: rgba(0, 0, 0, 0.1);
-        
-        --text-primary: #1c1e21;
-        --text-secondary: #4a5568;
-        
-        --accent-neon: #2e7d32;
-        --accent-dim: rgba(46, 125, 50, 0.15);
-        
-        --btn-bg: rgba(46, 125, 50, 0.08);
-        --btn-hover-text: #ffffff;
+    /* Efecto de Flotación (Blobs) */
+    @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
     }
+    .animate-blob { animation: blob 10s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
+    .animation-delay-2000 { animation-delay: 2s; }
 
-    /* === MODO OSCURO (VISIÓN NOCTURNA) === */
-    [data-theme="dark"] {
-        --bg-body: #050505;
-        --bg-gradient-1: #111e11;
-        --bg-gradient-2: #000000;
-        
-        --glass-bg: rgba(20, 30, 20, 0.65);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --glass-shadow: rgba(0, 0, 0, 0.5);
-        
-        --text-primary: #ffffff;
-        --text-secondary: #a5d6a7;
-        
-        --accent-neon: #76ff03;
-        --accent-dim: rgba(118, 255, 3, 0.3);
-        
-        --btn-bg: rgba(118, 255, 3, 0.1);
-        --btn-hover-text: #000000;
+    /* Animación de Brillo en Botón Principal */
+    .btn-shine { position: relative; overflow: hidden; }
+    .btn-shine::after {
+        content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+        transform: rotate(45deg) translate(-100%, 100%); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .btn-shine:hover::after { transform: rotate(45deg) translate(100%, -100%); }
 
-    /* --- ESTILOS GENERALES --- */
-    body {
-        background-color: var(--bg-body);
-        font-family: 'Rajdhani', sans-serif;
-        background-image: radial-gradient(circle at 50% 50%, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
-        transition: background-color 0.5s ease, color 0.5s ease;
-        color: var(--text-primary);
-        min-height: 100vh;
+    /* Pulso Dorado Continuo */
+    @keyframes pulse-gold {
+        0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(255, 204, 0, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
     }
+    .pulse-gold-active { animation: pulse-gold 2s infinite; }
 
-    .hero-title {
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 800;
-        letter-spacing: 1px;
-        color: var(--text-primary);
-        text-shadow: 0 5px 15px var(--accent-dim);
-    }
+    /* Revelado al hacer Scroll */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
 
-    /* --- TARJETAS GLASS --- */
-    .glass-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px); 
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 28px;
-        border: 1px solid var(--glass-border);
-        box-shadow: 0 10px 30px var(--glass-shadow);
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .glass-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--accent-neon);
-        box-shadow: 0 20px 50px var(--accent-dim);
-    }
-
-    .card-header-text {
-        color: var(--text-primary);
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 1.8rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 0.5rem;
-    }
-
-    .card-subtext {
-        font-family: 'Share Tech Mono', monospace;
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        opacity: 0.9;
-    }
-
-    /* --- ICONOS --- */
-    .icon-float {
-        font-size: 3.5rem;
-        margin-bottom: 1.5rem;
-        color: var(--accent-neon);
-        filter: drop-shadow(0 5px 10px var(--accent-dim));
-        transition: transform 0.4s ease;
-    }
-    .glass-card:hover .icon-float {
-        transform: scale(1.1);
-    }
-
-    /* --- BOTONES --- */
-    .btn-glass {
-        margin-top: 25px;
-        background: var(--btn-bg);
-        color: var(--accent-neon);
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 12px 30px;
-        border: 1px solid var(--accent-dim);
-        border-radius: 50px; 
-        transition: all 0.3s ease;
-    }
-    
-    .btn-glass:hover {
-        background: var(--accent-neon);
-        color: var(--btn-hover-text);
-        box-shadow: 0 5px 20px var(--accent-dim);
-        border-color: var(--accent-neon);
-    }
-
-    /* PANEL ESTADO */
-    .status-pill {
-        background: var(--glass-bg);
-        backdrop-filter: blur(10px);
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        padding: 15px 25px;
-        box-shadow: 0 4px 15px var(--glass-shadow);
-    }
-    
-    .mono-text { font-family: 'Share Tech Mono', monospace; color: var(--text-secondary); }
-
-    /* --- TABLA CLASIFICACIÓN (NUEVO) --- */
-    .table-custom {
-        --bs-table-bg: transparent;
-        --bs-table-color: var(--text-primary);
-        --bs-table-border-color: var(--glass-border);
-    }
-    
-    .table-custom th {
-        font-family: 'Share Tech Mono', monospace;
-        color: var(--text-secondary);
-        border-bottom: 2px solid var(--accent-dim);
-        font-weight: normal;
-        letter-spacing: 1px;
-    }
-
-    .user-row-highlight {
-        background-color: var(--accent-dim) !important;
-        box-shadow: inset 4px 0 0 var(--accent-neon);
-    }
-
-    .rank-badge {
-        font-family: 'Share Tech Mono', monospace;
-        font-size: 0.75rem;
-        padding: 4px 8px;
-        background: var(--btn-bg);
-        border: 1px solid var(--glass-border);
-        border-radius: 4px;
-        color: var(--text-primary);
-    }
-
-    /* --- BOTÓN FLOTANTE --- */
-    .theme-toggle {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: var(--glass-bg);
-        border: 1px solid var(--accent-neon);
-        color: var(--accent-neon);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        z-index: 1000;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-    }
-    .theme-toggle:hover {
-        transform: rotate(180deg);
-        background: var(--accent-neon);
-        color: var(--btn-hover-text);
-    }
-
+    /* INYECCIÓN MODO CLARO: Sobrescribe el fondo negro forzado de base.html */
+    html.light body { background-color: #f3f4f6 !important; color: #111827 !important; }
+    html.light #navbar { background-color: rgba(255, 255, 255, 0.9) !important; border-bottom-color: #e5e7eb !important; }
+    html.light #navbar .text-white { color: #111827 !important; }
+    html.light #navbar .text-zinc-300 { color: #4b5563 !important; }
+    html.light #navbar .text-zinc-400 { color: #6b7280 !important; }
+    html.light #navbar .bg-black { background-color: #f9fafb !important; border-color: #e5e7eb !important; }
+    html.light #mobile-menu { background-color: #ffffff !important; border-color: #e5e7eb !important; }
 </style>
 
-<button class="theme-toggle" onclick="toggleTheme()" title="Cambiar Tema">
-    ◑
-</button>
+<!-- Fondo Decorativo Animado (Blobs) -->
+<div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1]">
+    <div class="absolute top-[-10%] left-[-10%] w-[30rem] h-[30rem] bg-[#FFCC00] rounded-full blur-[120px] opacity-10 dark:opacity-20 animate-blob"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[30rem] h-[30rem] bg-zinc-400 dark:bg-zinc-600 rounded-full blur-[120px] opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
+</div>
 
-<div class="container py-5">
+<div class="py-8 relative z-10">
     
-    <div class="row mb-5 align-items-end">
-        <div class="col-md-7">
-            <h5 class="mono-text mb-2" style="letter-spacing: 2px;">// COMANDO_CENTRAL</h5>
-            <h1 class="display-4 hero-title">
-                BIENVENIDO, {{ user.username }}. 
-                <span class="d-block d-md-inline mt-2 mt-md-0" style="font-size: 0.6em; color: var(--text-secondary); font-weight: 500;">
-                    Tu rango actual:
-                    <span class="badge" style="background-color: var(--accent-neon); color: #000000 !important; font-size: 1em; vertical-align: middle; padding: 0.35em 0.65em; font-weight: 700; letter-spacing: 1px;">
-                        {{ perfil.rango|upper }}
-                    </span>
+    <!-- Header del Dashboard -->
+    <div class="reveal mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+            <h1 class="text-4xl font-black text-gray-900 dark:text-white tracking-tight uppercase">Panel de <span class="text-[#FFCC00]">Instrucción</span></h1>
+            <p class="text-gray-600 dark:text-zinc-400 mt-2 font-medium">Bienvenido, Aspirante a Cabo <span class="text-gray-900 dark:text-white">{{ user.username }}</span>. Tu objetivo te espera.</p>
+            
+            <!-- Badges de Estado y Suscripción -->
+            <div class="mt-4 flex flex-wrap gap-3">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-gray-100 dark:bg-zinc-900 text-gray-700 dark:text-zinc-300 border border-gray-200 dark:border-zinc-700 shadow-sm transition-colors">
+                    <i class="fa-solid fa-medal text-[#FFCC00] mr-2"></i> Rango: {{ perfil.rango|default:"Recluta" }}
                 </span>
-            </h1>
+                
+                {% if esta_en_prueba %}
+                <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800 shadow-sm transition-colors">
+                    <i class="fa-solid fa-clock mr-2"></i> Prueba Activa ({{ dias_restantes }} días restantes)
+                </span>
+                {% else %}
+                <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800 shadow-sm transition-colors">
+                    <i class="fa-solid fa-check-circle mr-2"></i> Instrucción Activa
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Botón de Acción Principal Rápida -->
+        <a href="{% url 'configurar_test' %}" class="btn-shine pulse-gold-active bg-[#FFCC00] text-black font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(255,204,0,0.3)] flex items-center gap-2 group whitespace-nowrap">
+            <i class="fa-solid fa-play group-hover:animate-pulse"></i> INICIAR SIMULACRO
+        </a>
+    </div>
+
+    <!-- Grid Principal de Tarjetas (4 columnas en XL) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
+        
+        <!-- Tarjeta 1: Configurar Test -->
+        <div class="reveal delay-100 bg-white dark:bg-zinc-900/80 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 hover:border-[#FFCC00] dark:hover:border-[#FFCC00]/50 transition-all duration-300 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,204,0,0.2)]">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#FFCC00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="w-14 h-14 bg-gray-50 dark:bg-black border border-gray-200 dark:border-zinc-800 rounded-2xl flex items-center justify-center mb-6 group-hover:border-[#FFCC00] transition-colors relative z-10">
+                <i class="fa-solid fa-crosshairs text-[#FFCC00] text-2xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 relative z-10">Simulacro a Medida</h3>
+            <p class="text-gray-600 dark:text-zinc-400 text-sm mb-6 flex-grow relative z-10 transition-colors">Configura un test personalizado eligiendo los temas específicos y el número de preguntas para atacar tus puntos débiles.</p>
+            
+            <a href="{% url 'configurar_test' %}" class="w-full text-center bg-gray-100 dark:bg-zinc-800 hover:bg-[#FFCC00] dark:hover:bg-[#FFCC00] text-gray-800 dark:text-white hover:text-black font-bold py-3 px-4 rounded-xl transition-colors duration-300 relative z-10">
+                Configurar <i class="fa-solid fa-arrow-right ml-1"></i>
+            </a>
         </div>
 
-        <div class="col-md-5 mt-4 mt-md-0">
-            <div class="d-inline-block text-start status-pill w-100">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="mono-text" style="font-size: 0.85rem;">ESTADO DE TU SUSCRIPCIÓN:</span>
-                    {% if esta_en_prueba %}
-                        <span class="badge rounded-pill bg-warning text-dark" style="font-family: 'Rajdhani'; font-weight:700;">EN PRUEBA</span>
-                    {% else %}
-                        <span class="badge rounded-pill" style="background: var(--accent-neon); color: var(--btn-hover-text); font-family: 'Rajdhani'; font-weight:700;">SUSCRIPCIÓN MENSUAL</span>
-                    {% endif %}
-                </div>
-                {% if esta_en_prueba %}
-                <div class="progress" style="height: 6px; background: rgba(0,0,0,0.1); border-radius: 10px;">
-                    <div class="progress-bar" role="progressbar" style="width: {{ dias_restantes|add:'0' }}0%; background-color: #ffc107; border-radius: 10px;"></div>
-                </div>
-                <small class="mono-text mt-2 d-block" style="color: #d69e2e;">>> {{ dias_restantes }} DÍAS RESTANTES</small>
-                {% endif %}
+        <!-- Tarjeta 2: Rendimiento / Estadísticas -->
+        <div class="reveal delay-100 bg-white dark:bg-zinc-900/80 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 hover:border-blue-500 dark:hover:border-blue-500/50 transition-all duration-300 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(59,130,246,0.2)]">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="w-14 h-14 bg-gray-50 dark:bg-black border border-gray-200 dark:border-zinc-800 rounded-2xl flex items-center justify-center mb-6 group-hover:border-blue-500 transition-colors relative z-10">
+                <i class="fa-solid fa-chart-radar text-blue-500 text-2xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 relative z-10">Estadísticas</h3>
+            <p class="text-gray-600 dark:text-zinc-400 text-sm mb-6 flex-grow relative z-10 transition-colors">Analiza tu progreso global, revisa tu porcentaje de aciertos por tema y comprueba tu evolución en el tiempo.</p>
+            
+            <a href="{% url 'estadisticas' %}" class="w-full text-center bg-gray-100 dark:bg-zinc-800 hover:bg-blue-500 dark:hover:bg-blue-600 text-gray-800 hover:text-white dark:text-white font-bold py-3 px-4 rounded-xl transition-colors duration-300 relative z-10">
+                Ver Rendimiento <i class="fa-solid fa-chart-simple ml-1"></i>
+            </a>
+        </div>
+
+        <!-- Tarjeta 3: Temario / Biblioteca -->
+        <div class="reveal delay-200 bg-white dark:bg-zinc-900/80 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 hover:border-emerald-500 dark:hover:border-emerald-500/50 transition-all duration-300 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(16,185,129,0.2)]">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="w-14 h-14 bg-gray-50 dark:bg-black border border-gray-200 dark:border-zinc-800 rounded-2xl flex items-center justify-center mb-6 group-hover:border-emerald-500 transition-colors relative z-10">
+                <i class="fa-solid fa-book-journal-whills text-emerald-500 text-2xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 relative z-10">Arsenal Teórico</h3>
+            <p class="text-gray-600 dark:text-zinc-400 text-sm mb-6 flex-grow relative z-10 transition-colors">Accede a la biblioteca de temas oficiales. Repasa la teoría antes de enfrentarte a los simulacros.</p>
+            
+            <a href="{% url 'ver_temario' %}" class="w-full text-center bg-gray-100 dark:bg-zinc-800 hover:bg-emerald-500 dark:hover:bg-emerald-600 text-gray-800 hover:text-white dark:text-white font-bold py-3 px-4 rounded-xl transition-colors duration-300 relative z-10">
+                Acceder a la Biblioteca <i class="fa-solid fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+
+        <!-- Tarjeta 4: Planning de Estudio -->
+        <div class="reveal delay-200 bg-white dark:bg-zinc-900/80 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 hover:border-purple-500 dark:hover:border-purple-500/50 transition-all duration-300 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(168,85,247,0.2)]">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="w-14 h-14 bg-gray-50 dark:bg-black border border-gray-200 dark:border-zinc-800 rounded-2xl flex items-center justify-center mb-6 group-hover:border-purple-500 transition-colors relative z-10">
+                <i class="fa-solid fa-calendar-check text-purple-500 text-2xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 relative z-10">Planning de Estudio</h3>
+            <p class="text-gray-600 dark:text-zinc-400 text-sm mb-6 flex-grow relative z-10 transition-colors">Sigue nuestra hoja de ruta estratégica. Un plan estructurado paso a paso para asegurar tu apto.</p>
+            
+            <a href="#" class="w-full text-center bg-gray-100 dark:bg-zinc-800 hover:bg-purple-500 dark:hover:bg-purple-600 text-gray-800 hover:text-white dark:text-white font-bold py-3 px-4 rounded-xl transition-colors duration-300 relative z-10">
+                Ver Planning <i class="fa-solid fa-map ml-1"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Sección de Ranking / Clasificación -->
+    <div class="reveal delay-300 bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 md:p-8 mb-12 shadow-xl dark:shadow-2xl transition-colors">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+            <h2 class="text-2xl font-black text-gray-900 dark:text-white flex items-center gap-3 uppercase tracking-tight">
+                <i class="fa-solid fa-trophy text-[#FFCC00] text-3xl drop-shadow-md"></i> Clasificación General
+            </h2>
+            <div class="bg-gray-50 dark:bg-black border border-gray-200 dark:border-zinc-800 px-5 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-zinc-400 transition-colors">
+                Tu posición actual: <span class="text-[#FFCC00] font-black text-lg ml-1">#{{ mi_posicion }}</span>
+            </div>
+        </div>
+        
+        <div class="overflow-x-auto rounded-xl border border-gray-200 dark:border-zinc-800">
+            <table class="w-full text-left border-collapse min-w-[600px]">
+                <thead>
+                    <tr class="bg-gray-100 dark:bg-black text-gray-500 dark:text-zinc-500 text-xs uppercase tracking-widest transition-colors">
+                        <th class="py-4 px-6 font-bold w-24 text-center">Posición</th>
+                        <th class="py-4 px-6 font-bold">Aspirante</th>
+                        <th class="py-4 px-6 font-bold">Rango</th>
+                        <th class="py-4 px-6 font-bold text-right">Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm bg-white dark:bg-zinc-900/30 transition-colors">
+                    {% for perfil_ranking in ranking|slice:":10" %}
+                    <tr class="border-b border-gray-100 dark:border-zinc-800/50 hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors 
+                        {% if perfil_ranking.user == user %}bg-yellow-50 dark:bg-zinc-800/80 border-l-4 border-l-[#FFCC00]{% endif %}">
+                        
+                        <td class="py-4 px-6 text-center font-black text-lg
+                            {% if forloop.counter == 1 %}text-[#FFCC00]
+                            {% elif forloop.counter == 2 %}text-gray-400 dark:text-zinc-300
+                            {% elif forloop.counter == 3 %}text-amber-600
+                            {% else %}text-gray-400 dark:text-zinc-600{% endif %}">
+                            #{{ forloop.counter }}
+                        </td>
+                        
+                        <td class="py-4 px-6 font-bold text-gray-900 dark:text-white flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-black border border-gray-200 dark:border-zinc-700 flex items-center justify-center text-xs text-gray-400 dark:text-zinc-400 transition-colors">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            {% if perfil_ranking.user == user %}
+                                <span class="text-yellow-600 dark:text-[#FFCC00]">{{ perfil_ranking.user.username }}</span> 
+                                <span class="text-[10px] bg-[#FFCC00] text-black px-2 py-0.5 rounded-full ml-2 uppercase">Tú</span>
+                            {% else %}
+                                {{ perfil_ranking.user.username }}
+                            {% endif %}
+                        </td>
+                        
+                        <td class="py-4 px-6 text-gray-600 dark:text-zinc-400 font-medium transition-colors">
+                            {{ perfil_ranking.rango|default:"Recluta" }}
+                        </td>
+                        
+                        <td class="py-4 px-6 text-right">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-500 bg-emerald-100 dark:bg-emerald-500/10 px-2.5 py-1 rounded-full transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Activo
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4 text-center">
+            <p class="text-gray-500 dark:text-zinc-600 text-xs uppercase tracking-widest transition-colors">Mostrando el Top 10 de la Unidad</p>
+        </div>
+    </div>
+
+    <!-- Panel Informativo Secundario (Telegram) -->
+    <div class="reveal delay-300 bg-white dark:bg-black border border-gray-200 dark:border-zinc-800 rounded-3xl p-8 relative overflow-hidden shadow-lg transition-colors">
+        <!-- Decoración de fondo -->
+        <i class="fa-solid fa-shield-halved absolute -right-10 -bottom-10 text-[15rem] text-gray-100 dark:text-zinc-900/30 -rotate-12 pointer-events-none transition-colors"></i>
+        
+        <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1">
+                <h3 class="text-2xl font-black text-gray-900 dark:text-white uppercase tracking-tight mb-2 transition-colors"><i class="fa-brands fa-telegram text-[#FFCC00] mr-2"></i> Refuerzo Táctico en Telegram</h3>
+                <p class="text-gray-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed transition-colors">
+                    No olvides que tienes a tu disposición nuestro Bot de instrucción automatizado. Recibe ráfagas de preguntas oficiales directamente en tu móvil cada hora y partes de novedades nocturnos. El complemento perfecto para esta plataforma.
+                </p>
+            </div>
+            <div class="flex-shrink-0">
+                <a href="https://t.me/+c0fMDCCvFs42YWVk" target="_blank" class="inline-block bg-transparent border-2 border-yellow-500 dark:border-[#FFCC00] text-yellow-600 dark:text-[#FFCC00] hover:bg-[#FFCC00] hover:text-black font-bold py-3 px-6 rounded-xl transition-all duration-300">
+                    Ir al Bot
+                </a>
             </div>
         </div>
     </div>
 
-    <div class="row g-4">
-        
-        <div class="col-md-4">
-            <div class="card h-100 glass-card p-4">
-                <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
-                    <div class="icon-float">⚡</div>
-                    <h3 class="card-header-text">TEST A LA CARTA</h3>
-                    <p class="card-subtext">Configurar parámetros</p>
-                    <a href="{% url 'configurar_test' %}" class="btn btn-glass stretched-link">INICIAR</a>
-                </div>
-            </div>
-        </div>
+</div>
 
-        <div class="col-md-4">
-            <div class="card h-100 glass-card p-4">
-                <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
-                    <div class="icon-float">📂</div> 
-                    <h3 class="card-header-text">TEMARIO</h3>
-                    <p class="card-subtext">En PDF y PODCAST</p>
-                    <a href="{% url 'ver_temario' %}" class="btn btn-glass stretched-link">ACCEDER</a>
-                </div>
-            </div>
-        </div>
+<!-- BOTÓN FLOTANTE MODO OSCURO/CLARO -->
+<button id="theme-toggle" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-white dark:bg-zinc-900 text-gray-800 dark:text-[#FFCC00] shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:scale-110 transition-all duration-300 border border-gray-200 dark:border-zinc-700 flex items-center justify-center group focus:outline-none focus:ring-4 focus:ring-[#FFCC00]/30">
+    <i id="theme-icon" class="fa-solid fa-moon text-xl group-hover:rotate-12 transition-transform"></i>
+</button>
 
-        <div class="col-md-4">
-            <div class="card h-100 glass-card p-4">
-                <div class="card-body d-flex flex-column text-center align-items-center justify-content-center">
-                    <div class="icon-float">📊</div>
-                    <h3 class="card-header-text">ESTADÍSTICAS</h3>
-                    <p class="card-subtext">Análisis de datos</p>
-                    <a href="{% url 'estadisticas' %}" class="btn btn-glass stretched-link">INFORME</a>
-                </div>
-            </div>
-        </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- 1. Lógica del Revelado por Scroll (Aparición Suave) ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; // Aparece un poco antes
 
-        <div class="col-12 mt-4">
-            <div class="card glass-card h-100">
-                <div class="card-header border-0 bg-transparent pt-4 px-4 d-flex justify-content-between align-items-center">
-                    <div>
-                        <h3 class="card-header-text mb-0" style="font-size: 1.4rem;">🏆 TABLA DE LÍDERES</h3>
-                        <p class="card-subtext mb-0">Top 50 alumnos</p>
-                    </div>
-                    <div class="text-end">
-                        <span class="mono-text d-block" style="font-size: 0.8rem;">TU POSICIÓN</span>
-                        <span style="color: var(--accent-neon); font-family: 'Rajdhani'; font-weight: 800; font-size: 1.5rem;">#{{ mi_posicion }}</span>
-                    </div>
-                </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
-                        <table class="table table-custom table-hover mb-0 align-middle">
-                            <thead style="position: sticky; top: 0; background-color: var(--glass-bg); backdrop-filter: blur(10px); z-index: 2;">
-                                <tr>
-                                    <th scope="col" class="ps-4">#</th>
-                                    <th scope="col">RANGO</th>
-                                    <th scope="col">ALUMNO</th>
-                                    <th scope="col" class="text-end pe-4">Preguntas respondidas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for p in ranking %}
-                                <tr class="{% if p.usuario == user %}user-row-highlight{% endif %}">
-                                    <td class="ps-4 fw-bold font-monospace" style="color: {% if forloop.counter <= 3 %}var(--accent-neon){% else %}var(--text-secondary){% endif %};">
-                                        {{ forloop.counter }} {% if forloop.counter == 1 %}👑{% endif %}
-                                    </td>
-                                    <td>
-                                        <span class="rank-badge">{{ p.rango }}</span>
-                                    </td>
-                                    <td class="fw-bold {% if p.usuario == user %}text-uppercase{% endif %}">
-                                        {{ p.usuario.username }}
-                                        {% if p.usuario == user %} <span style="font-size:0.7em; color:var(--accent-neon);">(TÚ)</span>{% endif %}
-                                    </td>
-                                    <td class="text-end pe-4" style="font-family: 'Share Tech Mono'; color: var(--accent-neon);">
-                                        {{ p.preguntas_respondidas }}
-                                    </td>
-                                </tr>
-                                {% endfor %}
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Disparar al cargar
 
-                                {% if mi_posicion > 50 %}
-                                <tr style="border-top: 2px dashed var(--accent-dim);">
-                                    <td class="ps-4 font-monospace text-secondary">...</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td class="text-end pe-4">...</td>
-                                </tr>
-                                <tr class="user-row-highlight">
-                                    <td class="ps-4 fw-bold font-monospace" style="color: var(--accent-neon);">{{ mi_posicion }}</td>
-                                    <td><span class="rank-badge">{{ perfil.rango }}</span></td>
-                                    <td class="fw-bold text-uppercase">{{ user.username }} <span style="font-size:0.7em; color:var(--accent-neon);">(TÚ)</span></td>
-                                    <td class="text-end pe-4" style="font-family: 'Share Tech Mono'; color: var(--accent-neon);">{{ perfil.preguntas_respondidas }}</td>
-                                </tr>
-                                {% endif %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="card glass-card p-4">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <span class="fs-1 me-4 mono-text">📅</span>
-                        <div>
-                            <h3 class="card-header-text mb-0" style="font-size: 1.5rem;">PLANNING OPERATIVO</h3>
-                            <p class="card-subtext mb-0">Módulo no instalado</p>
-                        </div>
-                    </div>
-                    <button class="btn rounded-pill" style="border: 1px dashed var(--text-secondary); color: var(--text-secondary); font-family:'Share Tech Mono';" disabled>PRÓXIMAMENTE</button>
-                </div>
-            </div>
-        </div>
+        // --- 2. Lógica del Tema (Modo Claro/Oscuro) ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlEl = document.documentElement;
 
+        // Ajustar icono inicial basado en la clase inyectada arriba
+        if (htmlEl.classList.contains('light')) {
+            themeIcon.classList.replace('fa-moon', 'fa-sun'); // Sol en modo claro
+        } else {
+            themeIcon.classList.replace('fa-sun', 'fa-moon'); // Luna en modo oscuro
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // Efecto de click
+            themeToggleBtn.classList.add('scale-90');
+            setTimeout(() => themeToggleBtn.classList.remove('scale-90'), 150);
+
+            if (htmlEl.classList.contains('dark')) {
+                // Cambiar a Modo Claro
+                htmlEl.classList.remove('dark');
+                htmlEl.classList.add('light');
+                localStorage.setItem('color-theme', 'light');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                // Cambiar a Modo Oscuro
+                htmlEl.classList.add('dark');
+                htmlEl.classList.remove('light');
+                localStorage.setItem('color-theme', 'dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    });
+</script>
+
+<!-- INICIO: Componente de Chat IA -->
+<style>
+    #ia-fab {
+        position: fixed;
+        bottom: 30px;
+        right: 100px;
+        width: 60px;
+        height: 60px;
+        background-color: #FFCC00;
+        color: black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        z-index: 1050;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #ia-fab:hover {
+        transform: scale(1.1);
+    }
+    #ia-chat-window {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 370px;
+        height: 500px;
+        background-color: #18181b;
+        border: 1px solid #3f3f46;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        z-index: 1040;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transform-origin: bottom right;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+    }
+    .chat-hidden {
+        transform: scale(0);
+        opacity: 0;
+    }
+    .chat-header {
+        padding: 1rem;
+        background-color: #000;
+        border-bottom: 1px solid #3f3f46;
+    }
+    .chat-messages {
+        flex-grow: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .message {
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        max-width: 85%;
+        line-height: 1.4;
+    }
+    .user-message {
+        background-color: #FFCC00;
+        color: black;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+    .ai-message {
+        background-color: #27272a;
+        color: #e4e4e7;
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+    }
+    .chat-input {
+        padding: 1rem;
+        border-top: 1px solid #3f3f46;
+    }
+    #ia-chat-form input {
+        width: 100%;
+        background-color: #000;
+        border: 1px solid #3f3f46;
+        color: white;
+        padding: 0.75rem;
+        border-radius: 8px;
+    }
+</style>
+
+<!-- INICIO: Componente de Chat IA (reutilizado del temario) -->
+<button id="ia-fab" class="fixed bottom-6 right-24 z-50 w-14 h-14 rounded-full bg-[#FFCC00] text-black shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:scale-110 transition-all duration-300 border border-gray-200 dark:border-zinc-700 flex items-center justify-center group focus:outline-none focus:ring-4 focus:ring-[#FFCC00]/30" title="Preguntar al Instructor IA">
+    <i class="fa-solid fa-brain text-xl group-hover:rotate-12 transition-transform"></i>
+</button>
+
+<div id="ia-chat-window" class="chat-hidden fixed bottom-24 right-6 w-[370px] h-[500px] bg-zinc-900 border border-zinc-700 rounded-2xl shadow-xl flex flex-col overflow-hidden z-[1040]">
+    <div class="flex items-center justify-between p-4 bg-zinc-800 border-b border-zinc-700">
+        <div>
+            <h3 class="font-bold text-lg text-white">Instructor IA</h3>
+            <p class="text-xs text-zinc-400" id="chat-context-label">Consulta General</p>
+        </div>
+        <button id="close-chat" class="text-zinc-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+    </div>
+    <div class="flex-grow p-4 overflow-y-auto flex flex-col gap-3" id="ia-chat-messages">
+        <div class="bg-zinc-700 text-zinc-200 p-3 rounded-lg self-start max-w-[85%] border border-zinc-600">¡A la orden! Soy tu instructor de IA. Pregúntame lo que necesites sobre el temario general.</div>
+    </div>
+    <div class="p-4 bg-zinc-800 border-t border-zinc-700">
+        <form id="ia-chat-form" class="flex items-center gap-2">
+            <input type="hidden" id="current-tema-id" value="">
+            <input type="text" id="ia-question-input" class="flex-grow bg-zinc-700 text-white border border-zinc-600 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]" placeholder="Escribe tu duda aquí..." required autocomplete="off">
+            <button type="submit" class="bg-[#FFCC00] text-black w-10 h-10 rounded-lg flex items-center justify-center hover:bg-yellow-400 transition-colors"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
     </div>
 </div>
 
 <script>
-    // 1. Al cargar, verificamos si el usuario prefirió "dark" alguna vez
-    const theme = localStorage.getItem('theme');
-    
-    if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    // --- Lógica de Chat IA (reutilizada del temario.html) ---
+    const fab = document.getElementById("ia-fab");
+    const chatWindow = document.getElementById("ia-chat-window");
+    const closeChat = document.getElementById("close-chat");
+    const chatMessages = document.getElementById("ia-chat-messages");
+    const chatForm = document.getElementById("ia-chat-form");
+    const questionInput = document.getElementById("ia-question-input");
+    const temaInput = document.getElementById("current-tema-id");
+    const contextLabel = document.getElementById("chat-context-label");
 
-    // 2. Función del botón
-    function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        let newTheme = 'dark'; 
-
-        if (currentTheme === 'dark') {
-            newTheme = 'light';
-            document.documentElement.removeAttribute('data-theme'); 
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
+    fab.addEventListener("click", () => {
+        chatWindow.classList.toggle("chat-hidden");
+        if(!chatWindow.classList.contains("chat-hidden")) {
+            temaInput.value = "";
+            contextLabel.innerText = "Consulta General";
+            // Opcional: limpiar mensajes o dejar un mensaje inicial
+            chatMessages.innerHTML = 
+                `<div class="bg-zinc-700 text-zinc-200 p-3 rounded-lg self-start max-w-[85%] border border-zinc-600">¡A la orden! Soy tu instructor de IA. Pregúntame lo que necesites sobre el temario general.</div>`;
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll al final
         }
+    });
 
-        localStorage.setItem('theme', newTheme);
+    closeChat.addEventListener("click", () => chatWindow.classList.add("chat-hidden"));
+
+    // Esta función no se usa directamente en portada.html, pero se mantiene para coherencia
+    window.openIAParaTema = function(temaId, temaNombre) {
+        chatWindow.classList.remove("chat-hidden");
+        temaInput.value = temaId;
+        contextLabel.innerText = "Tema: " + temaNombre;
+        chatMessages.innerHTML = 
+            `<div class="bg-zinc-700 text-zinc-200 p-3 rounded-lg self-start max-w-[85%] border border-zinc-600">Cargando contexto de: ${temaNombre}. ¿Qué duda tienes sobre este tema?</div>`;
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll al final
+    };
+
+    chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const question = questionInput.value.trim();
+        if (!question) return;
+
+        appendMessage(question, "user");
+        questionInput.value = "";
+        
+        const typingId = "typing-" + Date.now();
+        appendMessage("Analizando...", "ai", typingId);
+
+        try {
+            const response = await fetch("{% url 'ask_ia_instructor' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({
+                    question: question,
+                    tema_id: temaInput.value
+                }),
+            });
+            
+            const indicator = document.getElementById(typingId);
+            if (indicator) indicator.remove();
+
+            if (!response.ok) throw new Error("Error en servidor");
+
+            const data = await response.json();
+            appendMessage(data.answer, "ai");
+
+        } catch (error) {
+            const indicator = document.getElementById(typingId);
+            if (indicator) indicator.remove();
+            appendMessage("Lo siento, no he podido conectar con la base de datos de instrucción.", "ai");
+            console.error("Error fetching AI response:", error);
+        }
+    });
+
+    function appendMessage(text, sender, id = null) {
+        const div = document.createElement("div");
+        if(id) div.id = id;
+        div.className = sender === "user" 
+            ? "bg-[#FFCC00] text-black p-3 rounded-lg self-end max-w-[85%] border border-yellow-400" 
+            : "bg-zinc-700 text-zinc-200 p-3 rounded-lg self-start max-w-[85%] border border-zinc-600";
+        div.innerText = text;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
+});
 </script>
+<!-- FIN: Componente de Chat IA -->
 
 {% endblock %}

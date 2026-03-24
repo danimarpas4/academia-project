@@ -6,21 +6,22 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     
     # 1. Autenticación Estándar (Tu Login propio)
     # Mantenemos esto PRIMERO para que use tu diseño de 'registration/login.html'
-    path('accounts/', include('django.contrib.auth.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
     
     # 2. Autenticación con Google (Allauth)
     # Aquí es donde busca las rutas 'accounts/google/login/'
-    path('accounts/', include('allauth.urls')),
+    path("accounts/", include("allauth.urls")),
     
     # MANTENEMOS TU RUTA DE REGISTRO
-    path('registro/', vistas_simulador.registro, name='registro'),
+    path("registro/", vistas_simulador.registro, name="registro"),
     
     # RUTAS DE LA APP
-    path('', include('simulador.urls')),
+    path("", include("simulador.urls")),
+    path("instructor-ia/ask/", vistas_simulador.ask_ia_instructor, name="ask_ia_instructor"), # Ruta para el chatbot
 ]
 
 # --- SIRVE ARCHIVOS MEDIA EN MODO DEBUG ---

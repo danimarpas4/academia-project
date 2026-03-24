@@ -1,19 +1,62 @@
 {% extends 'simulador/base.html' %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card mt-5">
-            <div class="card-header bg-primary text-white">Identificación</div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
-                </form>
+<div class="flex items-center justify-center min-h-[70vh]">
+    <div class="w-full max-w-md relative">
+        
+        <!-- Efecto de luz de fondo -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#FFCC00]/20 to-zinc-600/20 rounded-[2rem] blur-lg opacity-75"></div>
+        
+        <!-- Tarjeta de Login -->
+        <div class="relative bg-zinc-950/90 backdrop-blur-xl border border-zinc-800 rounded-3xl p-8 shadow-2xl">
+            
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-[#FFCC00] flex items-center justify-center rounded-2xl rotate-3 shadow-[0_0_20px_rgba(255,204,0,0.3)] mx-auto mb-6">
+                    <i class="fa-solid fa-lock text-black text-2xl -rotate-3"></i>
+                </div>
+                <h2 class="text-3xl font-black text-white tracking-tighter">INICIAR <span class="text-[#FFCC00]">SESIÓN</span></h2>
+                <p class="text-zinc-500 text-sm mt-2 font-medium">Accede al centro de instrucción táctica</p>
             </div>
-            <div class="card-footer text-center">
-                ¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>
+
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                    <div class="bg-red-900/30 border border-red-800 text-red-400 p-3 rounded-xl text-sm text-center">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i> Credenciales incorrectas.
+                    </div>
+                {% endif %}
+
+                <div>
+                    <label class="block text-zinc-400 text-xs font-bold mb-2 uppercase tracking-wider" for="{{ form.username.id_for_label }}">Usuario / NIP</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-user text-zinc-500"></i>
+                        </div>
+                        <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" class="w-full bg-black border border-zinc-800 text-white text-sm rounded-xl focus:ring-[#FFCC00] focus:border-[#FFCC00] block w-full pl-11 p-3 transition-colors" placeholder="Introduce tu usuario" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-zinc-400 text-xs font-bold mb-2 uppercase tracking-wider" for="{{ form.password.id_for_label }}">Contraseña</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-key text-zinc-500"></i>
+                        </div>
+                        <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" class="w-full bg-black border border-zinc-800 text-white text-sm rounded-xl focus:ring-[#FFCC00] focus:border-[#FFCC00] block w-full pl-11 p-3 transition-colors" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-3.5 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,204,0,0.2)] flex items-center justify-center gap-2 mt-8">
+                    ENTRAR AHORA <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="mt-8 text-center border-t border-zinc-800 pt-6">
+                <p class="text-zinc-500 text-sm">
+                    ¿Aún no tienes acceso? <br>
+                    <a href="{% url 'registro' %}" class="text-[#FFCC00] hover:text-white font-bold transition-colors mt-1 inline-block">Solicita tu plaza aquí</a>
+                </p>
             </div>
         </div>
     </div>

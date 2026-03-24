@@ -101,10 +101,15 @@
             <small class="text-secondary text-uppercase fw-bold" style="letter-spacing: 1px;">// BIBLIOTECA OFICIAL</small>
             <h2 class="display-5 fw-bold text-light" style="font-family: 'Rajdhani', sans-serif;">DOCUMENTACIÓN Y TEMARIOS</h2>
         </div>
-        <a href="{% url 'portada' %}" class="btn btn-outline-secondary px-4 rounded-pill">
-            <i class="fas fa-arrow-left me-2"></i> Volver al Panel
-        </a>
-    </div>
+                <a href="{% url 'portada' %}" class="btn btn-outline-secondary px-4 rounded-pill">
+                    <i class="fas fa-arrow-left me-2"></i> Volver al Panel
+                </a>
+            </div>
+
+            <!-- Botón Chat IA General -->
+            <button id="ia-fab" class="btn btn-warning rounded-pill shadow-lg d-flex align-items-center gap-2" style="position: fixed; bottom: 30px; right: 100px; z-index: 1050;">
+                <i class="fas fa-brain"></i> Instructor IA
+            </button>
 
     {% if messages %}
         {% for message in messages %}
@@ -137,20 +142,18 @@
                     <div class="col-md-5">
                         <div class="d-flex flex-column gap-2">
                             
-                            {% if tema.archivo_audio %}
-                                <div class="p-2 rounded d-flex align-items-center bg-opacity-10" 
+                            <div class="p-2 rounded d-flex align-items-center bg-opacity-10" 
                                      style="background-color: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05);">
                                     <div class="me-2 text-warning fs-5"><i class="fas fa-headphones-alt"></i></div>
                                     <div class="flex-grow-1">
-                                        <audio controls class="w-100" style="height: 30px; opacity: 0.9;">
-                                            <source src="{{ tema.archivo_audio.url }}" type="audio/mpeg">
+                                        <audio controls class="w-100" style="height: 30px; opacity: 0.9;" preload="none">
+                                            <source src="{% url 'descargar_tema_mp3' tema.id %}" type="audio/mpeg">
                                         </audio>
                                     </div>
-                                    <a href="{{ tema.archivo_audio.url }}" download class="ms-2 text-secondary" title="Descargar MP3">
+                                    <a href="{% url 'descargar_tema_mp3' tema.id %}" download="tema_{{ tema.id }}.mp3" class="ms-2 text-secondary" title="Descargar MP3">
                                         <i class="fas fa-download"></i>
                                     </a>
                                 </div>
-                            {% endif %}
 
                             {% if tema.archivo_pdf %}
                                 <a href="{{ tema.archivo_pdf.url }}" target="_blank" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
@@ -161,6 +164,11 @@
                                     <i class="fas fa-ban me-2"></i> PDF No disponible
                                 </button>
                             {% endif %}
+                            
+                            <!-- Botón Preguntar a IA -->
+                            <button onclick="openIAParaTema('{{ tema.id }}', '{{ tema.nombre|escapejs }}')" class="btn btn-warning w-100 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-brain me-2"></i> Dudas sobre este tema
+                            </button>
                             
                         </div>
                     </div>
@@ -180,6 +188,37 @@
         </div>
     </div>
 </div>
+
+<!-- Ventana de Chat IA -->
+<div id="ia-chat-window" class="chat-hidden shadow-lg border border-secondary rounded-3" style="position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px; background: #212529; z-index: 1040; display: flex; flex-direction: column; overflow: hidden; transition: all 0.3s ease;">
+    <div class="p-3 bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
+        <div>
+            <h5 class="mb-0 text-white font-bold">Instructor IA</h5>
+            <small class="text-muted" id="chat-context-label">Consulta General</small>
+        </div>
+        <button class="btn-close btn-close-white" id="close-chat"></button>
+    </div>
+    <div class="p-3 flex-grow-1 overflow-auto d-flex flex-column gap-3" id="ia-chat-messages">
+        <div class="bg-secondary bg-opacity-25 p-2 rounded text-light align-self-start" style="max-width: 85%;">
+            ¡A la orden! Soy tu instructor de IA. Selecciona un tema específico o pregúntame dudas generales.
+        </div>
+    </div>
+    <div class="p-3 border-top border-secondary bg-dark">
+        <form id="ia-chat-form">
+            <input type="hidden" id="current-tema-id" value="">
+            <div class="input-group">
+                <input type="text" id="ia-question-input" class="form-control bg-black text-white border-secondary" placeholder="Escribe tu duda..." required>
+                <button class="btn btn-warning" type="submit"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .chat-hidden { transform: scale(0); opacity: 0; pointer-events: none; }
+    #ia-chat-messages::-webkit-scrollbar { width: 5px; }
+    #ia-chat-messages::-webkit-scrollbar-thumb { background: #444; border-radius: 5px; }
+</style>
 
 <button id="theme-toggle" class="theme-toggle-btn" title="Cambiar Tema">
     ☀️
@@ -222,6 +261,83 @@
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
             updateButton(isLight);
         });
+
+        // --- Lógica de Chat IA ---
+        const fab = document.getElementById('ia-fab');
+        const chatWindow = document.getElementById('ia-chat-window');
+        const closeChat = document.getElementById('close-chat');
+        const chatMessages = document.getElementById('ia-chat-messages');
+        const chatForm = document.getElementById('ia-chat-form');
+        const questionInput = document.getElementById('ia-question-input');
+        const temaInput = document.getElementById('current-tema-id');
+        const contextLabel = document.getElementById('chat-context-label');
+
+        fab.addEventListener('click', () => {
+            chatWindow.classList.toggle('chat-hidden');
+            if(!chatWindow.classList.contains('chat-hidden')) {
+                temaInput.value = "";
+                contextLabel.innerText = "Consulta General";
+            }
+        });
+
+        closeChat.addEventListener('click', () => chatWindow.classList.add('chat-hidden'));
+
+        // Permitir a los botones de los temas abrir el chat con contexto
+        window.openIAParaTema = function(temaId, temaNombre) {
+            chatWindow.classList.remove('chat-hidden');
+            temaInput.value = temaId;
+            contextLabel.innerText = "Tema: " + temaNombre;
+            appendMessage("Cargando contexto de: " + temaNombre + ". ¿Qué duda tienes sobre este tema?", "ai");
+        };
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const question = questionInput.value.trim();
+            if (!question) return;
+
+            appendMessage(question, 'user');
+            questionInput.value = '';
+            
+            const typingId = 'typing-' + Date.now();
+            appendMessage("Analizando...", "ai", typingId);
+
+            try {
+                const response = await fetch("{% url 'ask_ia_instructor' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    body: JSON.stringify({
+                        question: question,
+                        tema_id: temaInput.value
+                    }),
+                });
+                
+                document.getElementById(typingId).remove();
+
+                if (!response.ok) throw new Error("Error en servidor");
+
+                const data = await response.json();
+                appendMessage(data.answer, 'ai');
+
+            } catch (error) {
+                if(document.getElementById(typingId)) document.getElementById(typingId).remove();
+                appendMessage("Lo siento, no he podido conectar con la base de datos de instrucción.", "ai");
+            }
+        });
+
+        function appendMessage(text, sender, id = null) {
+            const div = document.createElement('div');
+            if(id) div.id = id;
+            div.className = sender === 'user' 
+                ? 'bg-warning text-black p-2 rounded align-self-end' 
+                : 'bg-secondary bg-opacity-25 p-2 rounded text-light align-self-start';
+            div.style.maxWidth = '85%';
+            div.innerText = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
     });
 </script>
 {% endblock %}

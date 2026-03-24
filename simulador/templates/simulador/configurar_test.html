@@ -1,105 +1,243 @@
 {% extends 'simulador/base.html' %}
-{% load static %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
+<div class="max-w-6xl mx-auto py-8 px-4">
+    
+    <!-- Encabezado de Misión -->
+    <div class="mb-10 text-center md:text-left">
+        <h1 class="text-4xl font-black text-white tracking-tight uppercase">Configurar <span class="text-[#FFCC00]">Instrucción</span></h1>
+        <p class="text-zinc-400 mt-2 font-medium">Selecciona las materias y el volumen de fuego (preguntas) para este simulacro.</p>
+    </div>
+
+    <form action="{% url 'generar_test' %}" method="post" id="test-form">
+        {% csrf_token %}
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            <div class="card bg-dark text-white border-secondary shadow-lg">
+            <!-- PANEL IZQUIERDO: SELECCIÓN DE TEMARIO -->
+            <div class="lg:col-span-2 space-y-6">
                 
-                <div class="card-header border-secondary p-4" style="background: rgba(13, 110, 253, 0.2);">
-                    <h2 class="h4 mb-0 fw-bold text-uppercase" style="letter-spacing: 2px;">
-                        ⚙️ Configuración de Misión
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-[#FFCC00]"></i> Áreas de Estudio
                     </h2>
+                    <div class="flex gap-3">
+                        <button type="button" onclick="marcarTodo(true)" class="text-[10px] font-black text-[#FFCC00] hover:text-white transition-colors uppercase tracking-widest border border-[#FFCC00]/30 px-3 py-1 rounded-lg">Marcar Todo</button>
+                        <button type="button" onclick="marcarTodo(false)" class="text-[10px] font-black text-zinc-500 hover:text-white transition-colors uppercase tracking-widest border border-zinc-800 px-3 py-1 rounded-lg">Limpiar</button>
+                    </div>
                 </div>
 
-                <div class="card-body p-4">
+                <!-- BLOQUES DE MATERIAS -->
+                <div class="space-y-4">
                     
-                    <form method="POST" action="{% url 'configurar_test' %}">
-                        {% csrf_token %}
-
-                        <h5 class="text-warning mb-3 border-bottom border-secondary pb-2">1. Objetivo (Temario)</h5>
-                        
-                        <div class="form-check mb-3 p-3 rounded" style="background-color: #2c2c2c;">
-                            <input class="form-check-input" type="checkbox" id="todos" onchange="toggle(this)">
-                            <label class="form-check-label fw-bold text-white" for="todos">
-                                🛡️ SIMULACRO GENERAL (Seleccionar todo)
-                            </label>
-                        </div>
-
-                        <div class="row g-2 mb-4" style="max-height: 300px; overflow-y: auto;">
-                            {% for tema in temas %}
-                            <div class="col-md-6">
-                                <div class="form-check p-2 rounded h-100 d-flex align-items-center hover-effect" style="background-color: #1a1a1a; border: 1px solid #444;">
-                                    <input class="form-check-input case ms-1 me-2 bg-dark border-secondary" type="checkbox" name="temas" value="{{ tema.id }}" id="t{{ tema.id }}">
-                                    <label class="form-check-label w-100 cursor-pointer text-light" for="t{{ tema.id }}">
-                                        {{ tema.nombre }}
-                                    </label>
+                    <!-- 1. LEGISLACIÓN Y MILITAR -->
+                    <div class="glass-panel rounded-2xl border border-zinc-800 overflow-hidden transition-all duration-300">
+                        <button type="button" onclick="toggleMateria('materia-cabo')" class="w-full flex items-center justify-between p-5 bg-zinc-900/50 hover:bg-zinc-800 transition-colors">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-zinc-800 rounded-lg flex items-center justify-center border border-zinc-700">
+                                    <i class="fa-solid fa-gavel text-white"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-bold text-white uppercase tracking-wide">Legislación y Militar</h3>
+                                    <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-tighter">Temario Oficial Cabo</span>
                                 </div>
                             </div>
-                            {% endfor %}
-                        </div>
-
-                        <h5 class="text-warning mb-3 border-bottom border-secondary pb-2 mt-4">2. Parámetros</h5>
+                            <i id="icon-materia-cabo" class="fa-solid fa-chevron-down text-zinc-600 transition-transform"></i>
+                        </button>
                         
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <label class="form-label text-info">Munición (Nº Preguntas)</label>
-                                <select name="cantidad" class="form-select bg-dark text-white border-secondary">
-                                    <option value="10">10 (Rápido)</option>
-                                    <option value="20" selected>20 (Estándar)</option>
-                                    <option value="50">50 (Simulacro)</option>
-                                    <option value="100">100 (Examen Oficial)</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label text-info">Cronómetro</label>
-                                <select name="tiempo" class="form-select bg-dark text-white border-secondary">
-                                    <option value="0" selected>Sin límite</option>
-                                    <option value="10">10 Minutos</option>
-                                    <option value="20">20 Minutos</option>
-                                    <option value="45">45 Minutos</option>
-                                    <option value="90">1 Hora y media</option>
-                                </select>
+                        <div id="materia-cabo" class="hidden p-5 bg-black/40 border-t border-zinc-800">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {% for tema in temas_cabo %}
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-zinc-800 hover:border-[#FFCC00]/50 hover:bg-zinc-900/50 cursor-pointer transition-all group">
+                                    <input type="checkbox" name="temas" value="{{ tema.id }}" class="w-5 h-5 accent-[#FFCC00] rounded border-zinc-700 bg-zinc-800">
+                                    <span class="text-sm text-zinc-300 group-hover:text-white transition-colors">{{ tema.nombre }}</span>
+                                </label>
+                                {% empty %}
+                                <p class="text-zinc-600 text-xs italic p-2">No hay temas disponibles en esta sección.</p>
+                                {% endfor %}
                             </div>
                         </div>
+                    </div>
 
-                        <div class="d-grid gap-2 mt-5">
-                            <button type="submit" class="btn btn-warning btn-lg py-3 fw-bold text-dark text-uppercase shadow-sm hover-scale">
-                                🚀 Iniciar Maniobra
-                            </button>
+                    <!-- 2. LENGUA INGLESA -->
+                    <div class="glass-panel rounded-2xl border border-zinc-800 overflow-hidden transition-all duration-300">
+                        <button type="button" onclick="toggleMateria('materia-ingles')" class="w-full flex items-center justify-between p-5 bg-zinc-900/50 hover:bg-zinc-800 transition-colors border-l-4 border-l-blue-600">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-blue-900/20 rounded-lg flex items-center justify-center text-blue-500 border border-blue-900/30">
+                                    <i class="fa-solid fa-language text-xl"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-bold text-white uppercase tracking-wide">Lengua Inglesa</h3>
+                                    <span class="text-[10px] text-blue-400 font-bold uppercase tracking-tighter">Nivel SLP / Acceso Cabo 1º</span>
+                                </div>
+                            </div>
+                            <i id="icon-materia-ingles" class="fa-solid fa-chevron-down text-zinc-600 transition-transform"></i>
+                        </button>
+                        
+                        <div id="materia-ingles" class="hidden p-5 bg-black/40 border-t border-zinc-800">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {% for tema in temas_ingles %}
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-zinc-800 hover:border-blue-500/50 hover:bg-blue-900/10 cursor-pointer transition-all group">
+                                    <input type="checkbox" name="temas" value="{{ tema.id }}" class="w-5 h-5 accent-blue-500 rounded border-zinc-700 bg-zinc-800">
+                                    <span class="text-sm text-zinc-300 group-hover:text-white transition-colors">{{ tema.nombre }}</span>
+                                </label>
+                                {% empty %}
+                                <p class="text-zinc-600 text-xs italic p-2">No hay temas de Inglés cargados.</p>
+                                {% endfor %}
+                            </div>
                         </div>
+                    </div>
 
-                    </form>
+                    <!-- 3. GEOGRAFÍA -->
+                    <div class="glass-panel rounded-2xl border border-zinc-800 overflow-hidden transition-all duration-300">
+                        <button type="button" onclick="toggleMateria('materia-geografia')" class="w-full flex items-center justify-between p-5 bg-zinc-900/50 hover:bg-zinc-800 transition-colors border-l-4 border-l-emerald-600">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-emerald-900/20 rounded-lg flex items-center justify-center text-emerald-500 border border-emerald-900/30">
+                                    <i class="fa-solid fa-earth-europe text-xl"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-bold text-white uppercase tracking-wide">Geografía</h3>
+                                    <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-tighter">Territorio y Relieve</span>
+                                </div>
+                            </div>
+                            <i id="icon-materia-geografia" class="fa-solid fa-chevron-down text-zinc-600 transition-transform"></i>
+                        </button>
+                        
+                        <div id="materia-geografia" class="hidden p-5 bg-black/40 border-t border-zinc-800">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {% for tema in temas_geografia %}
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-zinc-800 hover:border-emerald-500/50 hover:bg-emerald-900/10 cursor-pointer transition-all group">
+                                    <input type="checkbox" name="temas" value="{{ tema.id }}" class="w-5 h-5 accent-emerald-500 rounded border-zinc-700 bg-zinc-800">
+                                    <span class="text-sm text-zinc-300 group-hover:text-white transition-colors">{{ tema.nombre }}</span>
+                                </label>
+                                {% empty %}
+                                <p class="text-zinc-600 text-xs italic p-2">No hay temas de Geografía cargados.</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. INFORMÁTICA -->
+                    <div class="glass-panel rounded-2xl border border-zinc-800 overflow-hidden transition-all duration-300">
+                        <button type="button" onclick="toggleMateria('materia-informatica')" class="w-full flex items-center justify-between p-5 bg-zinc-900/50 hover:bg-zinc-800 transition-colors border-l-4 border-l-purple-600">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-purple-900/20 rounded-lg flex items-center justify-center text-purple-500 border border-purple-900/30">
+                                    <i class="fa-solid fa-microchip text-xl"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-bold text-white uppercase tracking-wide">Informática</h3>
+                                    <span class="text-[10px] text-purple-400 font-bold uppercase tracking-tighter">Sistemas y Seguridad</span>
+                                </div>
+                            </div>
+                            <i id="icon-materia-informatica" class="fa-solid fa-chevron-down text-zinc-600 transition-transform"></i>
+                        </button>
+                        
+                        <div id="materia-informatica" class="hidden p-5 bg-black/40 border-t border-zinc-800">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {% for tema in temas_informatica %}
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-zinc-800 hover:border-purple-500/50 hover:bg-purple-900/10 cursor-pointer transition-all group">
+                                    <input type="checkbox" name="temas" value="{{ tema.id }}" class="w-5 h-5 accent-purple-500 rounded border-zinc-700 bg-zinc-800">
+                                    <span class="text-sm text-zinc-300 group-hover:text-white transition-colors">{{ tema.nombre }}</span>
+                                </label>
+                                {% empty %}
+                                <p class="text-zinc-600 text-xs italic p-2">No hay temas de Informática cargados.</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
+            <!-- PANEL DERECHO: PARÁMETROS DEL TEST -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-24 space-y-6">
+                    
+                    <div class="glass-panel p-6 rounded-3xl border border-zinc-800 shadow-2xl">
+                        <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-[#FFCC00]"></i> Parámetros
+                        </h3>
+
+                        <!-- Número de Preguntas -->
+                        <div class="mb-8">
+                            <label class="block text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">Volumen de Fuego</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="cantidad" value="10" class="peer hidden" checked>
+                                    <div class="text-center py-2 rounded-xl border border-zinc-800 text-zinc-400 peer-checked:bg-[#FFCC00] peer-checked:text-black peer-checked:border-[#FFCC00] font-bold transition-all uppercase text-[10px]">10 Preg.</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="cantidad" value="50" class="peer hidden">
+                                    <div class="text-center py-2 rounded-xl border border-zinc-800 text-zinc-400 peer-checked:bg-[#FFCC00] peer-checked:text-black peer-checked:border-[#FFCC00] font-bold transition-all uppercase text-[10px]">50 Preg.</div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="cantidad" value="100" class="peer hidden">
+                                    <div class="text-center py-2 rounded-xl border border-zinc-800 text-zinc-400 peer-checked:bg-[#FFCC00] peer-checked:text-black peer-checked:border-[#FFCC00] font-bold transition-all uppercase text-[10px]">100 Preg.</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Modo de Examen -->
+                        <div class="mb-8">
+                            <label class="flex items-center gap-3 p-4 rounded-2xl bg-zinc-900/30 border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-all group">
+                                <input type="checkbox" name="modo_examen" class="w-5 h-5 accent-[#FFCC00] rounded border-zinc-700 bg-zinc-800">
+                                <div>
+                                    <span class="block text-sm font-bold text-white group-hover:text-[#FFCC00] transition-colors">Modo Examen</span>
+                                    <span class="block text-[10px] text-zinc-500">Corrección solo al finalizar.</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-4 rounded-2xl shadow-[0_0_20px_rgba(255,204,0,0.2)] transition-all hover:scale-[1.02] flex items-center justify-center gap-2 uppercase tracking-tighter">
+                            GENERAR TEST <i class="fa-solid fa-bolt"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-zinc-900/20 border border-zinc-800 flex items-start gap-3">
+                        <i class="fa-solid fa-circle-info text-[#FFCC00] mt-1"></i>
+                        <p class="text-[11px] text-zinc-500 leading-relaxed font-medium">
+                            Puedes combinar temas de diferentes áreas. El sistema mezclará las preguntas automáticamente para un simulacro real.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <script>
-    function toggle(source) {
-        checkboxes = document.getElementsByClassName('case');
-        for(var i=0, n=checkboxes.length;i<n;i++) {
-            checkboxes[i].checked = source.checked;
+    /**
+     * Alterna la visibilidad de las materias (acordeón)
+     */
+    function toggleMateria(id) {
+        const el = document.getElementById(id);
+        const icon = document.getElementById('icon-' + id);
+        
+        if (el.classList.contains('hidden')) {
+            el.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+        } else {
+            el.classList.add('hidden');
+            icon.classList.remove('rotate-180');
         }
+    }
+
+    /**
+     * Marca o desmarca todos los temas visibles
+     */
+    function marcarTodo(status) {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="temas"]');
+        checkboxes.forEach(cb => {
+            cb.checked = status;
+        });
     }
 </script>
 
 <style>
-    /* Efectos extra para que parezca una app moderna */
-    .hover-scale { transition: transform 0.2s; }
-    .hover-scale:hover { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 193, 7, 0.4); }
-    
-    .hover-effect:hover { border-color: #0d6efd !important; background-color: #222 !important; }
-    
-    /* Scrollbar oscura personalizada */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #1a1a1a; }
-    ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #0d6efd; }
+    /* Efecto de cristal para los paneles */
+    .glass-panel {
+        background: rgba(15, 15, 15, 0.7);
+        backdrop-filter: blur(10px);
+    }
 </style>
 {% endblock %}

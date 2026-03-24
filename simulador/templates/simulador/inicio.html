@@ -1,201 +1,326 @@
-{% extends 'simulador/base.html' %}
-
-{% block content %}
-
-<style>
-    /* --- 1. MODO CLARO (POR DEFECTO) --- */
-    body {
-        background-color: #f8f9fa !important; /* Fondo Claro */
-        color: #212529 !important; /* Texto Oscuro */
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    /* Botón Login en Modo Claro (Negro) */
-    .btn-login-custom {
-        color: #000000 !important;
-        border-color: #000000 !important;
-    }
-    .btn-login-custom:hover {
-        background-color: #000000 !important;
-        color: #ffffff !important;
-    }
-
-    /* Tarjetas en Modo Claro (Blancas) */
-    .card {
-        background-color: #ffffff !important;
-    }
-    .card-title.text-white {
-        color: #000000 !important; /* Títulos negros */
-    }
-
-
-    /* --- 2. MODO OSCURO (ACTIVADO POR CLASE) --- */
-    body.dark-mode {
-        background-color: #000000 !important; /* Fondo Negro Puro */
-        color: #ffffff !important;
-    }
-
-    /* Botón Login en Modo Oscuro (Blanco) */
-    body.dark-mode .btn-login-custom {
-        color: #ffffff !important;
-        border-color: #ffffff !important;
-    }
-    body.dark-mode .btn-login-custom:hover {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-    }
-
-    /* --- CORRECCIÓN: Fondo gris para TODAS las tarjetas en modo oscuro --- */
-    body.dark-mode .card {
-        background-color: #1c1f23 !important; /* Gris Táctico */
-        color: #ffffff !important;
-    }
-    
-    /* Aseguramos que los bordes se vean bien en oscuro */
-    body.dark-mode .card.border-secondary { border-color: #3a3f44 !important; }
-    body.dark-mode .card.border-warning   { border-color: #ffc107 !important; }
-    body.dark-mode .card.border-success   { border-color: #198754 !important; }
-
-    /* Forzamos títulos a blanco en modo oscuro */
-    body.dark-mode .card-title.text-white {
-        color: #ffffff !important;
-    }
-    
-    /* --- BOTÓN FLOTANTE --- */
-    .theme-toggle-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #ffc107; /* Amarillo por defecto */
-        color: #000;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        z-index: 1050;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        transition: transform 0.3s ease, background-color 0.3s;
-    }
-    .theme-toggle-btn:hover {
-        transform: scale(1.1);
-    }
-</style>
-
-<div class="text-center my-5">
-    <h1 class="display-4 fw-bold text-warning">ACADEMIA PROMILITAR</h1>
-    <p class="lead text-secondary">La plataforma líder en formación para las Fuerzas Armadas</p>
-    
-    <div class="mt-4">
-        <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg me-2 btn-login-custom">Iniciar Sesión</a>
-        <a href="{% url 'registro' %}" class="btn btn-warning btn-lg text-dark fw-bold">Crear Cuenta</a>
-    </div>
-</div>
-
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5">
-    
-    <div class="col">
-        <div class="card h-100 border-warning">
-            <div class="card-header bg-warning text-dark fw-bold text-center">ACCESO</div>
-            <div class="card-body text-center">
-                <div class="display-1 mb-3">🪖</div>
-                <h5 class="card-title text-white">Acceso a las FFAAS</h5>
-                <p class="card-text text-secondary small">Prepárate para el ingreso en Tropa y Marinería.</p>
-            </div>
-            <div class="card-footer bg-transparent border-top-0 text-center">
-                <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-warning w-100">Elegir Curso</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card h-100 border-secondary">
-            <div class="card-header bg-secondary text-white fw-bold text-center">ASCENSO</div>
-            <div class="card-body text-center">
-                <div class="display-1 mb-3">🎖️</div>
-                <h5 class="card-title text-white">Ascenso a Cabo</h5>
-                <p class="card-text text-secondary small">Temario actualizado para tu primer ascenso.</p>
-            </div>
-            <div class="card-footer bg-transparent border-top-0 text-center">
-                <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-secondary w-100">Elegir Curso</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card h-100 border-secondary">
-            <div class="card-header bg-secondary text-white fw-bold text-center">ASCENSO</div>
-            <div class="card-body text-center">
-                <div class="display-1 mb-3">🎗️</div>
-                <h5 class="card-title text-white">Cabo Primero</h5>
-                <p class="card-text text-secondary small">Consigue el galón de oro. Test específicos.</p>
-            </div>
-            <div class="card-footer bg-transparent border-top-0 text-center">
-                <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-secondary w-100">Elegir Curso</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col">
-        <div class="card h-100 border-success">
-            <div class="card-header bg-success text-white fw-bold text-center">CARRERA</div>
-            <div class="card-body text-center">
-                <div class="display-1 mb-3">⚓</div>
-                <h5 class="card-title text-white">Permanencia</h5>
-                <p class="card-text text-secondary small">Asegura tu futuro. Preparación integral.</p>
-            </div>
-            <div class="card-footer bg-transparent border-top-0 text-center">
-                <a href="{% url 'registro' %}" class="btn btn-sm btn-outline-success w-100">Elegir Curso</a>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<button id="theme-toggle" class="theme-toggle-btn" title="Cambiar Tema">
-    ☀️
-</button>
-
-<script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // 1. Cargar preferencia guardada (Lógica invertida: Buscamos 'dark')
-    const currentTheme = localStorage.getItem('theme');
-    
-    if (currentTheme === 'dark') {
-        body.classList.add('dark-mode');
-        toggleBtn.innerHTML = '🌙';
-        toggleBtn.style.backgroundColor = '#198754'; // Verde
-        toggleBtn.style.color = '#fff';
-    } else {
-        // Por defecto es claro
-        toggleBtn.innerHTML = '☀️';
-        toggleBtn.style.backgroundColor = '#ffc107'; // Amarillo
-        toggleBtn.style.color = '#000';
-    }
-
-    // 2. Al hacer clic
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        
-        if (body.classList.contains('dark-mode')) {
-            // MODO OSCURO ACTIVADO
-            localStorage.setItem('theme', 'dark');
-            toggleBtn.innerHTML = '🌙';
-            toggleBtn.style.backgroundColor = '#198754';
-            toggleBtn.style.color = '#fff';
-        } else {
-            // MODO CLARO ACTIVADO
-            localStorage.setItem('theme', 'light');
-            toggleBtn.innerHTML = '☀️';
-            toggleBtn.style.backgroundColor = '#ffc107';
-            toggleBtn.style.color = '#000';
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProMilitar | Academia de Ascenso a Cabo del Ejército de Tierra</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        military: {
+                            gold: '#FFCC00',
+                            dark: '#000000',
+                            zinc: '#18181b',
+                        }
+                    }
+                }
+            }
         }
-    });
-</script>
-{% endblock %}
+    </script>
+    <!-- Resto de estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --military-gold: #FFCC00;
+            --military-dark: #000000;
+            --military-zinc: #18181b;
+        }
+        body { 
+            font-family: 'Inter', sans-serif;
+            background-color: var(--military-dark);
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FFCC00; }
+
+        /* Glassmorphism & Borders */
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 204, 0, 0.1);
+        }
+
+        /* Animated Blobs Background */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob { animation: blob 10s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); }
+        .animation-delay-2000 { animation-delay: 2s; }
+
+        /* Button Shine Effect */
+        .btn-shine { position: relative; overflow: hidden; }
+        .btn-shine::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg) translate(-100%, 100%); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-shine:hover::after { transform: rotate(45deg) translate(100%, -100%); }
+
+        /* Continuous Pulse for Main CTA */
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 204, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+        .pulse-gold-active { animation: pulse-gold 2s infinite; }
+
+        /* Scroll Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+    </style>
+    <script>
+        // Prevención de FOUC para el tema
+        if (localStorage.getItem('color-theme') === 'light' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+        }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Nav -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-lg border-b border-zinc-900 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3 group cursor-pointer" onclick="window.location.href='#'">
+                    <div class="w-10 h-10 bg-[#FFCC00] flex items-center justify-center rounded-lg rotate-3 shadow-[0_0_15px_rgba(255,204,0,0.3)] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                        <i class="fa-solid fa-shield-halved text-black text-xl -rotate-3 transition-transform duration-300 group-hover:rotate-3"></i>
+                    </div>
+                    <div class="flex flex-col justify-center pt-1">
+                        <span class="text-2xl font-extrabold tracking-tighter text-white leading-none">PRO<span class="text-[#FFCC00]">MILITAR</span></span>
+                        <span class="text-[0.65rem] font-bold text-zinc-400 tracking-[0.26em] leading-none mt-1">ACADEMIA ONLINE</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#inicio" class="text-zinc-300 hover:text-[#FFCC00] px-3 py-2 font-medium transition-colors">Inicio</a>
+                        <a href="#features" class="text-zinc-300 hover:text-[#FFCC00] px-3 py-2 font-medium transition-colors">Características</a>
+                        <a href="#cursos" class="text-zinc-300 hover:text-[#FFCC00] px-3 py-2 font-medium transition-colors">Cursos</a>
+                        <a href="{% url 'login' %}" class="bg-zinc-800 text-white px-5 py-2 rounded-lg font-bold transition-colors hover:bg-zinc-700 ml-4">Acceder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-40 pb-24 overflow-hidden text-center bg-black">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background: radial-gradient(circle at 50% 50%, rgba(255,204,0,0.2), transparent 70%);"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="reveal inline-flex items-center px-4 py-1.5 rounded-full glass-panel border border-[#FFCC00]/30 text-[#FFCC00] text-sm font-bold mb-6 shadow-lg">
+                <i class="fa-solid fa-flag-checkered mr-2"></i> CONVOCATORIAS 2026/2027 ABIERTAS
+            </div>
+            <h1 class="reveal delay-100 text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">
+                El Camino Más Directo a Tu Ascenso Militar
+            </h1>
+            <p class="reveal delay-200 text-lg text-zinc-400 mb-10 max-w-2xl mx-auto">
+                Prepárate con una metodología probada, temarios siempre actualizados y herramientas de estudio inteligentes. Tu apto es nuestra misión.
+            </p>
+            <a href="#cursos" class="reveal delay-300 bg-[#FFCC00] text-black px-8 py-3.5 rounded-full font-bold transition-all duration-300 hover:scale-105 btn-shine pulse-gold-active shadow-lg">
+                Ver Cursos Disponibles
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-zinc-950 border-y border-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-black text-white mb-3 tracking-tight">¿Por Qué <span class="text-[#FFCC00]">ProMilitar</span>?</h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Nuestro arsenal de herramientas está diseñado para maximizar tus posibilidades de éxito.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1: AI Agent -->
+                <div class="reveal glass-panel p-8 rounded-3xl text-center border border-zinc-800 hover:border-[#FFCC00]/50 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center mb-6 mx-auto text-[#FFCC00] text-3xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Agente IA 24/7</h3>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Resuelve al instante cualquier duda sobre el temario. Nuestro asistente de IA ha sido entrenado con toda la documentación oficial para darte respuestas precisas.
+                    </p>
+                </div>
+                <!-- Feature 2: Simulacros Reales -->
+                <div class="reveal delay-100 glass-panel p-8 rounded-3xl text-center border border-zinc-800 hover:border-[#FFCC00]/50 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center mb-6 mx-auto text-[#FFCC00] text-3xl">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Simulacros Reales</h3>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Practica con exámenes que imitan el formato y la dificultad de la prueba real. Analiza tus resultados y detecta tus puntos débiles.
+                    </p>
+                </div>
+                <!-- Feature 3: Temario Actualizado -->
+                <div class="reveal delay-200 glass-panel p-8 rounded-3xl text-center border border-zinc-800 hover:border-[#FFCC00]/50 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center mb-6 mx-auto text-[#FFCC00] text-3xl">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Temario Siempre al Día</h3>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Accede a toda la documentación en PDF y audio. Nos aseguramos de que el contenido esté siempre actualizado conforme a las últimas publicaciones del BOD.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Selection Section -->
+    <section id="cursos" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-black text-white mb-3 tracking-tight">Elige Tu <span class="text-[#FFCC00]">Misión</span></h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Selecciona el curso de preparación que te llevará a tu próximo empleo.</p>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Curso: Ascenso a Cabo -->
+                <div class="reveal glass-panel p-8 rounded-3xl border-2 border-t-4 border-[#FFCC00] hover:shadow-[0_0_40px_rgba(255,204,0,0.3)] transition-all duration-300 flex flex-col">
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-[#FFCC00]/20 rounded-xl flex items-center justify-center text-[#FFCC00] text-xl"><i class="fa-solid fa-angle-up"></i></div>
+                            <h3 class="text-2xl font-black text-white">Ascenso a <span class="text-[#FFCC00]">Cabo</span></h3>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-6 leading-relaxed">
+                            El programa completo para dominar el temario y asegurar tu plaza en la convocatoria de ascenso a Cabo.
+                        </p>
+                    </div>
+                    <a href="{% url 'registro' %}?curso=cabo" class="w-full text-center bg-[#FFCC00] text-black font-bold py-3 px-4 rounded-xl transition-transform hover:scale-105">Inscribirse</a>
+                </div>
+
+                <!-- Curso: Cabo Primero -->
+                <div class="reveal delay-100 glass-panel p-8 rounded-3xl border-t-4 border-zinc-700 border-2 border-transparent hover:border-zinc-700 transition-all duration-300 flex flex-col">
+                     <div class="flex-grow">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center text-white text-xl"><i class="fa-solid fa-angles-up"></i></div>
+                            <h3 class="text-2xl font-black text-white">Cabo <span class="text-zinc-400">Primero</span></h3>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-6 leading-relaxed">
+                            Preparación específica y test avanzados para la promoción interna a Cabo Primero.
+                        </p>
+                    </div>
+                    <a href="{% url 'registro' %}?curso=cabo-primero" class="w-full text-center bg-zinc-800 text-white font-bold py-3 px-4 rounded-xl transition-colors hover:bg-zinc-700">Inscribirse</a>
+                </div>
+
+                <!-- Curso: Tropa Permanente -->
+                <div class="reveal delay-200 glass-panel p-8 rounded-3xl border-t-4 border-zinc-800 border-2 border-transparent hover:border-zinc-800 transition-all duration-300 flex flex-col opacity-60">
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-zinc-900 rounded-xl flex items-center justify-center text-zinc-500 text-xl"><i class="fa-solid fa-infinity"></i></div>
+                            <h3 class="text-2xl font-black text-zinc-500">Tropa Permanente</h3>
+                        </div>
+                        <p class="text-zinc-500 text-sm mb-6 leading-relaxed">
+                            Asegura tu futuro en las Fuerzas Armadas. Curso en preparación para la próxima convocatoria.
+                        </p>
+                    </div>
+                    <button class="w-full text-center bg-zinc-900 text-zinc-600 font-bold py-3 px-4 rounded-xl cursor-not-allowed">Próximamente</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-zinc-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-zinc-500">
+            <div class="flex items-center justify-center gap-3 mb-6 reveal">
+                <div class="w-8 h-8 bg-[#FFCC00]/20 flex items-center justify-center rounded-lg">
+                    <i class="fa-solid fa-shield-halved text-[#FFCC00] text-sm"></i>
+                </div>
+                <div class="flex flex-col justify-center text-left pt-1">
+                    <span class="text-lg font-extrabold text-white tracking-tighter leading-none">PRO<span class="text-[#FFCC00]">MILITAR</span></span>
+                    <span class="text-[0.55rem] font-bold text-zinc-600 tracking-[0.26em] leading-none mt-1">ACADEMIA ONLINE</span>
+                </div>
+            </div>
+            <p class="mb-2 reveal">© 2026 ProMilitar.es | Misión: Tu Ascenso.</p>
+            <div class="flex justify-center gap-6 text-xl reveal delay-200 mt-6">
+                <a href="https://t.me/+c0fMDCCvFs42YWVk" class="hover:text-[#FFCC00] hover:scale-125 transition-all duration-300"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. Lógica del Contador ---
+        // Fechas objetivo
+        const dateCabo = new Date("Feb 1, 2027 09:00:00").getTime();
+
+        function initCountdown(targetDate, prefix) {
+            const updateTimer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    clearInterval(updateTimer);
+                    document.getElementById(`days-${prefix}`).innerHTML = "00";
+                    document.getElementById(`hours-${prefix}`).innerHTML = "00";
+                    document.getElementById(`mins-${prefix}`).innerHTML = "00";
+                    document.getElementById(`secs-${prefix}`).innerHTML = "00";
+                    return;
+                }
+
+                const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById(`days-${prefix}`).innerHTML = d.toString().padStart(2, '0');
+                document.getElementById(`hours-${prefix}`).innerHTML = h.toString().padStart(2, '0');
+                document.getElementById(`mins-${prefix}`).innerHTML = m.toString().padStart(2, '0');
+                document.getElementById(`secs-${prefix}`).innerHTML = s.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        // Arrancamos el reloj
+        initCountdown(dateCabo, "cabo");
+
+        // --- 2. Lógica de Scroll Reveal (Aparición suave) ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); 
+
+        // --- 3. Cambio de Navbar al hacer Scroll ---
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-[0_4px_30px_rgba(0,0,0,0.5)]');
+                navbar.classList.replace('bg-black/80', 'bg-black/95');
+            } else {
+                navbar.classList.remove('shadow-[0_4px_30px_rgba(0,0,0,0.5)]');
+                navbar.classList.replace('bg-black/95', 'bg-black/80');
+            }
+        });
+        
+    </script>
+</body>
+</html>
