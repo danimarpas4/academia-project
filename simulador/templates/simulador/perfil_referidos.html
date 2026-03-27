@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitar Reclutas - ProMilitar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+        }
+
+        .code-section {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(251, 191, 36, 0.05);
+            border-radius: 12px;
+            border: 1px dashed rgba(251, 191, 36, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .code-label {
+            font-size: 0.85rem;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .code-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fbbf24;
+            letter-spacing: 0.15em;
+            font-family: 'Courier New', monospace;
+        }
+
+        .link-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .link-label {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .link-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .link-input {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #e4e4e7;
+            font-size: 0.9rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .link-input:focus {
+            outline: none;
+            border-color: #fbbf24;
+        }
+
+        .copy-btn {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: #93c5fd;
+            line-height: 1.5;
+        }
+
+        .info-box svg {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-link:hover {
+            color: #fbbf24;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .code-value {
+                font-size: 1.75rem;
+            }
+
+            .link-box {
+                flex-direction: column;
+            }
+
+            .copy-btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'portada' %}" class="back-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Volver al Dashboard
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1>Invitar Reclutas</h1>
+            <p>Comparte tu código único y forma tu escuadra</p>
+        </div>
+
+        <div class="card">
+            <div class="code-section">
+                <div class="code-label">Tu Código de Invitación</div>
+                <div class="code-value">{{ codigo_referido }}</div>
+            </div>
+
+            <div class="link-section">
+                <label class="link-label">Enlace de invitación directo:</label>
+                <div class="link-box">
+                    <input type="text" id="referral-link" class="link-input" value="{{ referral_link }}" readonly>
+                    <button id="copy-btn" class="copy-btn" onclick="copiarEnlace()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                        </svg>
+                        <span id="btn-text">Copiar Enlace</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+                Cuando un recluta use tu enlace y se registre, quedarán vinculados a tu escuadra.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copiarEnlace() {
+            const input = document.getElementById('referral-link');
+            const btn = document.getElementById('copy-btn');
+            const btnText = document.getElementById('btn-text');
+
+            navigator.clipboard.writeText(input.value).then(() => {
+                btn.classList.add('copied');
+                btnText.textContent = '¡Copiado!';
+
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btnText.textContent = 'Copiar Enlace';
+                }, 2000);
+            }).catch(err => {
+                input.select();
+                document.execCommand('copy');
+                btn.classList.add('copied');
+                btnText.textContent = '¡Copiado!';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btnText.textContent = 'Copiar Enlace';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

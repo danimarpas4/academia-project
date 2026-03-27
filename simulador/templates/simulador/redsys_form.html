@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesando Pago - ProMilitar</title>
+    <style>
+        /* Mantenemos tu estilo que es excelente */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .payment-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .spinner {
+            width: 60px; height: 60px;
+            border: 4px solid rgba(251, 191, 36, 0.2);
+            border-top-color: #fbbf24;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        h1 { color: #fbbf24; font-size: 1.5rem; margin-bottom: 10px; }
+        .subtitle { color: #a1a1aa; font-size: 0.95rem; margin-bottom: 30px; }
+        .payment-info {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .amount { font-size: 2rem; font-weight: 700; color: #22c55e; margin-bottom: 5px; }
+        .amount-label { color: #71717a; font-size: 0.85rem; }
+        .course-name { color: #e4e4e7; font-weight: 600; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .redsys-logo { color: #71717a; font-size: 0.75rem; margin-top: 20px; }
+        .manual-pay-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="spinner"></div>
+        <h1>Conectando con la Pasarela</h1>
+        <p class="subtitle">Vas a ser redirigido al portal de pago seguro</p>
+        
+        <div class="payment-info">
+            <div class="amount">{{ importe|floatformat:2 }}€</div>
+            <div class="amount-label">Importe total</div>
+            <div class="course-name">{{ curso_nombre }}</div>
+            <!-- DEBUG: Mostrar TODOS los valores que se envían -->
+            <div style="text-align:left; font-size:10px; color:#666; margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.1);">
+                <strong>DEBUG INFO:</strong><br>
+                Ds_MerchantCode={{ Ds_MerchantCode }}<br>
+                Importe={{ importe }} ({{ debug_amount }} cts)<br>
+                Order={{ debug_order }}<br>
+                Params length={{ Ds_MerchantParameters|length }}<br>
+                SignatureVersion={{ Ds_SignatureVersion }}<br>
+                Signature (first 20 chars)={{ Ds_Signature|slice:":20" }}
+            </div>
+        </div>
+        
+        <p class="redsys-logo">🔒 Conexión segura SHA-256</p>
+        
+        <!-- Redsys requiere método POST -->
+        <form id="redsys-form" action="{{ redsys_url }}" method="POST">
+            <input type="hidden" name="Ds_SignatureVersion" value="{{ Ds_SignatureVersion }}">
+            <input type="hidden" name="Ds_MerchantParameters" value="{{ Ds_MerchantParameters }}">
+            <input type="hidden" name="Ds_Signature" value="{{ Ds_Signature }}">
+            <input type="hidden" name="Ds_MerchantCode" value="{{ Ds_MerchantCode }}">
+            
+            <!-- DEBUG: Mostrar inputs hidden -->
+            <div style="text-align:left; font-size:9px; color:#888; margin:10px 0; padding:10px; background:rgba(0,0,0,0.3); border-radius:5px;">
+                <strong>HIDDEN INPUTS:</strong><br>
+                Ds_SignatureVersion: {{ Ds_SignatureVersion }}<br>
+                Ds_MerchantCode: {{ Ds_MerchantCode }}<br>
+                Ds_MerchantParameters (first 100): {{ Ds_MerchantParameters|slice:":100" }}...<br>
+                Ds_Signature: {{ Ds_Signature|slice:":30" }}...
+            </div>
+            
+            <div class="text-center" style="margin-top: 30px;">
+                <button type="submit" class="manual-pay-btn">
+                    Pagar {{ importe|floatformat:2 }}€ con Tarjeta
+                </button>
+            </div>
+        </form>
+
+<script>
+    // Debug: Mostrar qué se envía al hacer submit
+    window.onload = function() {
+        var form = document.getElementById('redsys-form');
+        console.log("=== ENVIANDO A REDSYS ===");
+        console.log("URL:", form.action);
+        console.log("Ds_SignatureVersion:", form.Ds_SignatureVersion.value);
+        console.log("Ds_MerchantCode:", form.Ds_MerchantCode.value);
+        console.log("Ds_Signature:", form.Ds_Signature.value.substring(0, 30) + "...");
+        console.log("Ds_MerchantParameters:", form.Ds_MerchantParameters.value.substring(0, 100) + "...");
+        
+        // Redirección automática a los 2 segundos
+        setTimeout(function() {
+            console.log(">>> ENVIANDO FORMULARIO...");
+            form.submit();
+        }, 2000);
+    };
+</script>
+</body>
+</html>

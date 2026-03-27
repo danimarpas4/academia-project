@@ -1,25 +1,75 @@
 {% extends 'simulador/base.html' %}
 
 {% block content %}
-<div class="card text-center mt-5 shadow">
-    <div class="card-header bg-warning text-dark">
-        🔒 Acceso Restringido
-    </div>
-    <div class="card-body">
-        
-        <h2 class="card-title">¡Se acabó el periodo de prueba! 👮</h2>
-        <p class="card-text">
-            Tus 15 días de acceso gratuito han finalizado. 
-            Para seguir entrenando con el simulador y acceder al historial, activa tu cuenta definitiva.
-        </p>
-        <h1 class="display-4 my-4">14,99€ <small class="fs-6 text-muted">pago único</small></h1>
-        
-        <a href="{% url 'iniciar_pago' %}" class="btn btn-success btn-lg w-100">
-            💳 Activar Cuenta (Pago Seguro)
-        </a>
-    </div>
-    <div class="card-footer text-muted">
-        Academia ProMilitar
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-5">
+                <h1 class="display-6 fw-bold">🎖️ Selecciona tu Curso</h1>
+                <p class="text-muted">Elige la formación que mejor se adapte a tus objetivos</p>
+            </div>
+
+            {% if hay_descuento %}
+            <div class="alert alert-success text-center mb-4">
+                <h5>🎁 ¡Tienes un descuento disponible!</h5>
+                <p class="mb-0">Se aplicará automáticamente: <strong>{{ descuento|floatformat:2 }}€</strong> de descuento</p>
+            </div>
+            {% endif %}
+
+            <div class="row g-4">
+                {% for curso, info in cursos_precio.items %}
+                <div class="col-md-6">
+                    <div class="card h-100 {% if curso == 'permanencia' %}border-secondary{% else %}border-warning{% endif %}">
+                        <div class="card-header {% if curso == 'cabo' %}bg-warning text-dark{% elif curso == 'cabo-primero' %}bg-warning text-dark{% else %}bg-secondary text-white{% endif %}">
+                            <h4 class="mb-0">{{ info.nombre }}</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            {% if info.precio == 'Proximamente' %}
+                                <h2 class="display-5 fw-bold text-secondary mb-3">PRÓXIMAMENTE</h2>
+                                <button class="btn btn-secondary btn-lg w-100" disabled>
+                                    Disponible pronto
+                                </button>
+                            {% else %}
+                                {% if hay_descuento %}
+                                <p class="text-muted text-decoration-line-through">{{ info.precio }}€</p>
+                                <h2 class="display-5 fw-bold text-success mb-1">{{ importe_final|floatformat:2 }}€</h2>
+                                <span class="badge bg-success">Ahorras {{ descuento|floatformat:2 }}€</span>
+                                {% else %}
+                                <h2 class="display-5 fw-bold text-success mb-3">{{ info.precio }}€</h2>
+                                {% endif %}
+                                <p class="text-muted small">Pago único, acceso de por vida</p>
+                                
+                                <form action="{% url 'procesar_pago' curso %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-warning btn-lg w-100">
+                                        💳 Suscribirme
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                {% if curso == 'cabo' %}
+                                    <i class="fa-solid fa-graduation-cap"></i> Todo el temario de Legislación
+                                {% elif curso == 'cabo-primero' %}
+                                    <i class="fa-solid fa-graduation-cap"></i> Contenido específico Cabo Primero
+                                {% else %}
+                                    <i class="fa-solid fa-clock"></i> Mantente atento
+                                {% endif %}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="text-muted">
+                    🔒 Pago 100% seguro mediante <strong>Redsys</strong><br>
+                    <small>Tu descuento se aplicará automáticamente al pago</small>
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

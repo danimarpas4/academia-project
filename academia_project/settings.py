@@ -28,12 +28,38 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY", default="django-insecure-b8%#e5se7tyx%3$+ws++zbwi)p$4+aq8-e@)21nf*9k^7qk#$r")
 GEMINI_API_KEY = env('GEMINI_API_KEY')
+OLLAMA_BASE_URL = env('OLLAMA_BASE_URL', default='http://localhost:11434')
+OLLAMA_MODEL = env('OLLAMA_MODEL', default='qwen2.5:1.5b')
+OLLAMA_KEEPALIVE = env('OLLAMA_KEEPALIVE', default='5m')
+OLLAMA_NUM_CTX = env('OLLAMA_NUM_CTX', default=2048)
+OLLAMA_TIMEOUT = env('OLLAMA_TIMEOUT', default=30)
+
+# Google OAuth
+GOOGLE_CLIENT_ID = env('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = env('GOOGLE_CLIENT_SECRET')
+
+# Redsys Configuration - VALORES FORZADOS PARA SANDBOX
+# Override de entorno con valores de prueba estándar
+REDSYS_MERCHANT_CODE = '999008881'
+REDSYS_TERMINAL = '001'
+REDSYS_SECRET_KEY = 'sq7H5Yz6IFZH8Ut440936khq79293474'
+REDSYS_CURRENCY = '978'
+REDSYS_TRANSACTION_TYPE = '0'
+REDSYS_ENVIRONMENT = 'sandbox'
+# URLs de retorno para Redsys - configuradas para ngrok
+REDSYS_URL_OK = env('REDSYS_URL_OK', default='https://nonostensible-christi-tacky.ngrok-free.dev/pagos/exitoso/')
+REDSYS_URL_KO = env('REDSYS_URL_KO', default='https://nonostensible-christi-tacky.ngrok-free.dev/pagos/cancelado/')
+REDSYS_WEBHOOK_URL = env('REDSYS_WEBHOOK_URL', default='https://nonostensible-christi-tacky.ngrok-free.dev/api/redsys/webhook/')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1', 'nonostensible-christi-tacky.ngrok-free.dev']
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://nonostensible-christi-tacky.ngrok-free.dev',
+]
 
 # Application definition
 
@@ -61,6 +87,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'academia_project.referral_middleware.ReferralMiddleware',
+    'academia_project.course_middleware.CourseAccessMiddleware',
 ]
 
 ROOT_URLCONF = 'academia_project.urls'
@@ -177,23 +205,28 @@ LOGGING = {
 
 # --- CONFIGURACIÓN DE AUTENTICACIÓN (ALLAUTH) ---
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend', # Login normal
-    'allauth.account.auth_backends.AuthenticationBackend', # Login con Google
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 SITE_ID = 1
 
-# Configuración adicional
-LOGIN_REDIRECT_URL = 'portada'   # A dónde van al entrar
-LOGOUT_REDIRECT_URL = 'inicio'   # A dónde van al salir
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = True
+# Redirecciones
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Configuración Allauth
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# Configuración Social
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
-# --- CREDENCIALES DE GOOGLE (PROVISIONAL) ---
-# NOTA: Esto normalmente no se pone directo en el código por seguridad,
-# pero para desarrollo local está bien.
+# Proveedor de Google con credenciales del .env
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -202,30 +235,15 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         'AUTH_PARAMS': {
             'access_type': 'online',
-        }
+        },
     }
 }
 
-SITE_ID = 1
+# Adaptador personalizado para mantener curso en sesión
+SOCIALACCOUNT_ADAPTER = 'academia_project.adapters.SocialAccountAdapter'
 
-# --- CONFIGURACIÓN DE LOGIN GOOGLE (ONE-TAP) ---
+# URLs de allauth
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+SOCIALACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
-# 1. Redirecciones
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-
-# 2. Configuración Allauth para evitar preguntas
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = False  # ¡CRUCIAL! No pedir usuario
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username' 
-ACCOUNT_EMAIL_VERIFICATION = 'none' # Confiamos en Google
-
-# 3. Configuración Social Específica
-SOCIALACCOUNT_AUTO_SIGNUP = True   # Registrar sin confirmar
-SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
-SOCIALACCOUNT_QUERY_EMAIL = True   # Asegurar que Google nos da el email
-
-# 4. Adaptador (Opcional, pero ayuda a evitar conflictos)
-SOCIALACCOUNT_ADAPTER = 'allauth.socialaccount.adapter.DefaultSocialAccountAdapter'
+SILENCED_SYSTEM_CHECKS = ['account.W001']

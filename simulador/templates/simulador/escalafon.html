@@ -1,0 +1,151 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-5 fw-bold">
+                <i class="fa-solid fa-ranking-star text-warning me-2"></i>
+                Escalafón de Alumnos
+            </h1>
+            <p class="text-muted">Clasificación general por nota media</p>
+        </div>
+    </div>
+
+    <!-- Tu posición -->
+    {% if posicion_usuario %}
+    <div class="card mb-4 border-warning">
+        <div class="card-body text-center py-4">
+            <h5 class="card-title text-muted mb-2">Tu posición en el escalafón</h5>
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <div>
+                    <span class="badge bg-warning text-dark fs-4 px-3 py-2">
+                        #{{ posicion_usuario }}º
+                    </span>
+                </div>
+                <div>
+                    <p class="mb-1"><strong>Nota media:</strong> {{ nota_media_usuario }}/10</p>
+                    <p class="mb-0 text-muted small">{{ tests_usuario }} test{{ tests_usuario|pluralize:"s" }} completados</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center">
+        <i class="fa-solid fa-info-circle me-2"></i>
+        Completa tu primer test para aparecer en el escalafón
+    </div>
+    {% endif %}
+
+    <!-- Tabla de Ranking -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <span><i class="fa-solid fa-list me-2"></i>Top 10 General</span>
+                <span class="badge bg-secondary">{{ total_participantes }} participantes</span>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            {% if ranking %}
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="text-center" style="width: 80px;">Posición</th>
+                            <th>Usuario</th>
+                            <th class="text-center">Nota Media</th>
+                            <th class="text-center">Tests</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in ranking %}
+                        <tr class="{% if item.es_usuario %}table-warning{% endif %}">
+                            <td class="text-center">
+                                {% if item.posicion == 1 %}
+                                    <span class="badge bg-warning text-dark fs-6">
+                                        <i class="fa-solid fa-medal"></i> 1º
+                                    </span>
+                                {% elif item.posicion == 2 %}
+                                    <span class="badge bg-secondary text-white fs-6">
+                                        <i class="fa-solid fa-medal"></i> 2º
+                                    </span>
+                                {% elif item.posicion == 3 %}
+                                    <span class="badge" style="background-color: #CD7F32; color: white; font-size: 1rem;">
+                                        <i class="fa-solid fa-medal"></i> 3º
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-dark">{{ item.posicion }}º</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    {% if item.posicion <= 3 %}
+                                        <div class="me-3">
+                                            {% if item.posicion == 1 %}
+                                                <i class="fa-solid fa-trophy fa-2x text-warning"></i>
+                                            {% elif item.posicion == 2 %}
+                                                <i class="fa-solid fa-medal fa-2x text-secondary"></i>
+                                            {% else %}
+                                                <i class="fa-solid fa-medal fa-2x" style="color: #CD7F32;"></i>
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <div class="me-3 text-muted">
+                                            <i class="fa-solid fa-user fa-lg"></i>
+                                        </div>
+                                    {% endif %}
+                                    <div>
+                                        <strong>{{ item.alias }}</strong>
+                                        {% if item.es_usuario %}
+                                            <span class="badge bg-warning text-dark ms-2">Tú</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex align-items-center justify-content-center gap-2">
+                                    <div class="progress flex-grow-1" style="height: 8px; max-width: 100px;">
+                                        <div class="progress-bar bg-success" role="progressbar" 
+                                             style="width: {{ item.nota_media|floatformat:0 }}%"></div>
+                                    </div>
+                                    <span class="fw-bold">{{ item.nota_media }}</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge bg-dark">{{ item.tests_completados }}</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fa-solid fa-users-slash fa-4x text-muted mb-3"></i>
+                <p class="text-muted">No hay suficientes datos para mostrar el ranking</p>
+                <a href="{% url 'configurar_test' %}" class="btn btn-warning">
+                    <i class="fa-solid fa-play me-2"></i>Realizar primer test
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Info -->
+    <div class="alert alert-secondary mt-4 text-center">
+        <i class="fa-solid fa-shield-halved me-2"></i>
+        Los usuarios se muestran con alias para proteger su privacidad.
+        Solo se muestra el Top 10 para fomentar la competencia sana.
+    </div>
+</div>
+
+<style>
+    .table-hover tbody tr:hover {
+        background-color: rgba(255, 204, 0, 0.1) !important;
+    }
+    .table-warning {
+        background-color: rgba(255, 204, 0, 0.15) !important;
+    }
+</style>
+{% endblock %}

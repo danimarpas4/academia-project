@@ -1,0 +1,58 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-[70vh]">
+    <div class="w-full max-w-md relative">
+        
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#FFCC00]/20 to-zinc-600/20 rounded-[2rem] blur-lg opacity-75"></div>
+        
+        <div class="relative bg-zinc-950/90 backdrop-blur-xl border border-zinc-800 rounded-3xl p-8 shadow-2xl">
+            
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-[#FFCC00] flex items-center justify-center rounded-2xl rotate-3 shadow-[0_0_20px_rgba(255,204,0,0.3)] mx-auto mb-6">
+                    <i class="fa-solid fa-user-check text-black text-2xl -rotate-3"></i>
+                </div>
+                <h2 class="text-3xl font-black text-white tracking-tighter">COMPLETA TU <span class="text-[#FFCC00]">REGISTRO</span></h2>
+                <p class="text-zinc-500 text-sm mt-2 font-medium">Confirma tus datos para finalizar</p>
+            </div>
+
+            <form method="post" class="space-y-5">
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+                
+                {% if form.errors %}
+                    <div class="bg-red-900/30 border border-red-800 text-red-400 p-3 rounded-xl text-sm">
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-3.5 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,204,0,0.2)] flex items-center justify-center gap-2 mt-6">
+                    CONTINUAR <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    #id_username, #id_email {
+        width: 100%;
+        background-color: black;
+        border: 1px solid #27272a;
+        color: white;
+        font-size: 0.875rem;
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+    }
+    #id_username:focus, #id_email:focus {
+        outline: none;
+        border-color: #FFCC00;
+        box-shadow: 0 0 0 1px #FFCC00;
+    }
+</style>
+{% endblock %}

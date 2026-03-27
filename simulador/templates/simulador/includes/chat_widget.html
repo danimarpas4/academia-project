@@ -1,0 +1,214 @@
+<!-- Floating AI Chat Widget -->
+<div id="ai-chat-widget" class="fixed bottom-6 right-24 z-50">
+    <!-- Botón flotante -->
+    <button id="chat-toggle" onclick="toggleChat()" class="bg-[#FFCC00] hover:bg-yellow-400 text-black w-14 h-14 rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.2)] flex items-center justify-center transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-zinc-700">
+        <i class="fa-solid fa-robot text-xl"></i>
+    </button>
+
+    <!-- Ventana de chat (oculta por defecto) -->
+    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-96 max-w-[calc(100vw-3rem)] bg-zinc-900/95 backdrop-blur-xl border border-zinc-700 rounded-3xl shadow-2xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-[#FFCC00] to-yellow-500 p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-black/20 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-shield-halved text-white text-lg"></i>
+                </div>
+                <div>
+                    <h4 class="text-black font-black text-sm">INSTRUCTOR IA</h4>
+                    <p class="text-black/70 text-xs">ProMilitar 24/7</p>
+                </div>
+            </div>
+            <button onclick="toggleChat()" class="text-black/70 hover:text-black transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mensaje de bienvenida -->
+        <div class="p-4 border-b border-zinc-800">
+            <div class="bg-zinc-800/50 rounded-2xl p-3 text-sm text-zinc-300">
+                <p class="mb-2">👋 ¡A la orden, Soldado!</p>
+                <p>Soy el Instructor IA de ProMilitar. Estoy al tanto del temario y de la última convocatoria. ¿En qué puedo ayudarte hoy?</p>
+            </div>
+        </div>
+
+        <!-- Área de mensajes -->
+        <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4">
+            <!-- Los mensajes se insertan aquí -->
+        </div>
+
+        <!-- Input -->
+        <div class="p-4 border-t border-zinc-800 bg-zinc-900/50">
+            {% if perfil.es_premium %}
+            <form id="chat-form" onsubmit="sendMessage(event)">
+                {% csrf_token %}
+                <div class="flex gap-2">
+                    <input 
+                        type="text" 
+                        id="chat-input" 
+                        placeholder="Escribe tu pregunta..." 
+                        class="flex-1 bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white text-sm placeholder-zinc-500 focus:outline-none focus:border-[#FFCC00] transition-colors"
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="bg-[#FFCC00] hover:bg-yellow-400 text-black w-12 h-12 rounded-xl flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+            {% else %}
+            <div class="bg-zinc-800/50 rounded-xl p-4 text-center">
+                <p class="text-zinc-400 text-sm mb-3">
+                    <i class="fa-solid fa-lock text-[#FFCC00] mr-2"></i>
+                    Instructor IA requiere Premium
+                </p>
+                <a href="{% url 'plan_premium' %}" class="inline-block bg-[#FFCC00] hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded-xl text-sm transition-colors">
+                    Desbloquear por 9,99€/mes
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-message {
+        animation: slideUp 0.3s ease-out;
+    }
+    @keyframes pulse-gold {
+        0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(255, 204, 0, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+    }
+    .pulse-gold-active { animation: pulse-gold 2s infinite; }
+</style>
+
+<script>
+    let chatOpen = false;
+
+    function toggleChat() {
+        chatOpen = !chatOpen;
+        const window = document.getElementById('chat-window');
+        if (chatOpen) {
+            window.classList.remove('hidden');
+            window.classList.add('animate-slideUp');
+        } else {
+            window.classList.add('hidden');
+        }
+    }
+
+    function addMessage(text, isUser = false) {
+        const container = document.getElementById('chat-messages');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-message ${isUser ? 'text-right' : 'text-left'}`;
+        
+        if (isUser) {
+            msgDiv.innerHTML = `
+                <div class="inline-block bg-[#FFCC00] text-black rounded-2xl rounded-tr-sm px-4 py-2 max-w-[85%]">
+                    <p class="text-sm">${escapeHtml(text)}</p>
+                </div>
+            `;
+        } else {
+            msgDiv.innerHTML = `
+                <div class="inline-block bg-zinc-800 text-zinc-200 rounded-2xl rounded-tl-sm px-4 py-2 max-w-[85%]">
+                    <p class="text-sm whitespace-pre-wrap">${formatResponse(text)}</p>
+                </div>
+            `;
+        }
+        
+        container.appendChild(msgDiv);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function formatResponse(text) {
+        return escapeHtml(text)
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+    }
+
+    function showTyping() {
+        const container = document.getElementById('chat-messages');
+        const typingDiv = document.createElement('div');
+        typingDiv.id = 'typing-indicator';
+        typingDiv.className = 'chat-message';
+        typingDiv.innerHTML = `
+            <div class="inline-block bg-zinc-800 text-zinc-400 rounded-2xl rounded-tl-sm px-4 py-3 text-sm">
+                <i class="fa-solid fa-book-open mr-2"></i>
+                ⏳ El Instructor está consultando los manuales... (Este proceso puede tardar 30-60s)
+            </div>
+        `;
+        container.appendChild(typingDiv);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function hideTyping() {
+        const typing = document.getElementById('typing-indicator');
+        if (typing) typing.remove();
+    }
+
+    function setButtonState(disabled) {
+        const input = document.getElementById('chat-input');
+        const button = document.querySelector('#chat-form button[type="submit"]');
+        if (input) input.disabled = disabled;
+        if (button) {
+            button.disabled = disabled;
+            button.classList.toggle('opacity-50', disabled);
+            button.classList.toggle('cursor-not-allowed', disabled);
+        }
+    }
+
+    async function sendMessage(event) {
+        event.preventDefault();
+        const input = document.getElementById('chat-input');
+        const question = input.value.trim();
+        
+        if (!question) return;
+        
+        setButtonState(true);
+        addMessage(question, true);
+        input.value = '';
+        showTyping();
+
+        try {
+            const response = await fetch('/instructor-ia/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({ question: question })
+            });
+
+            hideTyping();
+            const data = await response.json();
+            
+            if (data.error && data.status === 'premium_required') {
+                addMessage('⚠️ ' + data.error);
+            } else if (data.respuesta || data.answer) {
+                addMessage(data.respuesta || data.answer);
+            } else {
+                addMessage('⚠️ Error al procesar la respuesta. Inténtalo de nuevo.');
+            }
+        } catch (error) {
+            hideTyping();
+            addMessage('⚠️ Error de conexión. Asegúrate de que el servidor esté activo.');
+        } finally {
+            setButtonState(false);
+        }
+    }
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && chatOpen) {
+            toggleChat();
+        }
+    });
+</script>

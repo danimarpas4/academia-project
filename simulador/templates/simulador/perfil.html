@@ -19,6 +19,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="card mt-4">
+            <div class="card-header bg-success text-white text-center">
+                <h4>🎖️ Invitar Reclutas</h4>
+            </div>
+            <div class="card-body text-center">
+                <p class="mb-2">Tu código de invitado:</p>
+                <h3 class="text-success fw-bold">{{ perfil.codigo_referido }}</h3>
+                <hr>
+                <p class="small text-muted mb-2">Comparte tu enlace:</p>
+                <div class="input-group mb-2">
+                    <input type="text" id="referral-link" class="form-control" value="{{ referral_link }}" readonly>
+                    <button class="btn btn-outline-success" type="button" onclick="copiarEnlace()">Copiar</button>
+                </div>
+                <small id="copy-feedback" class="text-success" style="display:none;">¡Enlace copiado!</small>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-8">
@@ -60,4 +77,15 @@
         {% endif %}
     </div>
 </div>
+
+<script>
+function copiarEnlace() {
+    const input = document.getElementById('referral-link');
+    navigator.clipboard.writeText(input.value).then(() => {
+        const feedback = document.getElementById('copy-feedback');
+        feedback.style.display = 'block';
+        setTimeout(() => feedback.style.display = 'none', 2000);
+    });
+}
+</script>
 {% endblock %}

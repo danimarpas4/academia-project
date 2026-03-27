@@ -1,0 +1,17 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto py-8">
+    <h1 class="text-2xl font-bold text-white mb-6">Connected Accounts</h1>
+    
+    {{ form.as_p }}
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="bg-[#FFCC00] text-black font-bold py-2 px-4 rounded-lg mt-4">
+            Save
+        </button>
+    </form>
+</div>
+{% endblock %}

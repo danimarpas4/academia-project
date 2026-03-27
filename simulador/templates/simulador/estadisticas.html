@@ -1,68 +1,6 @@
 {% extends 'simulador/base.html' %}
 
 {% block content %}
-<style>
-    /* --- 1. BOTÓN FLOTANTE --- */
-    .theme-toggle-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #ffc107; /* Amarillo por defecto */
-        color: #000;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        z-index: 1050;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        transition: transform 0.3s ease, background-color 0.3s;
-    }
-    .theme-toggle-btn:hover {
-        transform: scale(1.1);
-    }
-
-    /* --- 2. MODO CLARO (OVERRIDES) --- */
-    /* Esta página está diseñada en Oscuro por defecto. Aquí forzamos el Claro si se activa. */
-    body.light-mode {
-        background-color: #f8f9fa !important;
-        color: #212529 !important;
-    }
-    
-    /* Invertir textos blancos a negros */
-    body.light-mode .text-light {
-        color: #212529 !important;
-    }
-    
-    /* Convertir tarjetas oscuras (Glass) a blancas */
-    body.light-mode .glass-card {
-        background: #ffffff !important;
-        border: 1px solid #dee2e6 !important;
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
-    }
-    
-    /* Convertir tablas oscuras a claras */
-    body.light-mode .table-dark {
-        --bs-table-bg: transparent;
-        --bs-table-color: #212529;
-        color: #212529 !important;
-        border-color: #dee2e6 !important;
-    }
-    body.light-mode .table-dark th,
-    body.light-mode .table-dark td {
-        color: #212529 !important;
-        border-color: #dee2e6 !important;
-    }
-    /* Cabecera pegajosa de la tabla en modo claro */
-    body.light-mode .sticky-top {
-        background-color: #e9ecef !important;
-        color: #000 !important;
-    }
-</style>
 
 <div class="container py-5">
     
@@ -229,10 +167,6 @@
 
 </div>
 
-<button id="theme-toggle" class="theme-toggle-btn" title="Cambiar Tema">
-    ☀️
-</button>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -276,43 +210,6 @@
                 }
             });
         }
-
-        // --- 2. LÓGICA DEL TEMA (BOTÓN) ---
-        const toggleBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-        const currentTheme = localStorage.getItem('theme');
-
-        // Aplicar tema guardado al cargar
-        if (currentTheme === 'light') {
-            body.classList.add('light-mode');
-            toggleBtn.innerHTML = '🌙'; // Icono Luna
-            toggleBtn.style.backgroundColor = '#198754'; // Verde
-            toggleBtn.style.color = '#fff';
-        } else {
-            // Por defecto Oscuro
-            toggleBtn.innerHTML = '☀️'; // Icono Sol
-            toggleBtn.style.backgroundColor = '#ffc107'; // Amarillo
-            toggleBtn.style.color = '#000';
-        }
-
-        // Al hacer clic
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            
-            if (body.classList.contains('light-mode')) {
-                // MODO CLARO
-                localStorage.setItem('theme', 'light');
-                toggleBtn.innerHTML = '🌙';
-                toggleBtn.style.backgroundColor = '#198754';
-                toggleBtn.style.color = '#fff';
-            } else {
-                // MODO OSCURO
-                localStorage.setItem('theme', 'dark');
-                toggleBtn.innerHTML = '☀️';
-                toggleBtn.style.backgroundColor = '#ffc107';
-                toggleBtn.style.color = '#000';
-            }
-        });
     });
 </script>
 {% endblock %}

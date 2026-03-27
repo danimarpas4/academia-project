@@ -2,38 +2,8 @@
 
 {% block content %}
 <style>
-    /* --- TRANSICIONES SUAVES --- */
-    body {
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* --- BOTÓN FLOTANTE DE TEMA --- */
-    .theme-toggle-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #ffc107; /* Amarillo por defecto */
-        color: #000;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        z-index: 1050;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        transition: transform 0.2s;
-    }
-    .theme-toggle-btn:hover {
-        transform: scale(1.1);
-    }
-
-    /* --- ESTILOS DE TARJETA (POR DEFECTO OSCURO) --- */
     .tema-card {
-        background: rgba(33, 37, 41, 0.95); /* Fondo oscuro */
+        background: rgba(33, 37, 41, 0.95);
         border: 1px solid rgba(255,255,255,0.1);
         border-radius: 12px;
         margin-bottom: 20px;
@@ -42,7 +12,17 @@
     .tema-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        border-color: #ffc107; /* Borde amarillo al pasar ratón */
+        border-color: #ffc107;
+    }
+    
+    .tema-card.bloqueado {
+        opacity: 0.6;
+        border-color: rgba(255, 0, 0, 0.2);
+    }
+    .tema-card.bloqueado:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: rgba(255, 0, 0, 0.2);
     }
     
     .icon-box {
@@ -56,60 +36,49 @@
         justify-content: center;
         font-size: 1.5rem;
     }
-
-    /* --- OVERRIDES PARA MODO CLARO --- */
-    body.light-mode {
-        background-color: #f4f6f9 !important; /* Gris muy suave */
-        color: #333 !important;
-    }
-
-    body.light-mode .text-light {
-        color: #212529 !important;
+    
+    .icon-box.bloqueado {
+        background: rgba(255, 0, 0, 0.1);
+        color: #ff4444;
     }
     
-    body.light-mode .text-muted {
-        color: #6c757d !important;
-    }
-
-    /* Tarjeta en modo claro */
-    body.light-mode .tema-card {
-        background: #ffffff;
-        border: 1px solid #e0e0e0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    body.light-mode .tema-card:hover {
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        border-color: #0d6efd; /* Azul en modo claro */
-    }
-
-    body.light-mode .icon-box {
-        background: #e7f1ff;
-        color: #0d6efd;
-    }
-
-    /* Títulos en modo claro */
-    body.light-mode h4.text-light {
-        color: #2c3e50 !important;
-        font-weight: 700;
+    .badge-premium {
+        background: linear-gradient(135deg, #ffc107, #ff9800);
+        color: #000;
+        font-weight: bold;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        margin-left: 8px;
     }
 </style>
 
 <div class="container py-5">
     
+    {% if not es_premium %}
+    <div class="alert alert-warning d-flex align-items-center mb-4" role="alert" style="background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(255,152,0,0.1)); border: 1px solid rgba(255,193,7,0.3);">
+        <i class="fas fa-lock me-2 text-warning"></i>
+        <div>
+            <strong>Modo Demo Activo:</strong> Estás viendo el primer tema como muestra. 
+            <a href="{% url 'plan_premium' %}" class="alert-link text-warning">¡Desbloquea todo el temario!</a>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="d-flex justify-content-between align-items-center mb-5">
         <div>
             <small class="text-secondary text-uppercase fw-bold" style="letter-spacing: 1px;">// BIBLIOTECA OFICIAL</small>
-            <h2 class="display-5 fw-bold text-light" style="font-family: 'Rajdhani', sans-serif;">DOCUMENTACIÓN Y TEMARIOS</h2>
+            <h2 class="display-5 fw-bold text-light" style="font-family: 'Rajdhani', sans-serif;">
+                DOCUMENTACIÓN Y TEMARIOS
+                {% if es_premium %}
+                <span class="badge-premium">PREMIUM</span>
+                {% endif %}
+            </h2>
         </div>
                 <a href="{% url 'portada' %}" class="btn btn-outline-secondary px-4 rounded-pill">
                     <i class="fas fa-arrow-left me-2"></i> Volver al Panel
                 </a>
             </div>
-
-            <!-- Botón Chat IA General -->
-            <button id="ia-fab" class="btn btn-warning rounded-pill shadow-lg d-flex align-items-center gap-2" style="position: fixed; bottom: 30px; right: 100px; z-index: 1050;">
-                <i class="fas fa-brain"></i> Instructor IA
-            </button>
 
     {% if messages %}
         {% for message in messages %}
@@ -124,15 +93,35 @@
         <div class="col-12">
             
             {% for tema in temas %}
+            {% es_premium as premium %}{% is_bloqueado=tema.id != primer_tema_id and not es_premium %}{% endcomment %}
+            {% if es_premium or tema.id == primer_tema_id %}
             <div class="tema-card p-4">
+            {% else %}
+            <div class="tema-card bloqueado p-4">
+            {% endif %}
                 <div class="row align-items-center">
                     
                     <div class="col-md-7 mb-3 mb-md-0 d-flex align-items-start">
+                        {% if es_premium or tema.id == primer_tema_id %}
                         <div class="icon-box me-3 flex-shrink-0">
                             <i class="fas fa-book"></i>
                         </div>
+                        {% else %}
+                        <div class="icon-box bloqueado me-3 flex-shrink-0">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        {% endif %}
                         <div>
-                            <h4 class="mb-1 text-light">{{ tema.nombre }}</h4>
+                            <h4 class="mb-1 text-light">
+                                {{ tema.nombre }}
+                                {% if es_premium %}
+                                <span class="badge-premium">PREMIUM</span>
+                                {% elif tema.id != primer_tema_id %}
+                                <span style="color: #ff4444; font-size: 0.8rem;">🔒</span>
+                                {% else %}
+                                <span class="badge bg-secondary" style="font-size: 0.6rem; margin-left: 8px;">FREE</span>
+                                {% endif %}
+                            </h4>
                             <p class="mb-0 text-muted small">
                                 {{ tema.descripcion|default:"Documentación oficial del curso de ascenso." }}
                             </p>
@@ -142,6 +131,7 @@
                     <div class="col-md-5">
                         <div class="d-flex flex-column gap-2">
                             
+                            {% if es_premium or tema.id == primer_tema_id %}
                             <div class="p-2 rounded d-flex align-items-center bg-opacity-10" 
                                      style="background-color: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05);">
                                     <div class="me-2 text-warning fs-5"><i class="fas fa-headphones-alt"></i></div>
@@ -169,6 +159,14 @@
                             <button onclick="openIAParaTema('{{ tema.id }}', '{{ tema.nombre|escapejs }}')" class="btn btn-warning w-100 d-flex align-items-center justify-content-center">
                                 <i class="fas fa-brain me-2"></i> Dudas sobre este tema
                             </button>
+                            {% else %}
+                            <div class="text-center py-3">
+                                <p class="text-muted mb-2"><i class="fas fa-lock text-danger me-2"></i>Tema bloqueado</p>
+                                <a href="{% url 'plan_premium' %}" class="btn btn-warning w-100 d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-crown me-2"></i> Desbloquear Premium
+                                </a>
+                            </div>
+                            {% endif %}
                             
                         </div>
                     </div>
@@ -181,7 +179,7 @@
                     <i class="fas fa-folder-open"></i>
                 </div>
                 <h4 class="text-light">No hay temarios disponibles</h4>
-                <p class="text-muted">La documentación se subirá próximamente.</p>
+                <p class="text-muted">La documentación se subirá proximamente.</p>
             </div>
             {% endfor %}
 
@@ -189,155 +187,4 @@
     </div>
 </div>
 
-<!-- Ventana de Chat IA -->
-<div id="ia-chat-window" class="chat-hidden shadow-lg border border-secondary rounded-3" style="position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px; background: #212529; z-index: 1040; display: flex; flex-direction: column; overflow: hidden; transition: all 0.3s ease;">
-    <div class="p-3 bg-dark border-bottom border-secondary d-flex justify-content-between align-items-center">
-        <div>
-            <h5 class="mb-0 text-white font-bold">Instructor IA</h5>
-            <small class="text-muted" id="chat-context-label">Consulta General</small>
-        </div>
-        <button class="btn-close btn-close-white" id="close-chat"></button>
-    </div>
-    <div class="p-3 flex-grow-1 overflow-auto d-flex flex-column gap-3" id="ia-chat-messages">
-        <div class="bg-secondary bg-opacity-25 p-2 rounded text-light align-self-start" style="max-width: 85%;">
-            ¡A la orden! Soy tu instructor de IA. Selecciona un tema específico o pregúntame dudas generales.
-        </div>
-    </div>
-    <div class="p-3 border-top border-secondary bg-dark">
-        <form id="ia-chat-form">
-            <input type="hidden" id="current-tema-id" value="">
-            <div class="input-group">
-                <input type="text" id="ia-question-input" class="form-control bg-black text-white border-secondary" placeholder="Escribe tu duda..." required>
-                <button class="btn btn-warning" type="submit"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<style>
-    .chat-hidden { transform: scale(0); opacity: 0; pointer-events: none; }
-    #ia-chat-messages::-webkit-scrollbar { width: 5px; }
-    #ia-chat-messages::-webkit-scrollbar-thumb { background: #444; border-radius: 5px; }
-</style>
-
-<button id="theme-toggle" class="theme-toggle-btn" title="Cambiar Tema">
-    ☀️
-</button>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const toggleBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-        
-        // Recuperar tema guardado
-        const currentTheme = localStorage.getItem('theme');
-
-        // Función para aplicar estilos del botón según el tema
-        function updateButton(isLight) {
-            if (isLight) {
-                toggleBtn.innerHTML = '🌙'; // Luna
-                toggleBtn.style.backgroundColor = '#0d6efd'; // Azul
-                toggleBtn.style.color = '#fff';
-            } else {
-                toggleBtn.innerHTML = '☀️'; // Sol
-                toggleBtn.style.backgroundColor = '#ffc107'; // Amarillo
-                toggleBtn.style.color = '#000';
-            }
-        }
-
-        // Aplicar al cargar
-        if (currentTheme === 'light') {
-            body.classList.add('light-mode');
-            updateButton(true);
-        } else {
-            updateButton(false);
-        }
-
-        // Evento Click
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            const isLight = body.classList.contains('light-mode');
-            
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            updateButton(isLight);
-        });
-
-        // --- Lógica de Chat IA ---
-        const fab = document.getElementById('ia-fab');
-        const chatWindow = document.getElementById('ia-chat-window');
-        const closeChat = document.getElementById('close-chat');
-        const chatMessages = document.getElementById('ia-chat-messages');
-        const chatForm = document.getElementById('ia-chat-form');
-        const questionInput = document.getElementById('ia-question-input');
-        const temaInput = document.getElementById('current-tema-id');
-        const contextLabel = document.getElementById('chat-context-label');
-
-        fab.addEventListener('click', () => {
-            chatWindow.classList.toggle('chat-hidden');
-            if(!chatWindow.classList.contains('chat-hidden')) {
-                temaInput.value = "";
-                contextLabel.innerText = "Consulta General";
-            }
-        });
-
-        closeChat.addEventListener('click', () => chatWindow.classList.add('chat-hidden'));
-
-        // Permitir a los botones de los temas abrir el chat con contexto
-        window.openIAParaTema = function(temaId, temaNombre) {
-            chatWindow.classList.remove('chat-hidden');
-            temaInput.value = temaId;
-            contextLabel.innerText = "Tema: " + temaNombre;
-            appendMessage("Cargando contexto de: " + temaNombre + ". ¿Qué duda tienes sobre este tema?", "ai");
-        };
-
-        chatForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const question = questionInput.value.trim();
-            if (!question) return;
-
-            appendMessage(question, 'user');
-            questionInput.value = '';
-            
-            const typingId = 'typing-' + Date.now();
-            appendMessage("Analizando...", "ai", typingId);
-
-            try {
-                const response = await fetch("{% url 'ask_ia_instructor' %}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{ csrf_token }}',
-                    },
-                    body: JSON.stringify({
-                        question: question,
-                        tema_id: temaInput.value
-                    }),
-                });
-                
-                document.getElementById(typingId).remove();
-
-                if (!response.ok) throw new Error("Error en servidor");
-
-                const data = await response.json();
-                appendMessage(data.answer, 'ai');
-
-            } catch (error) {
-                if(document.getElementById(typingId)) document.getElementById(typingId).remove();
-                appendMessage("Lo siento, no he podido conectar con la base de datos de instrucción.", "ai");
-            }
-        });
-
-        function appendMessage(text, sender, id = null) {
-            const div = document.createElement('div');
-            if(id) div.id = id;
-            div.className = sender === 'user' 
-                ? 'bg-warning text-black p-2 rounded align-self-end' 
-                : 'bg-secondary bg-opacity-25 p-2 rounded text-light align-self-start';
-            div.style.maxWidth = '85%';
-            div.innerText = text;
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-    });
-</script>
 {% endblock %}

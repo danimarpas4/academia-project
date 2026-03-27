@@ -1,0 +1,218 @@
+{% extends 'simulador/base.html' %}
+
+{% block title %}Red de Reclutamiento - ProMilitar{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto py-8 px-4">
+    <!-- Header con botón volver -->
+    <div class="mb-8">
+        <a href="{% url 'portada' %}" class="text-[#FFCC00] hover:text-yellow-400 flex items-center gap-2 mb-4 transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> Volver al Dashboard
+        </a>
+        <h1 class="text-4xl font-black text-white tracking-tighter">
+            RED DE <span class="text-[#FFCC00]">RECLUTAMIENTO</span>
+        </h1>
+        <p class="text-zinc-400 mt-2 text-lg">Forma tu escuadra y asciende juntos</p>
+    </div>
+
+    <!-- Tarjetas de Información Principal -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <!-- Tu Código -->
+        <div class="bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-[#FFCC00]/20 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-ticket text-[#FFCC00]"></i>
+                </div>
+                <h2 class="text-xl font-bold text-white">Tu Código de Oficial</h2>
+            </div>
+            <div class="bg-black border border-zinc-700 rounded-xl p-4 text-center">
+                <p class="text-zinc-500 text-sm mb-2">Código único de reclutamiento</p>
+                <p class="text-3xl font-black text-[#FFCC00] tracking-widest" id="codigo">{{ codigo_referido }}</p>
+                <button onclick="copiarCodigo()" class="mt-4 bg-zinc-800 hover:bg-zinc-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors w-full">
+                    <i class="fa-solid fa-copy mr-2"></i>Copiar código
+                </button>
+            </div>
+        </div>
+
+        <!-- Tu Enlace -->
+        <div class="bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-link text-blue-500"></i>
+                </div>
+                <h2 class="text-xl font-bold text-white">Enlace de Invitación</h2>
+            </div>
+            <div class="bg-black border border-zinc-700 rounded-xl p-4">
+                <p class="text-zinc-500 text-sm mb-3">Comparte directamente:</p>
+                <div class="flex gap-2">
+                    <input type="text" id="enlace" readonly 
+                           value="{{ request.scheme }}://{{ request.get_host }}/registro/?ref={{ codigo_referido }}"
+                           class="flex-1 bg-zinc-900 border border-zinc-700 text-white text-xs rounded-lg px-3 py-2 font-mono truncate">
+                    <button onclick="copiarEnlace()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors whitespace-nowrap">
+                        Copiar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tu Escuadrón -->
+        <div class="bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-users text-green-500"></i>
+                </div>
+                <h2 class="text-xl font-bold text-white">Tu Escuadrón</h2>
+            </div>
+            <div class="bg-black border border-zinc-700 rounded-xl p-4 text-center">
+                <p class="text-zinc-500 text-sm mb-2">Reclutas en tu unidad</p>
+                <p class="text-5xl font-black text-green-500">{{ total_referidos }}</p>
+                <p class="text-zinc-600 text-sm mt-1">soldados reclutados</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cómo Funciona - Explicación Épica -->
+    <div class="bg-gradient-to-br from-zinc-900 to-black border border-[#FFCC00]/20 rounded-3xl p-8 mb-10">
+        <h2 class="text-2xl font-black text-white mb-8 text-center">
+            <i class="fa-solid fa-medal text-[#FFCC00] mr-3"></i>
+            CÓMO FUNCIONA EL SISTEMA
+        </h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Paso 1 -->
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-12 h-12 bg-[#FFCC00] rounded-full flex items-center justify-center text-black font-black text-xl shadow-lg z-10">1</div>
+                <div class="bg-black border border-zinc-800 rounded-2xl p-6 pt-10 h-full">
+                    <div class="w-12 h-12 bg-[#FFCC00]/20 rounded-xl flex items-center justify-center mb-4 text-[#FFCC00] text-2xl">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Comparte Tu Enlace</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Envía tu código o enlace de invitación a otros opositores que estén preparando las pruebas de ascenso. Cuantos más conozcas, más fuerte será tu escuadra.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-12 h-12 bg-[#FFCC00] rounded-full flex items-center justify-center text-black font-black text-xl shadow-lg z-10">2</div>
+                <div class="bg-black border border-zinc-800 rounded-2xl p-6 pt-10 h-full">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 text-green-500 text-2xl">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Ellos Activan Premium</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Cuando tu recluta se registra y activa su suscripción Premium, <span class="text-green-400 font-bold">tú recibes 3 meses extra</span> de instrucción completamente gratis.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Paso 3 -->
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-12 h-12 bg-[#FFCC00] rounded-full flex items-center justify-center text-black font-black text-xl shadow-lg z-10">3</div>
+                <div class="bg-black border border-zinc-800 rounded-2xl p-6 pt-10 h-full">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 text-blue-500 text-2xl">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Ambos Ganáis</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Tu recluta también recibe <span class="text-blue-400 font-bold">3 meses de regalo</span> como bienvenida. ¡Una victoria para los dos!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recompensa Destacada -->
+        <div class="mt-8 bg-gradient-to-r from-[#FFCC00]/10 to-green-500/10 border border-[#FFCC00]/30 rounded-xl p-6 text-center">
+            <p class="text-zinc-400 text-sm mb-2">Por cada compañero que se una y active Premium:</p>
+            <p class="text-3xl font-black text-white">
+                <span class="text-green-400">+3 meses</span> para ti <span class="text-zinc-600">•</span> <span class="text-blue-400">+3 meses</span> para él
+            </p>
+        </div>
+    </div>
+
+    <!-- Historial de Reclutas -->
+    <div class="bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-2xl p-6">
+        <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+            <i class="fa-solid fa-list text-[#FFCC00]"></i>
+            Registro de Reclutas
+        </h2>
+        
+        {% if referidos %}
+            <div class="overflow-x-auto rounded-xl border border-zinc-800">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-zinc-500 text-sm uppercase tracking-wider border-b border-zinc-800">
+                            <th class="text-left py-4 px-6 font-bold">Soldado</th>
+                            <th class="text-left py-4 px-6 font-bold">Fecha de Unión</th>
+                            <th class="text-left py-4 px-6 font-bold">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for referido in referidos %}
+                            <tr class="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-user text-zinc-500"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">
+                                                {% with alias=referido.username|first|upper|add:"***"|add:referido.username|last|upper %}
+                                                    {{ alias }}
+                                                {% endwith %}
+                                                <span class="text-zinc-600 text-xs ml-1">#{{ referido.id|slice:":3" }}</span>
+                                            </span>
+                                            <p class="text-zinc-600 text-xs">{{ referido.username.0|upper }}*****{{ referido.username.last|upper }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 text-zinc-400">
+                                    {{ referido.date_joined|date:"d/m/Y" }}
+                                </td>
+                                <td class="py-4 px-6">
+                                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-green-500 bg-green-500/10 px-3 py-1 rounded-full">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Activo
+                                    </span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-12">
+                <div class="w-20 h-20 bg-zinc-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-user-slash text-zinc-600 text-3xl"></i>
+                </div>
+                <p class="text-zinc-400 text-lg mb-2">Aún no tienes reclutas en tu escuadra</p>
+                <p class="text-zinc-500 text-sm mb-6">Comparte tu código para empezar a construir tu unidad</p>
+                
+                <div class="flex justify-center gap-4">
+                    <div class="bg-black border border-zinc-700 rounded-lg px-4 py-2">
+                        <span class="text-zinc-500 text-xs">Tu código:</span>
+                        <span class="text-[#FFCC00] font-black ml-2">{{ codigo_referido }}</span>
+                    </div>
+                    <button onclick="copiarCodigo()" class="bg-[#FFCC00] hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg transition-colors">
+                        <i class="fa-solid fa-copy mr-2"></i>Copiar
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function copiarCodigo() {
+    const codigo = document.getElementById('codigo').textContent;
+    navigator.clipboard.writeText(codigo);
+    alert('¡Código copiado! Compártelo con tus compañeros.');
+}
+
+function copiarEnlace() {
+    const enlace = document.getElementById('enlace').value;
+    navigator.clipboard.writeText(enlace);
+    alert('¡Enlace copiado! Envíaselo a tus compañeros.');
+}
+</script>
+{% endblock %}

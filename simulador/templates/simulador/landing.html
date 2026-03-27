@@ -110,15 +110,24 @@
                     <!-- Dropdown Cursos -->
                     <div class="relative group">
                         <button class="nav-link text-zinc-400 hover:text-[#FFCC00] font-bold text-sm transition-colors uppercase tracking-tight">Cursos</button>
-                        <div class="absolute top-full right-0 w-48 mt-2 bg-zinc-900 rounded-xl border border-zinc-800 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                            <a href="#cursos" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})" class="block px-4 py-3 text-sm text-zinc-300 hover:text-[#FFCC00] hover:bg-zinc-800 rounded-t-xl">Curso de Cabo</a>
-                            <a href="#cursos" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'})" class="block px-4 py-3 text-sm text-zinc-300 hover:text-[#FFCC00] hover:bg-zinc-800">Curso Cabo Primero</a>
-                            <a href="#" class="block px-4 py-3 text-sm text-zinc-500 cursor-not-allowed rounded-b-xl">Permanencia</a>
+                        <div class="absolute top-full right-0 w-56 mt-2 bg-zinc-900 rounded-xl border border-zinc-800 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <a href="{% url 'signup_course' 'cabo' %}" class="flex items-center justify-between px-4 py-3 text-sm text-zinc-300 hover:text-[#FFCC00] hover:bg-zinc-800 rounded-t-xl">
+                                <span>Curso de Cabo</span>
+                                <span class="text-[#FFCC00] text-xs">9,99€/mes</span>
+                            </a>
+                            <a href="{% url 'signup_course' 'cabo-primero' %}" class="flex items-center justify-between px-4 py-3 text-sm text-zinc-300 hover:text-[#FFCC00] hover:bg-zinc-800">
+                                <span>Cabo Primero</span>
+                                <span class="text-[#FFCC00] text-xs">9,99€/mes</span>
+                            </a>
+                            <span class="flex items-center justify-between px-4 py-3 text-sm text-zinc-500 cursor-not-allowed rounded-b-xl">
+                                <span>Permanencia</span>
+                                <span class="text-xs">Próx.</span>
+                            </span>
                         </div>
                     </div>
 
-                    <a href="https://t.me/addlist/q57lTY3FZTgwMzBk" target="_blank" class="bg-[#FFCC00] text-black px-6 py-2.5 rounded-full font-black text-xs transition-all hover:scale-105 pulse-gold-active btn-shine uppercase tracking-tighter shadow-[0_0_20px_rgba(255,204,0,0.2)]">
-                        Unirse al Canal
+                    <a href="{% url 'account_login' %}" class="bg-[#FFCC00] text-black px-6 py-2.5 rounded-full font-black text-xs transition-all hover:scale-105 pulse-gold-active btn-shine uppercase tracking-tighter shadow-[0_0_20px_rgba(255,204,0,0.2)]">
+                        Acceder a la Plataforma
                     </a>
                 </div>
             </div>
@@ -172,8 +181,8 @@
                     <p class="text-zinc-400 text-xs mb-10 leading-relaxed font-medium">
                         Temario oficial actualizado para la próxima convocatoria. Empieza tu instrucción con antelación para asegurar tu plaza.
                     </p>
-                    <a href="{% url 'temario_cabo' %}" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 pulse-gold-active btn-shine uppercase tracking-tighter mb-4">
-                        Accede al curso
+                    <a href="{% url 'signup_course' 'cabo' %}" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 pulse-gold-active btn-shine uppercase tracking-tighter mb-4">
+                        <i class="fa-solid fa-graduation-cap"></i> Inscribirme - 9,99€/mes
                     </a>
                     <a href="https://t.me/+c0fMDCCvFs42YWVk" class="block w-full text-center bg-zinc-800 border border-zinc-700 text-white font-black py-3 px-4 rounded-xl hover:bg-zinc-700 transition-colors uppercase text-[10px] tracking-widest">
                         Accede a nuestro bot gratuito
@@ -192,8 +201,8 @@
                     <p class="text-zinc-400 text-xs mb-10 leading-relaxed font-medium">
                         Preparación automatizada para la convocatoria de 2026. Ráfagas horarias, estadísticas de unidad y simulacros multi-materia gratuitos.
                     </p>
-                    <a href="{% url 'temario_cabo_primero' %}" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 pulse-gold-active btn-shine uppercase tracking-tighter mb-4">
-                        Accede al curso
+                    <a href="{% url 'signup_course' 'cabo-primero' %}" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 pulse-gold-active btn-shine uppercase tracking-tighter mb-4">
+                        <i class="fa-solid fa-graduation-cap"></i> Inscribirme - 9,99€/mes
                     </a>
                     <a href="https://t.me/+c0fMDCCvFs42YWVk" class="block w-full text-center bg-zinc-800 border border-zinc-700 text-white font-black py-3 px-4 rounded-xl hover:bg-zinc-700 transition-colors uppercase text-[10px] tracking-widest">
                         Accede a nuestro bot gratuito
@@ -220,6 +229,75 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Why ProMilitar Section -->
+            <div class="reveal mt-24 mb-16">
+                <h2 class="text-3xl md:text-4xl font-black text-white text-center mb-4 tracking-tighter uppercase">
+                    ¿Por qué estudiar en <span class="text-[#FFCC00]">ProMilitar</span>?
+                </h2>
+                <p class="text-zinc-500 text-sm text-center mb-16 font-medium uppercase tracking-tight">
+                    Todo lo que necesitas para aprobar tu oposición
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                    
+                    <!-- Feature 1: Temario Premium -->
+                    <div class="glass-panel p-8 rounded-3xl border border-zinc-800 hover:border-[#FFCC00]/40 transition-all duration-300 hover:scale-[1.02] group">
+                        <div class="w-14 h-14 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center text-[#FFCC00] text-2xl mb-6 group-hover:bg-[#FFCC00]/20 transition-colors">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Temario Premium</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed font-medium">PDF descargable y Audio-Temario (Novedad) para estudiar en cualquier lugar y aprovechar cada momento.</p>
+                    </div>
+
+                    <!-- Feature 2: Tests a la Carta -->
+                    <div class="glass-panel p-8 rounded-3xl border border-zinc-800 hover:border-[#FFCC00]/40 transition-all duration-300 hover:scale-[1.02] group">
+                        <div class="w-14 h-14 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center text-[#FFCC00] text-2xl mb-6 group-hover:bg-[#FFCC00]/20 transition-colors">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Tests a la Carta</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed font-medium">Generador de test infinitos. Tú eliges preguntas, temas y modo. Incluye retroalimentación detallada de cada fallo.</p>
+                    </div>
+
+                    <!-- Feature 3: Instructor IA 24/7 -->
+                    <div class="glass-panel p-8 rounded-3xl border border-zinc-800 hover:border-[#FFCC00]/40 transition-all duration-300 hover:scale-[1.02] group">
+                        <div class="w-14 h-14 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center text-[#FFCC00] text-2xl mb-6 group-hover:bg-[#FFCC00]/20 transition-colors">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Instructor IA 24/7</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed font-medium">Tutor inteligente disponible a cualquier hora para resolver dudas sobre el temario o la convocatoria.</p>
+                    </div>
+
+                    <!-- Feature 4: Planning Personalizado -->
+                    <div class="glass-panel p-8 rounded-3xl border border-zinc-800 hover:border-[#FFCC00]/40 transition-all duration-300 hover:scale-[1.02] group">
+                        <div class="w-14 h-14 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center text-[#FFCC00] text-2xl mb-6 group-hover:bg-[#FFCC00]/20 transition-colors">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Planning Personalizado</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed font-medium">Calendario de estudio adaptado a tu ritmo y fecha de examen. Organiza tu instrucción de forma óptima.</p>
+                    </div>
+
+                    <!-- Feature 5: Sistema de Recompensas -->
+                    <div class="glass-panel p-8 rounded-3xl border border-zinc-800 hover:border-[#FFCC00]/40 transition-all duration-300 hover:scale-[1.02] group">
+                        <div class="w-14 h-14 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center text-[#FFCC00] text-2xl mb-6 group-hover:bg-[#FFCC00]/20 transition-colors">
+                            <i class="fa-solid fa-gift"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Sistema de Recompensas</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed font-medium">Descuentos acumulables invitando a compañeros. ¡Tu cuota puede salirte completamente gratis!</p>
+                    </div>
+
+                    <!-- Feature 6: Ranking y Escalafón -->
+                    <div class="glass-panel p-8 rounded-3xl border border-zinc-800 hover:border-[#FFCC00]/40 transition-all duration-300 hover:scale-[1.02] group">
+                        <div class="w-14 h-14 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center text-[#FFCC00] text-2xl mb-6 group-hover:bg-[#FFCC00]/20 transition-colors">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white mb-3 uppercase tracking-tight">Ranking y Escalafón</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed font-medium">Clasificación en tiempo real entre todos los alumnos para medir tu nivel real frente a la competencia.</p>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </section>
 

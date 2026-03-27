@@ -70,6 +70,26 @@
 
 <div class="py-8 relative z-10">
     
+    <!-- Banner Modo Freemium -->
+    {% if not es_premium %}
+    <div class="mb-8 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-2xl p-5">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center text-yellow-500 text-xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-lg">Estás en modo limitado</h3>
+                    <p class="text-zinc-400 text-sm">1 Tema disponible • 10 Preguntas por test</p>
+                </div>
+            </div>
+            <a href="{% url 'plan_premium' %}" class="bg-[#FFCC00] hover:bg-yellow-400 text-black font-bold py-3 px-6 rounded-xl transition-colors flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-crown"></i> Desbloquea todo el potencial
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
     <!-- Header del Dashboard -->
     <div class="reveal mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
@@ -234,6 +254,49 @@
         </div>
     </div>
 
+    <!-- SISTEMA DE REFERIDOS -->
+    <div class="reveal delay-300 bg-gradient-to-br from-zinc-900 to-black border border-[#FFCC00]/30 rounded-3xl p-8 relative overflow-hidden shadow-lg mb-12">
+        <!-- Decoración de fondo -->
+        <div class="absolute -right-20 -top-20 w-64 h-64 bg-[#FFCC00] rounded-full blur-[100px] opacity-10 pointer-events-none"></div>
+        
+        <div class="relative z-10 flex flex-col lg:flex-row items-center gap-8">
+            <div class="flex-1">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-[#FFCC00]/20 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-users text-[#FFCC00] text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white uppercase tracking-tight">Red de Reclutamiento</h3>
+                </div>
+                <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-4">
+                    ¡Forma tu escuadra! Invita a otros aspirantes a unirse a ProMilitar. Por cada compañero que se registre y active Premium, <span class="text-[#FFCC00] font-bold">ambos recibirán 3 meses extra</span> de instrucción gratis.
+                </p>
+                
+                <!-- Código de referido -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="bg-black border border-zinc-700 rounded-xl px-4 py-2 flex items-center gap-2">
+                        <span class="text-zinc-400 text-xs uppercase">Tu código:</span>
+                        <span class="text-[#FFCC00] font-black text-lg tracking-widest">{{ referral_code }}</span>
+                    </div>
+                    <button onclick="copiarCodigoReferido()" class="bg-[#FFCC00] hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded-xl transition-colors text-sm">
+                        <i class="fa-solid fa-copy mr-1"></i> Copiar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex-shrink-0 text-center">
+                <div class="bg-zinc-800/50 border border-zinc-700 rounded-2xl p-6 min-w-[180px]">
+                    <div class="text-5xl font-black text-white mb-1">
+                        {{ referidos_count|default:"0" }}
+                    </div>
+                    <div class="text-[#FFCC00] font-bold text-sm uppercase tracking-wide">Soldados Reclutados</div>
+                </div>
+                <a href="{% url 'mis_referidos' %}" class="mt-4 inline-block w-full bg-transparent border-2 border-[#FFCC00] text-[#FFCC00] hover:bg-[#FFCC00] hover:text-black font-bold py-2 px-6 rounded-xl transition-all duration-300 text-sm">
+                    <i class="fa-solid fa-info-circle mr-1"></i> Saber más
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Panel Informativo Secundario (Telegram) -->
     <div class="reveal delay-300 bg-white dark:bg-black border border-gray-200 dark:border-zinc-800 rounded-3xl p-8 relative overflow-hidden shadow-lg transition-colors">
         <!-- Decoración de fondo -->
@@ -262,6 +325,13 @@
 </button>
 
 <script>
+    function copiarCodigoReferido() {
+        const codigo = "{{ referral_code }}";
+        navigator.clipboard.writeText(codigo).then(() => {
+            alert('¡Código copiado! Compártelo con tus compañeros.');
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         // --- 1. Lógica del Revelado por Scroll (Aparición Suave) ---
         function reveal() {

@@ -4,33 +4,58 @@
 <div class="flex items-center justify-center min-h-[75vh] py-8">
     <div class="w-full max-w-lg relative">
         
-        <!-- Efecto de luz de fondo -->
+        <!-- efecto de luz de fondo -->
         <div class="absolute -inset-1 bg-gradient-to-r from-zinc-600/20 to-[#FFCC00]/20 rounded-[2rem] blur-lg opacity-75"></div>
         
         <!-- Tarjeta de Registro -->
         <div class="relative bg-zinc-950/90 backdrop-blur-xl border border-zinc-800 rounded-3xl p-8 shadow-2xl">
             
-            <div class="text-center mb-8">
-                <div class="w-16 h-16 bg-black border border-zinc-800 flex items-center justify-center rounded-2xl shadow-lg mx-auto mb-6">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-black border border-zinc-800 flex items-center justify-center rounded-2xl shadow-lg mx-auto mb-4">
                     <i class="fa-solid fa-user-plus text-[#FFCC00] text-2xl"></i>
                 </div>
                 <h2 class="text-3xl font-black text-white tracking-tighter">NUEVO <span class="text-[#FFCC00]">RECLUTA</span></h2>
+                {% if curso_info %}
+                <div class="mt-3 inline-flex items-center gap-2 bg-[#FFCC00]/10 border border-[#FFCC00]/30 rounded-full px-4 py-1.5">
+                    <i class="fa-solid fa-graduation-cap text-[#FFCC00] text-sm"></i>
+                    <span class="text-[#FFCC00] text-sm font-bold">{{ curso_info.nombre }}</span>
+                </div>
+                {% endif %}
                 <p class="text-zinc-500 text-sm mt-2 font-medium">Completa el formulario para iniciar tu instrucción</p>
             </div>
 
-            <form method="post" class="space-y-5">
+            <!-- Botón Google -->
+            <a href="{% url 'google_login' %}" class="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-800 font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-lg border border-gray-200 mb-5">
+                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Registrarse con Google
+            </a>
+
+            <div class="flex items-center gap-4 mb-5">
+                <div class="flex-1 h-px bg-zinc-700"></div>
+                <span class="text-zinc-500 text-xs font-bold uppercase">o</span>
+                <div class="flex-1 h-px bg-zinc-700"></div>
+            </div>
+
+            <form method="post" class="space-y-4">
                 {% csrf_token %}
                 {% if curso_slug %}
                     <input type="hidden" name="curso" value="{{ curso_slug }}">
-                {% else %}
-                    <div class="bg-blue-900/30 border border-blue-800 text-blue-400 p-4 rounded-xl text-sm mb-6">
-                        <p class="font-bold mb-1"><i class="fa-solid fa-info-circle mr-1"></i> Información:</p>
-                        <p>No has seleccionado un curso específico. Se te asignará un curso por defecto.</p>
+                {% endif %}
+                
+                {% if codigo_referido %}
+                    <div class="bg-green-900/30 border border-green-800 text-green-400 p-3 rounded-xl text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-star text-yellow-500"></i>
+                        Has sido invitado por un compañero - ¡Ahorra 3€ en tu inscripción!
                     </div>
                 {% endif %}
                 
                 {% if form.errors %}
-                    <div class="bg-red-900/30 border border-red-800 text-red-400 p-4 rounded-xl text-sm mb-6">
+                    <div class="bg-red-900/30 border border-red-800 text-red-400 p-4 rounded-xl text-sm">
                         <p class="font-bold mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Por favor, corrige los siguientes errores:</p>
                         <ul class="list-disc pl-5 mt-2 space-y-1">
                             {% for field in form %}
@@ -45,30 +70,30 @@
                     </div>
                 {% endif %}
 
-                <!-- Renderizado de campos de Django personalizado con Tailwind -->
-                <div class="grid grid-cols-1 gap-5">
+                <div class="[&>div>input]:w-full [&>div>input]:bg-black [&>div>input]:border [&>div>input]:border-zinc-800 [&>div>input]:text-white [&>div>input]:text-sm [&>div>input]:rounded-xl [&>div>input]:focus:ring-[#FFCC00] [&>div>input]:focus:border-[#FFCC00] [&>div>input]:block [&>div>input]:p-3 [&>div>input]:transition-colors">
                     {% for field in form %}
-                        <div>
+                        {% if field.name == 'codigo_referido' %}
+                            <input type="hidden" name="codigo_referido" value="{{ codigo_referido }}">
+                        {% else %}
+                        <div class="mb-4">
                             <label class="block text-zinc-400 text-xs font-bold mb-2 uppercase tracking-wider" for="{{ field.id_for_label }}">
                                 {{ field.label }}
                             </label>
-                            <!-- Aplicamos estilos al input de Django mediante clases (requiere que el form en Django no las sobreescriba, o usamos un div contenedor que fuerce el estilo) -->
-                            <div class="[&>input]:w-full [&>input]:bg-black [&>input]:border [&>input]:border-zinc-800 [&>input]:text-white [&>input]:text-sm [&>input]:rounded-xl [&>input]:focus:ring-[#FFCC00] [&>input]:focus:border-[#FFCC00] [&>input]:block [&>input]:p-3 [&>input]:transition-colors">
-                                {{ field }}
-                            </div>
+                            {{ field }}
                             {% if field.help_text %}
                                 <p class="text-zinc-600 text-[0.7rem] mt-1.5">{{ field.help_text }}</p>
                             {% endif %}
                         </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
 
-                <button type="submit" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-3.5 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,204,0,0.2)] flex items-center justify-center gap-2 mt-8">
-                    CREAR CUENTA Y ENTRAR <i class="fa-solid fa-check"></i>
+                <button type="submit" class="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black font-black py-3.5 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,204,0,0.2)] flex items-center justify-center gap-2 mt-6">
+                    CREAR CUENTA <i class="fa-solid fa-check"></i>
                 </button>
             </form>
 
-            <div class="mt-8 text-center border-t border-zinc-800 pt-6">
+            <div class="mt-6 text-center border-t border-zinc-800 pt-6">
                 <p class="text-zinc-500 text-sm">
                     ¿Ya estás en nuestras filas? <br>
                     <a href="{% url 'login' %}" class="text-white hover:text-[#FFCC00] font-bold transition-colors mt-1 inline-block">Inicia sesión aquí</a>
@@ -78,7 +103,6 @@
     </div>
 </div>
 
-<!-- Pequeño ajuste en caso de que Django renderice <select> o <textarea> en el registro -->
 <style>
     .bg-black select, .bg-black textarea {
         width: 100%;

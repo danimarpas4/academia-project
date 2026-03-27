@@ -121,6 +121,10 @@ class Perfil(models.Model):
     cursos_activos = models.ManyToManyField(Curso, blank=True, related_name='alumnos')
     rango = models.CharField(max_length=30, choices=RANGOS, default='Recluta')
     preguntas_respondidas = models.PositiveIntegerField(default=0)
+    codigo_referido = models.CharField(max_length=12, unique=True, blank=True, null=True, help_text="Código único para referral")
+    referido_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='referidos')
+    descuento_acumulado = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    es_premium = models.BooleanField(default=False, help_text="Indica si el usuario tiene suscripción premium activa")
     
     def __str__(self):
         return f"{self.usuario.username} - {self.rango}"
@@ -147,11 +151,142 @@ class Perfil(models.Model):
             return True 
         return False
 
+
+# 8. MODELO: HISTORIAL DESCUENTO
+class HistorialDescuento(models.Model):
+    MOTIVOS = [
+        ('ALTA_REFERIDO', 'Alta por referido'),
+        ('RECOMPENSA_RECLUTA', 'Recluta registrado'),
+        ('APLICADO_PAGO', 'Descuento aplicado en pago'),
+        ('SOBRANTE_PAGO', 'Sobrante перенесён'),
+    ]
+
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='historial_descuentos')
+    fecha = models.DateTimeField(auto_now_add=True)
+    motivo = models.CharField(max_length=30, choices=MOTIVOS)
+    cuantia = models.DecimalField(max_digits=6, decimal_places=2)
+    saldo_resultante = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+
+    class Meta:
+        ordering = ['-fecha']
+        verbose_name = 'Historial de Descuento'
+        verbose_name_plural = 'Historiales de Descuento'
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.get_motivo_display()} ({self.fecha.strftime('%d/%m/%Y')})"
+
+# 9. MODELO: DOCUMENTO CONTEXTO (Para RAG del Tutor IA)
+def documento_upload_path(instance, filename):
+    """Genera la ruta de subida según el curso y tipo"""
+    curso_slug = instance.curso.nombre.lower().replace(' ', '_') if instance.curso else 'general'
+    return f'temarios/{curso_slug}/{filename}'
+
+class DocumentoContexto(models.Model):
+    TIPOS_DOCUMENTO = [
+        ('TEMARIO', 'Temario'),
+        ('CONVOCATORIA', 'Convocatoria'),
+        ('NORMATIVA', 'Normativa'),
+    ]
+    
+    curso = models.ForeignKey(
+        Curso, 
+        on_delete=models.CASCADE, 
+        related_name='documentos',
+        help_text="Curso al que pertenece este documento"
+    )
+    
+    nombre = models.CharField(
+        max_length=200, 
+        help_text="Nombre descriptivo del documento"
+    )
+    
+    tipo = models.CharField(
+        max_length=20,
+        choices=TIPOS_DOCUMENTO,
+        default='TEMARIO'
+    )
+    
+    archivo = models.FileField(
+        upload_to=documento_upload_path,
+        blank=True,
+        null=True,
+        help_text="PDF del temario o convocatoria"
+    )
+    
+    contenido_texto = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Texto extraído automáticamente del PDF"
+    )
+    
+    fecha_subida = models.DateTimeField(auto_now_add=True)
+    activo = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['-fecha_subida']
+        verbose_name = 'Documento de Contexto'
+        verbose_name_plural = 'Documentos de Contexto'
+    
+    def __str__(self):
+        return f"{self.nombre} ({self.get_tipo_display()}) - {self.curso.nombre}"
+    
+    def extraer_texto_pdf(self):
+        """Extrae el texto del PDF o TXT y lo guarda en contenido_texto"""
+        if not self.archivo:
+            return None
+        
+        texto = ""
+        archivo_path = self.archivo.path
+        extension = archivo_path.split('.')[-1].lower()
+        
+        if extension == 'txt':
+            try:
+                with open(archivo_path, 'r', encoding='utf-8') as f:
+                    texto = f.read()
+            except UnicodeDecodeError:
+                with open(archivo_path, 'r', encoding='latin-1') as f:
+                    texto = f.read()
+            except Exception as e:
+                return f"Error al leer TXT: {str(e)}"
+                
+        elif extension == 'pdf':
+            try:
+                import pdfplumber
+                with pdfplumber.open(self.archivo) as pdf:
+                    for page in pdf.pages:
+                        page_text = page.extract_text()
+                        if page_text:
+                            texto += page_text + "\n\n"
+            except ImportError:
+                try:
+                    import PyPDF2
+                    with open(archivo_path, 'rb') as f:
+                        reader = PyPDF2.PdfReader(f)
+                        for page in reader.pages:
+                            texto += page.extract_text() + "\n\n"
+                except Exception as e:
+                    return f"Error al procesar con PyPDF2: {str(e)}"
+            except Exception as e:
+                return f"Error al procesar PDF: {str(e)}"
+        else:
+            return f"Formato no soportado: {extension}"
+        
+        self.contenido_texto = texto[:100000]
+        self.save()
+        return texto
+
 # --- SEÑALES ---
+import uuid
+
+def generar_codigo_referido():
+    return uuid.uuid4().hex[:8].upper()
+
 @receiver(post_save, sender=User)
 def crear_perfil(sender, instance, created, **kwargs):
     if created:
-        Perfil.objects.create(usuario=instance)
+        perfil = Perfil(usuario=instance)
+        perfil.codigo_referido = generar_codigo_referido()
+        perfil.save()
 
 @receiver(post_save, sender=User)
 def guardar_perfil(sender, instance, **kwargs):

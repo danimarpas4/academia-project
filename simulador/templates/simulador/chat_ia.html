@@ -1,0 +1,115 @@
+{% extends 'simulador/base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto py-8">
+    <div class="bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col h-[70vh]">
+        
+        <!-- Header del Chat -->
+        <div class="bg-zinc-900/50 p-6 border-b border-zinc-800 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-[#FFCC00] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(255,204,0,0.2)]">
+                    <i class="fa-solid fa-robot text-black text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-black text-white uppercase tracking-tight">Instructor <span class="text-[#FFCC00]">IA</span></h2>
+                    <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Resolución de dudas sobre el temario</p>
+                </div>
+            </div>
+            <span class="px-3 py-1 bg-green-900/20 text-green-500 text-[10px] font-black rounded-full border border-green-800/30 uppercase">En Guardia</span>
+        </div>
+
+        <!-- Área de Mensajes -->
+        <div id="chat-window" class="flex-1 overflow-y-auto p-6 space-y-4 bg-black/20">
+            <div class="flex items-start gap-3">
+                <div class="w-8 h-8 bg-zinc-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-shield-halved text-[#FFCC00] text-xs"></i>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-2xl rounded-tl-none max-w-[80%]">
+                    <p class="text-sm text-zinc-300">A la orden, aspirante. Soy el Instructor IA de ProMilitar. ¿Qué duda tienes sobre el temario de Cabo?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input de Texto -->
+        <div class="p-6 bg-zinc-900/50 border-t border-zinc-800">
+            <form id="chat-form" class="flex gap-4">
+                {% csrf_token %}
+                <input type="text" id="user-input" placeholder="Escribe tu duda táctica aquí..." class="flex-1 bg-black border border-zinc-800 text-white rounded-xl px-5 py-3 focus:ring-1 focus:ring-[#FFCC00] focus:border-[#FFCC00] outline-none transition-all placeholder:text-zinc-600">
+                <button type="submit" class="bg-[#FFCC00] hover:bg-yellow-400 text-black font-black px-6 rounded-xl transition-all hover:scale-105 flex items-center justify-center">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+const chatForm = document.getElementById('chat-form');
+const chatWindow = document.getElementById('chat-window');
+const userInput = document.getElementById('user-input');
+
+chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = userInput.value.trim();
+    if(!text) return;
+
+    // Añadir mensaje del usuario
+    appendMessage('user', text);
+    userInput.value = '';
+
+    // Mostrar cargando
+    const loadingId = appendMessage('bot', '<i class="fa-solid fa-ellipsis animate-bounce"></i> Procesando respuesta...');
+
+    try {
+        const response = await fetch('{% url "chat_ia" %}', {
+            method: 'POST',
+            headers: { 
+                'X-CSRFToken': '{{ csrf_token }}', 
+                'Content-Type': 'application/x-www-form-urlencoded' 
+            },
+            body: `pregunta=${encodeURIComponent(text)}`
+        });
+        const data = await response.json();
+        
+        // Actualizar mensaje del bot
+        updateMessage(loadingId, data.respuesta);
+    } catch (error) {
+        updateMessage(loadingId, 'Error en la conexión con el puesto de mando. Compruebe su conexión o API Key.');
+    }
+});
+
+function appendMessage(role, text) {
+    const id = Date.now();
+    const isBot = role === 'bot';
+    const msgHtml = `
+        <div class="flex ${isBot ? 'items-start' : 'items-end justify-end'} gap-3 animate-fade-in">
+            ${isBot ? '<div class="w-8 h-8 bg-zinc-800 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-shield-halved text-[#FFCC00] text-xs"></i></div>' : ''}
+            <div class="${isBot ? 'bg-zinc-900 border-zinc-800 rounded-tl-none' : 'bg-[#FFCC00] text-black rounded-br-none'} border p-4 rounded-2xl max-w-[80%] shadow-lg">
+                <p class="text-sm ${isBot ? 'text-zinc-300' : 'font-bold'}" id="msg-${id}">${text}</p>
+            </div>
+        </div>
+    `;
+    chatWindow.insertAdjacentHTML('beforeend', msgHtml);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    return id;
+}
+
+function updateMessage(id, text) {
+    const el = document.getElementById(`msg-${id}`);
+    if(el) {
+        el.innerHTML = text.replace(/\n/g, '<br>');
+    }
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+</script>
+
+<style>
+    @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
+    
+    /* Personalización del scroll para el chat */
+    #chat-window::-webkit-scrollbar { width: 5px; }
+    #chat-window::-webkit-scrollbar-track { background: transparent; }
+    #chat-window::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+</style>
+{% endblock %}
